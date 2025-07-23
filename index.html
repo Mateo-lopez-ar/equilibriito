@@ -40,11 +40,11 @@ session_start();
     <li><a href="contacto.html">Contacto</a></li>
     <li><a href="citas.html">Citas</a></li>
     <li>
-      <!-- PHP BLOCK START --> if (isset($_SESSION['usuario'])): <!-- PHP BLOCK END -->
+      <?php if (isset($_SESSION['usuario'])): ?>
         <a href="logout.html">Cerrar Sesión</a>
-      <!-- PHP BLOCK START --> else: <!-- PHP BLOCK END -->
+      <?php else: ?>
         <a href="login.html">Iniciar Sesión</a>
-      <!-- PHP BLOCK START --> endif; <!-- PHP BLOCK END -->
+      <?php endif; ?>
     </li>
   </ul>
 </nav>
