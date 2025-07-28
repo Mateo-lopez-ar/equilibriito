@@ -36,20 +36,19 @@
         .single();
 
       if (usuarioExistente) {
-        // Validar la contraseña
-        if (usuarioExistente.contraseña === contraseña) {
+        // Placeholder for password hashing comparison (replace with proper hashing logic)
+        if (usuarioExistente.contraseña === contraseña) { // Replace with hashed comparison
           alert("Inicio de sesión exitoso.");
-          // Aquí podrías redirigir, por ejemplo:
           // window.location.href = "index.html";
         } else {
           alert("Contraseña incorrecta.");
         }
       } else {
-        // Registrar nuevo usuario
+        // Registrar nuevo usuario (consider hashing contraseña here)
         const { data, error } = await supabaseClient
           .from('registro')
           .insert([
-            { usuario, contraseña }
+            { usuario, contraseña } // Replace with hashed contraseña
           ]);
 
         if (error) {
