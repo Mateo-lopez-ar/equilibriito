@@ -7,9 +7,7 @@
 <body>
   <h1>Registro o Inicio de Sesión</h1>
   <form id="registroForm">
-    <label>Nombre: <input type="text" name="nombre" required /></label><br><br>
-    <label>Teléfono: <input type="text" name="telefono" required /></label><br><br>
-    <label>Correo: <input type="email" name="correo" required /></label><br><br>
+    <label>Usuario: <input type="text" name="usuario" required /></label><br><br>
     <label>Contraseña: <input type="password" name="contraseña" required /></label><br><br>
     <button type="submit">Enviar</button>
   </form>
@@ -27,16 +25,14 @@
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
 
-      const nombre = form.nombre.value.trim();
-      const telefono = form.telefono.value.trim();
-      const correo = form.correo.value.trim();
+      const usuario = form.usuario.value.trim();
       const contraseña = form.contraseña.value;
 
-      // Verificar si ya existe un usuario con ese correo
+      // Verificar si ya existe un usuario
       const { data: usuarioExistente, error: errorConsulta } = await supabaseClient
-        .from('usuarios')
+        .from('registro')
         .select('*')
-        .eq('correo', correo)
+        .eq('usuario', usuario)
         .single();
 
       if (usuarioExistente) {
@@ -51,9 +47,9 @@
       } else {
         // Registrar nuevo usuario
         const { data, error } = await supabaseClient
-          .from('usuarios')
+          .from('registro')
           .insert([
-            { nombre, telefono, correo, contraseña }
+            { usuario, contraseña }
           ]);
 
         if (error) {
