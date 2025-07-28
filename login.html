@@ -28,36 +28,49 @@
       const usuario = form.usuario.value.trim();
       const contraseña = form.contraseña.value;
 
-      // Verificar si ya existe un usuario
-      const { data: usuarioExistente, error: errorConsulta } = await supabaseClient
-        .from('registro')
-        .select('*')
-        .eq('usuario', usuario)
-        .single();
-
-      if (usuarioExistente) {
-        // Placeholder for password hashing comparison (replace with proper hashing logic)
-        if (usuarioExistente.contraseña === contraseña) { // Replace with hashed comparison
-          alert("Inicio de sesión exitoso.");
-          // window.location.href = "index.html";
-        } else {
-          alert("Contraseña incorrecta.");
-        }
-      } else {
-        // Registrar nuevo usuario (consider hashing contraseña here)
-        const { data, error } = await supabaseClient
-          .from('registro')
-          .insert([
-            { usuario, contraseña } // Replace with hashed contraseña
-          ]);
-
-        if (error) {
-          alert("Error al registrar: " + error.message);
-        } else {
-          alert("¡Usuario registrado exitosamente!");
-          form.reset();
-        }
+      if (!usuario || !contraseña) {
+        alert("Por favor completa todos los campos.");
+        return;
       }
+
+      try {
+        // Buscar si ya existe el usuario
+        const { data: usuarioExistente, error } = await supabaseClient
+          .from('registro')
+          .select('*')
+          .eq('usuario', usuario)
+          .single();
+
+        if (usuarioExistente) {
+          // Validación de contraseña (sin hashing por simplicidad)
+          if (usuarioExistente.contraseña === contraseña) {
+            alert("Inicio de sesión exitoso.");
+            // Aquí podrías redirigir a otra página
+            // window.location.href = "index.html";
+          } else {
+            alert("Contraseña incorrecta.");
+          }
+        } else {
+          // Registrar nuevo usuario
+          const { data, error: errorRegistro } = await supabaseClient
+            .from('registro')
+            .insert([{ usuario, contraseña }]);
+
+          if (errorRegistro) {
+            alert("Error al registrar: " + errorRegistro.message);
+          } else {
+            alert("Usuario registrado exitosamente.");
+            // Redirigir si lo deseas
+            // window.location.href = "index.html";
+          }
+        }
+
+      } catch (err) {
+        console.error(err);
+        alert("Ocurrió un error inesperado.");
+      }
+
+      form.reset();
     });
   </script>
 </body>
