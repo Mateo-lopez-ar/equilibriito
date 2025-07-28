@@ -3,91 +3,16 @@
 <head>
   <meta charset="UTF-8" />
   <title>Registro / Inicio de Sesión</title>
-  <style>
-    * {
-      box-sizing: border-box;
-      font-family: 'Segoe UI', sans-serif;
-    }
-
-    body {
-      background: linear-gradient(135deg, #f7f9fc, #e2e8f0);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
-    }
-
-    .form-container {
-      background-color: white;
-      padding: 2rem;
-      border-radius: 12px;
-      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
-      width: 100%;
-      max-width: 400px;
-      text-align: center;
-    }
-
-    .form-container h1 {
-      margin-bottom: 1.5rem;
-      color: #2d3748;
-    }
-
-    label {
-      display: block;
-      text-align: left;
-      margin-bottom: 0.5rem;
-      color: #4a5568;
-      font-weight: 500;
-    }
-
-    input {
-      width: 100%;
-      padding: 0.75rem;
-      margin-bottom: 1rem;
-      border: 1px solid #cbd5e0;
-      border-radius: 8px;
-      font-size: 1rem;
-    }
-
-    button {
-      width: 100%;
-      padding: 0.75rem;
-      background-color: #4299e1;
-      border: none;
-      border-radius: 8px;
-      color: white;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: background-color 0.3s;
-    }
-
-    button:hover {
-      background-color: #3182ce;
-    }
-
-    .mensaje {
-      margin-top: 1rem;
-      font-size: 0.95rem;
-      color: #2d3748;
-    }
-  </style>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-
   <div class="form-container">
-    <h1>Bienvenido</h1>
+    <h1>Registro o Inicio de Sesión</h1>
     <form id="registroForm">
-      <label for="usuario">Usuario</label>
-      <input type="text" id="usuario" name="usuario" required />
-
-      <label for="contraseña">Contraseña</label>
-      <input type="password" id="contraseña" name="contraseña" required />
-
-      <button type="submit">Ingresar / Registrarse</button>
+      <label>Usuario: <input type="text" name="usuario" required /></label><br><br>
+      <label>Contraseña: <input type="password" name="contraseña" required /></label><br><br>
+      <button type="submit">Enviar</button>
     </form>
-
-    <div class="mensaje" id="mensaje"></div>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -95,12 +20,10 @@
     const { createClient } = supabase;
 
     const supabaseUrl = 'https://erxgjoacksfghrddptvn.supabase.co';
-    const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVyeGdqb2Fja3NmZ2hyZGRwdHZuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTMzMTA0NTksImV4cCI6MjA2ODg4NjQ1OX0.v0iv9fLe61PVduo3s2HIRFpgAIcMpUik3u82SGYmLE0';
-
+    const supabaseKey = 'TU_API_KEY_AQUI';
     const supabaseClient = createClient(supabaseUrl, supabaseKey);
 
     const form = document.getElementById('registroForm');
-    const mensajeDiv = document.getElementById('mensaje');
 
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
@@ -108,48 +31,35 @@
       const usuario = form.usuario.value.trim();
       const contraseña = form.contraseña.value;
 
-      mensajeDiv.textContent = "";
+      // Buscar usuario
+      const { data: usuarioExistente, error: errorConsulta } = await supabaseClient
+        .from('registro')
+        .select('*')
+        .eq('usuario', usuario)
+        .single();
 
-      if (!usuario || !contraseña) {
-        mensajeDiv.textContent = "Por favor completa todos los campos.";
-        return;
-      }
-
-      try {
-        const { data: usuarioExistente } = await supabaseClient
-          .from('registro')
-          .select('*')
-          .eq('usuario', usuario)
-          .single();
-
-        if (usuarioExistente) {
-          if (usuarioExistente.contraseña === contraseña) {
-            mensajeDiv.textContent = "Inicio de sesión exitoso.";
-            // window.location.href = "index.html";
-          } else {
-            mensajeDiv.textContent = "Contraseña incorrecta.";
-          }
+      if (usuarioExistente) {
+        // Validar contraseña (sin hash por ahora)
+        if (usuarioExistente.contraseña === contraseña) {
+          localStorage.setItem("usuario", usuario);
+          window.location.href = "index.html";
         } else {
-          const { error } = await supabaseClient
-            .from('registro')
-            .insert([{ usuario, contraseña }]);
-
-          if (error) {
-            mensajeDiv.textContent = "Error al registrar: " + error.message;
-          } else {
-            mensajeDiv.textContent = "¡Usuario registrado exitosamente!";
-            // window.location.href = "index.html";
-          }
+          alert("Contraseña incorrecta.");
         }
+      } else {
+        // Registrar nuevo usuario
+        const { data, error } = await supabaseClient
+          .from('registro')
+          .insert([{ usuario, contraseña }]);
 
-      } catch (err) {
-        console.error(err);
-        mensajeDiv.textContent = "Error inesperado.";
+        if (error) {
+          alert("Error al registrar: " + error.message);
+        } else {
+          localStorage.setItem("usuario", usuario);
+          window.location.href = "index.html";
+        }
       }
-
-      form.reset();
     });
   </script>
-
 </body>
 </html>
