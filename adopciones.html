@@ -35,11 +35,13 @@
     <li><a href="contacto.hmtl">Contacto</a></li>
     <li><a href="citas.hmtl">Citas</a></li>
     <li>
-      <!-- PHP BLOCK START --> if (isset($_SESSION['usuario'])): <!-- PHP BLOCK END -->
+      <?php
+      if (isset($_SESSION['usuario'])): 
         <a href="logout.hmtl">Cerrar Sesión</a>
-      <!-- PHP BLOCK START --> else: <!-- PHP BLOCK END -->
+      else:
         <a href="login.hmtl">Iniciar Sesión</a>
-      <!-- PHP BLOCK START --> endif; <!-- PHP BLOCK END -->
+      endif;
+      ?>
     </li>
   </ul>
 </nav>
