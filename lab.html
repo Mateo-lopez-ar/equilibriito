@@ -1,4 +1,6 @@
-<!-- PHP BLOCK START --> session_start(); <!-- PHP BLOCK END -->
+<? php 
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -188,32 +190,27 @@
 </header>
 
 <nav>
-  <button class="menu-toggle" onclick="toggleMenu()">☰ Menú</button>
-  <ul id="navMenu">
-    <li><a href="index.php">Inicio</a></li>
-    <li><a href="nosotros.php">Nosotros</a></li>
-    <li class="dropdown">
-      <a href="servicios.php" onclick="toggleSubmenu(event)">Servicios ▾</a>
-      <ul class="submenu">
-        <li><a href="Consulta_Veterinaria.php">Consulta Veterinaria</a></li>
-        <li><a href="Urgencias_Veterinaria_24_horas.php">Urgencias 24h</a></li>
-        <li><a href="Cirugias_y_Desparasitacion.php">Cirugías y Desparasitación</a></li>
-        <li><a href="Adopciones_Responsables.php">Adopciones</a></li>
-        <li><a href="Laboratorio_Clinico_Veterinario.php">Laboratorio Clínico</a></li>
-      </ul>
-    </li>
-    <li><a href="adopciones.php">Adopciones</a></li>
-    <li><a href="contacto.php">Contacto</a></li>
-    <li><a href="citas.php">Citas</a></li>
-    <li>
-      <!-- PHP BLOCK START --> if (isset($_SESSION['usuario'])): <!-- PHP BLOCK END -->
-        <a href="logout.php">Cerrar Sesión</a>
-      <!-- PHP BLOCK START --> else: <!-- PHP BLOCK END -->
-        <a href="login.php">Iniciar Sesión</a>
-      <!-- PHP BLOCK START --> endif; <!-- PHP BLOCK END -->
-    </li>
-  </ul>
-</nav>
+    <ul id="navMenu">
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="nosotros.html">Nosotros</a></li>
+      <li class="dropdown">
+        <a href="servicios.html">Servicios ▾</a>
+        <ul class="submenu">
+          <li><a href="consulta_v.html">Consulta Veterinaria</a></li>
+          <li><a href="Urg.html">Urgencias Veterinarias 24 Horas</a></li>
+          <li><a href="cirugias.html">Cirugías y Desparasitación</a></li>
+          <li><a href="adopciones.html">Adopciones Responsables</a></li>
+          <li><a href="lab.html">Laboratorio Clínico Veterinario</a></li>
+        </ul>
+      </li>
+      <li><a href="adopciones.html">Adopciones</a></li>
+      <li><a href="contacto.html">Contacto</a></li>
+      <li><a href="citas.html">Citas</a></li>
+      <li>
+        <a id="sesionBtn" href="login.html">Iniciar Sesión</a>
+      </li>
+    </ul>
+  </nav>
 
 <section class="contenido">
   <h2>Laboratorio clínico</h2>
@@ -255,6 +252,23 @@
     }
   }
 </script>
+
+  <script>
+    // Mostrar nombre si el usuario está en localStorage
+    const usuario = localStorage.getItem("usuario");
+    const bienvenida = document.getElementById("bienvenidaTexto");
+    const sesionBtn = document.getElementById("sesionBtn");
+
+    if (usuario) {
+    
+      sesionBtn.textContent = "Cerrar Sesión";
+      sesionBtn.href = "#";
+      sesionBtn.onclick = () => {
+        localStorage.removeItem("usuario");
+        location.reload();
+      };
+    }
+  </script>
 
 </body>
 </html>
