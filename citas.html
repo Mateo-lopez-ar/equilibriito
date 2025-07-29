@@ -1,4 +1,4 @@
-<!-- PHP BLOCK START -->
+<?php BLOCK START 
 session_start();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -34,7 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->close();
     $conexion->close();
 }
-<!-- PHP BLOCK END -->
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -148,6 +148,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   </form>
   <a href="index.php" class="btn-volver"><i class="fas fa-arrow-left"></i> Volver Al Inicio</a>
 </section>
+
+  <script>
+
+    const usuario = localStorage.getItem("usuario");
+
+    if (usuario) {
+
+      window.location.href = "#";
+      
+      }else{
+
+        alert("¡Ooops! Debes iniciar sesión primero");
+        window.location.href = "index.html";
+      
+      }
+    
+    }
+    
+  </script>
 
 </body>
 </html>
