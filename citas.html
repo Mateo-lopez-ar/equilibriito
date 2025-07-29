@@ -1,41 +1,4 @@
-<?php 
- 
-session_start();
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
-  $conexion = new mysqli("localhost", "root", "", "equilibrio_animal");
-
-    if ($conexion->connect_error) {
-        die("Error De Conexión: " . $conexion->connect_error);
-    }
-
-    $nombre = $_POST['Nombre'];
-    $email = $_POST['Email'];
-    $telefono = $_POST['Telefono'];
-    $nombre_mascota = $_POST['Nombre_Mascota'];
-    $raza = $_POST['Raza'];
-    $especie = $_POST['Especie_Animal'];
-    $fecha = $_POST['Fecha'];
-    $hora = $_POST['Hora'];
-    $mensaje = $_POST['Mensaje'];
-
-    $sql = "INSERT INTO Citas (Nombre, Email, Telefono, Nombre_Mascota, Raza, Especie_Animal, Fecha, Hora, Mensaje)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
-
-    $stmt = $conexion->prepare($sql);
-    $stmt->bind_param("sssssssss", $nombre, $email, $telefono, $nombre_mascota, $raza, $especie, $fecha, $hora, $mensaje);
-
-    if ($stmt->execute()) {
-        echo "<script>alert('Cita Registrada Con Éxito'); window.location.href = 'index.html';</script>";
-    } else {
-        echo "Error Al Registrar La Cita: " . $conexion->error;
-    }
-
-    $stmt->close();
-    $conexion->close();
-}
-?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -133,7 +96,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <section class="form-section">
   <h2>Solicitar Cita</h2>
-  <form action="citas.html" method="POST">
+  <form action="citas.html" method="POST" id =  "registroForm">
     <input type="text" name="Nombre" placeholder="Nombre Completo Del Responsable" required>
     <input type="email" name="Email" placeholder="Correo Electrónico De Contacto" required>
     <input type="tel" name="Telefono" placeholder="Teléfono De Contacto">
@@ -159,6 +122,39 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   }
 </script>
 
+ 
+  <script>
+    const form = document.getElementById('registroForm');
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const Nombre = form.Nombre.value;
+      const Telefono = form.Telefono.value;
+      const Email = form.Email.value;
+      const Nombre_Mascota = form.Nombre_Mascota.value;
+      const Raza =  form.Raza.value;
+      const Especie_Animal = form.Especie_Animal.value;
+      const Fecha = form.Fecha.value;
+      const Hora = form.Hora.value;
+
+      const response = await fetch("https://erxgjoacksfghrddptvn.supabase.co/rest/v1/citas", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "apikey": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVyeGdqb2Fja3NmZ2hyZGRwdHZuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTMzMTA0NTksImV4cCI6MjA2ODg4NjQ1OX0.v0iv9fLe61PVduo3s2HIRFpgAIcMpUik3u82SGYmLE0",
+          "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVyeGdqb2Fja3NmZ2hyZGRwdHZuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTMzMTA0NTksImV4cCI6MjA2ODg4NjQ1OX0.v0iv9fLe61PVduo3s2HIRFpgAIcMpUik3u82SGYmLE0"
+        },
+        body: JSON.stringify({ nombre, telefono, correo })
+      });
+
+      if (response.ok) {
+        alert("¡Registrado con éxito!");
+        form.reset();
+      } else {
+        alert("Error al registrar. Verifica los datos o permisos.");
+      }
+    });
+  </script>
 
 </body>
 </html>
