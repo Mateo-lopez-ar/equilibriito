@@ -35,13 +35,9 @@
     <li><a href="contacto.hmtl">Contacto</a></li>
     <li><a href="citas.hmtl">Citas</a></li>
     <li>
-      <?php
-      if (isset($_SESSION['usuario'])): 
-        <a href="logout.hmtl">Cerrar Sesión</a>
-      else:
-        <a href="login.hmtl">Iniciar Sesión</a>
-      endif;
-      ?>
+      <li>
+        <a id="sesionBtn" href="login.html">Iniciar Sesión</a>
+      </li>
     </li>
   </ul>
 </nav>
@@ -68,6 +64,23 @@
       </div>
     </div>
   </section>
+
+    <script>
+    // Mostrar nombre si el usuario está en localStorage
+    const usuario = localStorage.getItem("usuario");
+    const bienvenida = document.getElementById("bienvenidaTexto");
+    const sesionBtn = document.getElementById("sesionBtn");
+
+    if (usuario) {
+    
+      sesionBtn.textContent = "Cerrar Sesión";
+      sesionBtn.href = "#";
+      sesionBtn.onclick = () => {
+        localStorage.removeItem("usuario");
+        location.reload();
+      };
+    }
+  </script>
 
   <footer>
     &copy; 2025 Equilibrio Animal | Todos los derechos reservados
