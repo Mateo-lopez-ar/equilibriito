@@ -1,4 +1,5 @@
-<?php BLOCK START 
+<?php 
+ 
 session_start();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -26,7 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->bind_param("sssssssss", $nombre, $email, $telefono, $nombre_mascota, $raza, $especie, $fecha, $hora, $mensaje);
 
     if ($stmt->execute()) {
-        echo "<script>alert('Cita Registrada Con Éxito'); window.location.href = 'index.php';</script>";
+        echo "<script>alert('Cita Registrada Con Éxito'); window.location.href = 'index.html';</script>";
     } else {
         echo "Error Al Registrar La Cita: " . $conexion->error;
     }
@@ -149,24 +150,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   <a href="index.php" class="btn-volver"><i class="fas fa-arrow-left"></i> Volver Al Inicio</a>
 </section>
 
-  <script>
+ <script>
+  const usuario = localStorage.getItem("usuario");
 
-    const usuario = localStorage.getItem("usuario");
+  if (!usuario) {
+    alert("¡Ooops! Debes iniciar sesión primero");
+    window.location.href = "index.html";
+  }
+</script>
 
-    if (usuario) {
-
-      window.location.href = "#";
-      
-      }else{
-
-        alert("¡Ooops! Debes iniciar sesión primero");
-        window.location.href = "index.html";
-      
-      }
-    
-    }
-    
-  </script>
 
 </body>
 </html>
