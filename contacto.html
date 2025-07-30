@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <title>Registro</title>
+  <title>Contacto</title>
   <style>
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -70,12 +70,12 @@
   </style>
 </head>
 <body>
-  <h1>Registro de Usuario</h1>
+  <h1>Contacto</h1>
   <form id="registroForm">
     <label>Nombre: <input type="text" name="nombre" required /></label><br><br>
     <label>Teléfono: <input type="text" name="telefono" required /></label><br><br>
     <label>Correo: <input type="text" name="correo" required /></label><br><br>
-    <button type="submit">Registrarse</button>
+    <button type="submit">Enviar</button>
   </form>
 
   <script>
@@ -98,7 +98,7 @@
       });
 
       if (response.ok) {
-        alert("¡Registrado con éxito!");
+        alert("¡Enviado con éxito!");
         form.reset();
       } else {
         alert("Error al registrar. Verifica los datos o permisos.");
