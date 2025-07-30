@@ -98,6 +98,22 @@
     #verCitas:hover {
       background-color: #444;
     }
+
+    #citasBanner {
+      display: none;
+      margin-top: 20px;
+      background-color: #ffffff;
+      border-left: 6px solid #2bb2a2;
+      padding: 15px;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      color: #333;
+    }
+
+    #citasBanner ul {
+      padding-left: 20px;
+      margin-top: 10px;
+    }
   </style>
 </head>
 <body>
@@ -118,6 +134,7 @@
   </form>
 
   <button id="verCitas">Ver Mis Citas Próximas</button>
+  <div id="citasBanner"></div>
   <a href="index.html" class="btn-volver"><i class="fas fa-arrow-left"></i> Volver Al Inicio</a>
 </section>
 
@@ -131,6 +148,7 @@
 
 <script>
   const form = document.getElementById('registroForm');
+  const citasBanner = document.getElementById("citasBanner");
 
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -164,11 +182,13 @@
   });
 
   const verCitasBtn = document.getElementById("verCitas");
+
   verCitasBtn.addEventListener("click", async () => {
     const Email = form.Email.value.trim();
 
     if (!Email) {
-      alert("Por favor ingresa tu correo electrónico en el formulario antes de consultar.");
+      citasBanner.style.display = "block";
+      citasBanner.innerHTML = `<strong>Por favor, ingresa tu correo electrónico en el formulario para ver tus citas.</strong>`;
       return;
     }
 
@@ -179,23 +199,27 @@
       }
     });
 
+    citasBanner.style.display = "block";
+
     if (response.ok) {
       const citas = await response.json();
 
       if (citas.length > 0) {
-        let mensaje = "📋 Tus próximas citas:\n\n";
+        let mensaje = `<strong>📋 Tus próximas citas:</strong><ul>`;
         citas.forEach(cita => {
-          mensaje += `📅 ${cita.Fecha} a las ${cita.Hora} - 🐾 ${cita.Nombre_Mascota} (${cita.Especie_Animal})\n`;
+          mensaje += `<li><b>${cita.Fecha}</b> a las <b>${cita.Hora}</b> - 🐾 ${cita.Nombre_Mascota} (${cita.Especie_Animal})</li>`;
         });
-        alert(mensaje);
+        mensaje += `</ul>`;
+        citasBanner.innerHTML = mensaje;
       } else {
-        alert("No tienes citas registradas con ese correo.");
+        citasBanner.innerHTML = `<strong>No tienes citas registradas con ese correo.</strong>`;
       }
     } else {
-      alert("Error al consultar las citas.");
+      citasBanner.innerHTML = `<strong>Error al consultar las citas. Intenta más tarde.</strong>`;
     }
   });
 </script>
 
 </body>
 </html>
+
