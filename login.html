@@ -13,6 +13,9 @@
       <label>Contraseña: <input type="password" name="contraseña" required /></label><br><br>
       <button type="submit">Continuar</button>
     </form>
+    <p>
+      No tiene una cuenta? <a href ="signin.html">Registrese aquí.</a>
+    </p>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -46,19 +49,7 @@
         } else {
           alert("Contraseña incorrecta.");
         }
-      } else {
-        // Registrar nuevo usuario
-        const { data, error } = await supabaseClient
-          .from('registro')
-          .insert([{ usuario, contraseña }]);
-
-        if (error) {
-          alert("Error al registrar: " + error.message);
-        } else {
-          localStorage.setItem("usuario", usuario);
-          window.location.href = "index.html";
-        }
-      }
+      } 
     });
   </script>
 
