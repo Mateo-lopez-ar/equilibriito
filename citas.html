@@ -36,21 +36,21 @@
         <label for="raza"><b>Raza</b></label>
         <input type="text" id="raza" name="raza" placeholder="Ej: Labrador, Persa...">
 
-        <label for="especie"<b>Especie</b></label>
+        <label for="especie"><b>Especie</b></label>
         <input type="text" id="especie" name="especie" placeholder="Ej: Perro, Gato..." required>
 
         <label for="fecha"><b>Fecha de la cita</b></label>
         <input type="date" id="fecha" name="fecha" required>
 
-<br/>
-        <br/>
-        
+        <br/><br/>
+
         <label for="hora"><b>Hora de la cita</b></label>
         <select id="hora" name="hora" required>
           <option value="">Selecciona una hora</option>
         </select>
-<br/>
-        <br/>
+
+        <br/><br/>
+
         <label for="cadicionales"><b>Comentarios adicionales</b></label>
         <textarea id="cadicionales" name="cadicionales" placeholder="Opcional"></textarea>
 
@@ -68,14 +68,19 @@
       <div id="tablaCitas"></div>
     </div>
   </section>
-    <script>
 
-    if (usuario) {
-   
-      };
-    }else{
-      alert("Oops! Debes iniciar sesión primero");
-      return;
+  <!-- Bloque de protección: requiere login -->
+  <script>
+    const usuario = localStorage.getItem("usuario");
+
+    if (!usuario) {
+      alert("⚠️ Debes iniciar sesión para agendar una cita.");
+      window.location.href = "index.html";
+    } else {
+      // Rellenar automáticamente el campo de correo con el del usuario logueado
+      document.addEventListener("DOMContentLoaded", () => {
+        document.getElementById("correo").value = usuario;
+      });
     }
   </script>
 
@@ -195,7 +200,7 @@
 
         // Construcción de tabla visual
         let tabla = `
-          <table border="1" style="margin-top: 15px; border-collapse: collapse; width: 100%; max-width: 500px; text-align: left; font-size: 0.9em;">
+          <table border="1" style="margin-top: 15px; border-collapse: collapse; width: 80%; max-width: 400px; text-align: left; font-size: 0.9em;">
             <thead style="background-color: #f0f0f0;">
               <tr>
                 <th>Fecha</th>
@@ -227,7 +232,6 @@
       }
     });
   </script>
-
 
 </body>
 </html>
