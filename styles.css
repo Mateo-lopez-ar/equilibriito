@@ -376,7 +376,7 @@ nav a:hover {
 }
 
 .boton-citas .btn {
-  background-color: #4CAF50;
+  background-color: #2bb2a2;
   color: white;
   padding: 12px 24px;
   text-decoration: none;
@@ -697,6 +697,7 @@ button[type="button"] {
 button[type="button"]:hover {
   background-color: #45a049;
 }
+
 
 
 
