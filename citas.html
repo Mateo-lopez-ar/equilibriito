@@ -68,6 +68,16 @@
       <div id="tablaCitas"></div>
     </div>
   </section>
+    <script>
+
+    if (usuario) {
+   
+      };
+    }else{
+      alert("Oops! Debes iniciar sesión primero");
+      return;
+    }
+  </script>
 
   <!-- Script principal -->
   <script>
@@ -217,23 +227,7 @@
       }
     });
   </script>
-  <script>
-    // Mostrar nombre si el usuario está en localStorage
-    const usuario = localStorage.getItem("usuario");
-    const sesionBtn = document.getElementById("sesionBtn");
 
-    if (usuario) {
-      sesionBtn.textContent = "Cerrar Sesión";
-      sesionBtn.href = "#";
-      sesionBtn.onclick = () => {
-        localStorage.removeItem("usuario");
-        location.reload();
-      };
-    }else{
-      alert("Oops! Debes iniciar sesión primero");
-      return;
-    }
-  </script>
 
 </body>
 </html>
