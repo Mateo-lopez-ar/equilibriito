@@ -367,7 +367,7 @@ nav a:hover {
 }
 
 .btn-cerrar:hover, .btn-volver:hover, .boton-citas a:hover {
-  background-color:#1e8176;;
+  background-color:#1e8176;
 }
 
 .boton-citas {
@@ -386,7 +386,7 @@ nav a:hover {
 }
 
 .boton-citas .btn:hover {
-  background-color: #45a049;
+  background-color: #e6f7f6;
 }
 
 /*Contacto.php*/
@@ -697,6 +697,7 @@ button[type="button"] {
 button[type="button"]:hover {
   background-color: #45a049;
 }
+
 
 
 
