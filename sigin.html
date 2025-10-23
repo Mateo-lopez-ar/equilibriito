@@ -13,6 +13,8 @@
       display: flex;
       flex-direction: column;
     }
+
+    /* 🔹 Header con logo clickeable */
     header {
       background-color: #2bb2a2;
       color: white;
@@ -21,20 +23,39 @@
       align-items: center;
       justify-content: center;
       box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+      position: sticky;
+      top: 0;
+      z-index: 10;
     }
+
+    header a {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      color: inherit;
+    }
+
     header img {
       height: 70px;
       width: 70px;
       border-radius: 50%;
       margin-right: 15px;
       border: 3px solid white;
+      transition: transform 0.3s ease;
     }
+
+    header img:hover {
+      transform: scale(1.05);
+    }
+
     header h1 {
       font-size: 1.8em;
       font-weight: bold;
       margin: 0;
       text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+      color: white;
     }
+
     main {
       flex: 1;
       display: flex;
@@ -42,6 +63,7 @@
       align-items: center;
       padding: 30px 10px;
     }
+
     .registro-box {
       background: #ffffff;
       border-radius: 15px;
@@ -50,17 +72,24 @@
       width: 420px;
       animation: fadeIn 0.7s ease;
     }
+
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(-20px); }
       to { opacity: 1; transform: translateY(0); }
     }
+
     h2 {
       text-align: center;
       color: #2bb2a2;
       font-weight: 700;
       margin-bottom: 25px;
     }
-    .form-label { color: #23988b; font-weight: 600; }
+
+    .form-label {
+      color: #23988b;
+      font-weight: 600;
+    }
+
     .btn-primary {
       background-color: #2bb2a2;
       border: none;
@@ -69,17 +98,39 @@
       font-weight: bold;
       transition: background-color 0.3s ease;
     }
-    .btn-primary:hover { background-color: #23988b; }
-    .btn-secondary { border-radius: 25px; }
-    .links { text-align: center; margin-top: 15px; }
-    .links a { color: #2bb2a2; text-decoration: none; font-weight: bold; }
-    .links a:hover { text-decoration: underline; }
+
+    .btn-primary:hover {
+      background-color: #23988b;
+    }
+
+    .btn-secondary {
+      border-radius: 25px;
+      background-color: #6c757d;
+    }
+
+    .links {
+      text-align: center;
+      margin-top: 15px;
+    }
+
+    .links a {
+      color: #2bb2a2;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .links a:hover {
+      text-decoration: underline;
+    }
   </style>
 </head>
 <body>
+
   <header>
-    <img src="logo.png" alt="Logo de Equilibrio Animal">
-    <h1>Equilibrio Animal</h1>
+    <a href="index.html">
+      <img src="imh/logo.png" alt="Logo de Equilibrio Animal">
+      <h1>Equilibrio Animal</h1>
+    </a>
   </header>
 
   <main>
@@ -154,7 +205,7 @@
         return;
       }
 
-      // Verificar si ya existe
+      // Verificar si el usuario ya existe
       const { data: existente, error: errorExistente } = await supabaseClient
         .from('registro')
         .select('usuario')
@@ -166,7 +217,7 @@
         return;
       }
 
-      // Insertar en la tabla
+      // Insertar nuevo usuario
       const { error } = await supabaseClient
         .from('registro')
         .insert([{ nombre, correo, usuario, contraseña, fecha_registro: new Date().toISOString() }]);
@@ -183,4 +234,3 @@
   </script>
 </body>
 </html>
-
