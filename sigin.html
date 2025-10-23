@@ -101,15 +101,6 @@
         <input type="password" id="contraseña" name="contraseña" class="form-control" required>
       </div>
 
-      <div class="mb-3">
-        <label class="form-label" for="rol">Rol</label>
-        <select id="rol" name="rol" class="form-select" required>
-          <option value="">Seleccione...</option>
-          <option value="Usuario">Usuario</option>
-          <option value="Administrador">Administrador</option>
-        </select>
-      </div>
-
       <div class="d-flex justify-content-between mb-3">
         <button type="submit" class="btn btn-primary w-50 me-1">Registrar</button>
         <button type="button" id="cancelarBtn" class="btn btn-secondary w-50 ms-1">Cancelar</button>
@@ -150,7 +141,6 @@
       const correo = form.correo.value.trim();
       const usuario = form.usuario.value.trim();
       const contraseña = form.contraseña.value.trim();
-      const rol = form.rol.value.trim();
 
       if (!nombre || !correo || !usuario || !contraseña || !rol) {
         mostrar("Por favor complete todos los campos.");
@@ -178,7 +168,6 @@
             correo,
             usuario,
             contraseña,
-            rol,
             fecha_registro: new Date().toISOString(),
           },
         ]);
