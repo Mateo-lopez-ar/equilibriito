@@ -23,10 +23,18 @@
       padding: 10px 20px;
     }
 
- <div class="logo-container">
-      <a href="index.html"><img src="img/logo.png" alt="Logo Equilibrio Animal"></a>
-    </div>
-}
+    /* ✅ Aquí ajustamos el tamaño del logo correctamente */
+    .logo-container img {
+      width: 60px;      /* Ancho del logo */
+      height: 60px;     /* Alto del logo */
+      border-radius: 50%; /* Redondeado */
+      transition: transform 0.3s;
+    }
+
+    .logo-container img:hover {
+      transform: scale(1.05); /* Efecto suave al pasar el mouse */
+      cursor: pointer;
+    }
 
     header h1 {
       margin: 0;
@@ -187,27 +195,25 @@
 </header>
 
 <nav>
-    <ul id="navMenu">
-      <li><a href="index.html">Inicio</a></li>
-      <li><a href="nosotros.html">Nosotros</a></li>
-      <li class="dropdown">
-        <a href="servicios.html">Servicios ▾</a>
-        <ul class="submenu">
-          <li><a href="consulta_v.html">Consulta Veterinaria</a></li>
-          <li><a href="Urg.html">Urgencias Veterinarias 24 Horas</a></li>
-          <li><a href="cirugias.html">Cirugías y Desparasitación</a></li>
-          <li><a href="adopciones.html">Adopciones Responsables</a></li>
-          <li><a href="lab.html">Laboratorio Clínico Veterinario</a></li>
-        </ul>
-      </li>
-      <li><a href="adopciones.html">Adopciones</a></li>
-      <li><a href="contacto.html">Contacto</a></li>
-      <li><a href="citas.html">Citas</a></li>
-      <li>
-        <a id="sesionBtn" href="login.html">Iniciar Sesión</a>
-      </li>
-    </ul>
-  </nav>
+  <ul id="navMenu">
+    <li><a href="index.html">Inicio</a></li>
+    <li><a href="nosotros.html">Nosotros</a></li>
+    <li class="dropdown">
+      <a href="servicios.html">Servicios ▾</a>
+      <ul class="submenu">
+        <li><a href="consulta_v.html">Consulta Veterinaria</a></li>
+        <li><a href="Urg.html">Urgencias Veterinarias 24 Horas</a></li>
+        <li><a href="cirugias.html">Cirugías y Desparasitación</a></li>
+        <li><a href="adopciones.html">Adopciones Responsables</a></li>
+        <li><a href="lab.html">Laboratorio Clínico Veterinario</a></li>
+      </ul>
+    </li>
+    <li><a href="adopciones.html">Adopciones</a></li>
+    <li><a href="contacto.html">Contacto</a></li>
+    <li><a href="citas.html">Citas</a></li>
+    <li><a id="sesionBtn" href="login.html">Iniciar Sesión</a></li>
+  </ul>
+</nav>
 
 <section class="contenido">
   <h2>Laboratorio clínico</h2>
@@ -215,20 +221,16 @@
   <p>
     En <strong>Equilibrio Animal</strong>, contamos con equipos de análisis de laboratorio e imagenología de tecnología de punta, 
     proporcionando equipos ultramodernos para la temprana detección de posibles trastornos patológicos o clínicos.
-
   </p>
 
   <div class="img-container">
     <img src="img/res.jpg" alt="Equipo realizando cirugía veterinaria">
     <img src="img/xray.jpeg" alt="Equipo realizando cirugía veterinaria">
-   
   </div>
 
   <p>
-    Contando con resonancias magnéticas, rayos x, pruebas de laboratorio, tomografía, optometría, entre otros
+    Contando con resonancias magnéticas, rayos X, pruebas de laboratorio, tomografía, optometría, entre otros.
   </p>
-
-  
 </section>
 
 <footer>
@@ -241,31 +243,18 @@
     menu.classList.toggle('show');
   }
 
-  function toggleSubmenu(event) {
-    event.preventDefault();
-    const submenu = event.target.nextElementSibling;
-    if (submenu) {
-      submenu.classList.toggle('show');
-    }
+  const usuario = localStorage.getItem("usuario");
+  const sesionBtn = document.getElementById("sesionBtn");
+
+  if (usuario) {
+    sesionBtn.textContent = "Cerrar Sesión";
+    sesionBtn.href = "#";
+    sesionBtn.onclick = () => {
+      localStorage.removeItem("usuario");
+      location.reload();
+    };
   }
 </script>
-
-  <script>
-    // Mostrar nombre si el usuario está en localStorage
-    const usuario = localStorage.getItem("usuario");
-    const bienvenida = document.getElementById("bienvenidaTexto");
-    const sesionBtn = document.getElementById("sesionBtn");
-
-    if (usuario) {
-    
-      sesionBtn.textContent = "Cerrar Sesión";
-      sesionBtn.href = "#";
-      sesionBtn.onclick = () => {
-        localStorage.removeItem("usuario");
-        location.reload();
-      };
-    }
-  </script>
 
 </body>
 </html>
