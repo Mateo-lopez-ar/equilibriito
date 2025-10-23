@@ -10,7 +10,6 @@
   <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
   <script>
     (function() {
-      // Inicializar EmailJS con tu Public Key
       emailjs.init("V_7XXS-cj433ImG5Q");
     })();
   </script>
@@ -50,10 +49,19 @@
 
         <button type="submit">Enviar</button>
       </form>
+
+      <hr />
+
+      <!-- 🔍 Buscar citas -->
+      <h3>Buscar mis próximas citas</h3>
+      <input type="email" id="buscarCorreo" placeholder="Ingresa tu correo electrónico">
+      <button id="buscarBtn">Buscar</button>
+
+      <!-- Aquí se mostrarán los resultados -->
+      <div id="resultados" style="margin-top: 20px;"></div>
     </div>
   </section>
 
-  <!-- Script principal -->
   <script>
     const SERVICE_ID = "service_ez5hhuq";
     const TEMPLATE_ID = "template_ih4h0k8";
@@ -61,11 +69,13 @@
     const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVyeGdqb2Fja3NmZ2hyZGRwdHZuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTMzMTA0NTksImV4cCI6MjA2ODg4NjQ1OX0.v0iv9fLe61PVduo3s2HIRFpgAIcMpUik3u82SGYmLE0";
 
     const form = document.getElementById("registroForm");
+    const buscarBtn = document.getElementById("buscarBtn");
+    const resultadosDiv = document.getElementById("resultados");
 
+    // 📤 Enviar cita nueva
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
 
-      // 1️⃣ Recolectar datos del formulario
       const data = {
         Nombre: form.nombre.value,
         Telefono: form.telefono.value,
@@ -79,9 +89,6 @@
       };
 
       try {
-        console.log("📤 Enviando datos a Supabase:", data);
-
-        // 2️⃣ Enviar datos a Supabase
         const response = await fetch(SUPABASE_URL, {
           method: "POST",
           headers: {
@@ -97,18 +104,14 @@
           throw new Error("Error en Supabase: " + errorText);
         }
 
-        console.log("✅ Datos guardados correctamente en Supabase.");
+        await emailjs.send(SERVICE_ID, TEMPLATE_ID, {
+          to_email: data.Email,
+          nmascota: data.Nombre_Mascota,
+          fecha: data.Fecha,
+          hora: data.Hora,
+          cadicionales: data.Mensaje
+        });
 
-       await emailjs.send(SERVICE_ID, TEMPLATE_ID, {
-  to_email: data.Email,          
-         nmascota: data.Nombre_Mascota,        
-  fecha: data.Fecha,              
-  hora: data.Hora,                
-  cadicionales: data.Mensaje 
-});
-
-
-        // 4️⃣ Confirmación y limpieza
         alert("✅ ¡Gracias! Tu cita ha sido asignada satisfactoriamente.");
         form.reset();
         window.location.href = "index.html";
@@ -116,6 +119,53 @@
       } catch (error) {
         console.error("Error completo:", error);
         alert("❌ Error técnico: " + (error.message || "Ver consola para más detalles."));
+      }
+    });
+
+    // 🔍 Buscar citas próximas por correo
+    buscarBtn.addEventListener("click", async () => {
+      const correo = document.getElementById("buscarCorreo").value.trim();
+      resultadosDiv.innerHTML = "";
+
+      if (!correo) {
+        alert("Por favor, ingresa un correo electrónico.");
+        return;
+      }
+
+      try {
+        const response = await fetch(`${SUPABASE_URL}?Email=eq.${correo}&select=*`, {
+          headers: {
+            apikey: SUPABASE_KEY,
+            Authorization: `Bearer ${SUPABASE_KEY}`
+          }
+        });
+
+        if (!response.ok) {
+          throw new Error("No se pudieron obtener las citas.");
+        }
+
+        const citas = await response.json();
+
+        if (citas.length === 0) {
+          resultadosDiv.innerHTML = `<p>No hay citas registradas para este correo.</p>`;
+          return;
+        }
+
+        resultadosDiv.innerHTML = `<h4>Resultados:</h4>` + citas.map(cita => `
+          <div style="border:1px solid #ccc; padding:10px; border-radius:8px; margin-bottom:10px;">
+            <p><b>Nombre:</b> ${cita.Nombre}</p>
+            <p><b>Mascota:</b> ${cita.Nombre_Mascota}</p>
+            <p><b>Especie:</b> ${cita.Especie_Animal}</p>
+            <p><b>Raza:</b> ${cita.Raza || "—"}</p>
+            <p><b>Fecha:</b> ${cita.Fecha}</p>
+            <p><b>Hora:</b> ${cita.Hora}</p>
+            <p><b>Comentarios:</b> ${cita.Mensaje || "Sin comentarios"}</p>
+          </div>
+        `).join("");
+
+      } catch (error) {
+        console.error(error);
+        alert("❌ Error al buscar citas.");
       }
     });
   </script>
