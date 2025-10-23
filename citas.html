@@ -19,27 +19,19 @@ html lang="es">
       <h2>Contacto</h2>
       <h2>Agendar Cita</h2>
       <form id="registroForm">
-        <label for="nombre">Nombre</label>
-        <input type="text" id="nombre" name="nombre" required>
-        
+               
         <label for="nombre">Nombre completo</label>
         <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required>
 
         <label for="telefono">Teléfono</label>
         <input type="text" id="telefono" name="telefono" required>
-        <input type="text" id="telefono" name="telefono" placeholder="Tu número de contacto" required>
-
+        
         <label for="correo">Correo</label>
         <input type="email" id="correo" name="correo" required>
-        <label for="correo">Correo electrónico</label>
-        <input type="email" id="correo" name="correo" placeholder="Tu correo" required>
-
+        
         <label for="nmascota">Nombre de la mascota</label>
         <input type="text" id="nmascota" name="nmascota" required>
-        <label for="nombreMascota">Nombre de la mascota</label>
-        <input type="text" id="nombreMascota" name="nombreMascota" placeholder="Ej: Luna, Max..." required>
-
-        <label for="fecha">Fecha</label>
+     
         <label for="raza">Raza</label>
         <input type="text" id="raza" name="raza" placeholder="Ej: Labrador, Persa...">
 
@@ -50,17 +42,14 @@ html lang="es">
         <input type="date" id="fecha" name="fecha" required>
 
         <label for="hora">Hora (en punto)</label>
-        <input type="time" id="hora" name="hora" step="3600" required>
-        <label for="hora">Hora de la cita</label>
-        <input type="time" id="hora" name="hora" required>
+              <input type="time" id="hora" name="hora" required>
 
         <label for="cadicionales">Comentarios adicionales</label>
         <textarea id="cadicionales" name="cadicionales" placeholder="Opcional"></textarea>
-        <label for="mensaje">Mensaje adicional</label>
-        <textarea id="mensaje" name="mensaje" rows="4" placeholder="Describe brevemente el motivo de la cita..."></textarea>
+        
 
         <button type="submit">Enviar</button>
-        <button type="submit">Enviar solicitud</button>
+
       </form>
     </div>
   </section>
@@ -83,15 +72,15 @@ html lang="es">
     form.addEventListener('submit', async (e) => {
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
- const Nombre = form.Nombre.value; 
-      const Telefono = form.Telefono.value;
-      const Email = form.Email.value;
-      const Nombre_Mascota = form.Nombre_Mascota.value;
-      const Raza = form.Raza.value;
-      const Especie_Animal = form.Especie_Animal.value;
-      const Fecha = form.Fecha.value;
-      const Hora = form.Hora.value; 
-      const Mensaje = form.Mensaje.value; 
+ const Nombre = form.nombre.value; 
+      const Telefono = form.telefono.value;
+      const Email = form.correo.value;
+      const Nombre_Mascota = form.nmascota.value;
+      const Raza = form.raza.value;
+      const Especie_Animal = form.especie.value;
+      const Fecha = form.fecha.value;
+      const Hora = form.hora.value; 
+      const Mensaje = form.cadicionales.value; 
       const response = await fetch("https://erxgjoacksfghrddptvn.supabase.co/rest/v1/citas", { method: "POST", headers: { "Content-Type": "application/json", "apikey": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVyeGdqb2Fja3NmZ2hyZGRwdHZuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTMzMTA0NTksImV4cCI6MjA2ODg4NjQ1OX0.v0iv9fLe61PVduo3s2HIRFpgAIcMpUik3u82SGYmLE0", "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVyeGdqb2Fja3NmZ2hyZGRwdHZuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTMzMTA0NTksImV4cCI6MjA2ODg4NjQ1OX0.v0iv9fLe61PVduo3s2HIRFpgAIcMpUik3u82SGYmLE0" }, body: JSON.stringify({ Nombre, Telefono, Email, Nombre_Mascota, Raza, Especie_Animal, Fecha, Hora, Mensaje }) });
         // --- 2️⃣ Enviar correo con EmailJS ---
         const templateParams = {
