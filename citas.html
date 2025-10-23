@@ -3,22 +3,89 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Formulario de Contacto</title>
+  <title>Agendar Cita</title>
   <link rel="stylesheet" href="styles.css" />
 
   <!-- EmailJS -->
   <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
   <script>
     (function() {
-      emailjs.init("V_7XXS-cj433ImG5Q");
+      emailjs.init("V_7XXS-cj433ImG5Q"); // Public Key de EmailJS
     })();
   </script>
+
+  <style>
+    /* Estilo general de la tabla de resultados */
+    #resultados {
+      margin-top: 25px;
+      max-width: 700px;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      overflow-x: auto;
+    }
+
+    #resultados table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+      text-align: left;
+    }
+
+    #resultados th, #resultados td {
+      padding: 10px;
+      border-bottom: 1px solid #ddd;
+    }
+
+    #resultados th {
+      background-color: #4CAF50;
+      color: white;
+      text-align: center;
+    }
+
+    #resultados tr:hover {
+      background-color: #f5f5f5;
+    }
+
+    /* Contenedor de búsqueda de citas */
+    .buscar-container {
+      margin-top: 30px;
+      background: #f9f9f9;
+      padding: 15px;
+      border-radius: 10px;
+      box-shadow: 0 0 5px rgba(0,0,0,0.1);
+      max-width: 500px;
+    }
+
+    .buscar-container input {
+      width: 70%;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .buscar-container button {
+      padding: 8px 15px;
+      border: none;
+      background-color: #4CAF50;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+
+    .buscar-container button:hover {
+      background-color: #45a049;
+    }
+  </style>
 </head>
+
 <body>
   <section class="contact-section">
     <div class="contact-container">
       <h2>Agendar Cita</h2>
 
+      <!-- Formulario principal para registrar una cita -->
       <form id="registroForm">
         <label for="nombre">Nombre completo</label>
         <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required>
@@ -50,19 +117,20 @@
         <button type="submit">Enviar</button>
       </form>
 
-      <hr />
+      <!-- Sección para buscar citas existentes -->
+      <div class="buscar-container">
+        <h3>🔍 Buscar mis próximas citas</h3>
+        <input type="email" id="buscarCorreo" placeholder="Ingresa tu correo electrónico">
+        <button id="buscarBtn">Buscar</button>
+      </div>
 
-      <!-- 🔍 Buscar citas -->
-      <h3>Buscar mis próximas citas</h3>
-      <input type="email" id="buscarCorreo" placeholder="Ingresa tu correo electrónico">
-      <button id="buscarBtn">Buscar</button>
-
-      <!-- Aquí se mostrarán los resultados -->
-      <div id="resultados" style="margin-top: 20px;"></div>
+      <!-- Contenedor donde se mostrará la tabla de resultados -->
+      <div id="resultados"></div>
     </div>
   </section>
 
   <script>
+    // Identificadores y claves de EmailJS y Supabase
     const SERVICE_ID = "service_ez5hhuq";
     const TEMPLATE_ID = "template_ih4h0k8";
     const SUPABASE_URL = "https://erxgjoacksfghrddptvn.supabase.co/rest/v1/citas";
@@ -72,7 +140,7 @@
     const buscarBtn = document.getElementById("buscarBtn");
     const resultadosDiv = document.getElementById("resultados");
 
-    // 📤 Enviar cita nueva
+    // Registrar una nueva cita en Supabase y enviar correo de confirmación
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
 
@@ -89,6 +157,7 @@
       };
 
       try {
+        // Enviar datos a la tabla 'citas' en Supabase
         const response = await fetch(SUPABASE_URL, {
           method: "POST",
           headers: {
@@ -104,6 +173,7 @@
           throw new Error("Error en Supabase: " + errorText);
         }
 
+        // Enviar correo de confirmación con EmailJS
         await emailjs.send(SERVICE_ID, TEMPLATE_ID, {
           to_email: data.Email,
           nmascota: data.Nombre_Mascota,
@@ -122,7 +192,7 @@
       }
     });
 
-    // 🔍 Buscar citas próximas por correo
+    // Buscar citas registradas en Supabase según el correo ingresado
     buscarBtn.addEventListener("click", async () => {
       const correo = document.getElementById("buscarCorreo").value.trim();
       resultadosDiv.innerHTML = "";
@@ -133,6 +203,7 @@
       }
 
       try {
+        // Consulta a Supabase filtrando por correo electrónico
         const response = await fetch(`${SUPABASE_URL}?Email=eq.${correo}&select=*`, {
           headers: {
             apikey: SUPABASE_KEY,
@@ -140,28 +211,44 @@
           }
         });
 
-        if (!response.ok) {
-          throw new Error("No se pudieron obtener las citas.");
-        }
+        if (!response.ok) throw new Error("No se pudieron obtener las citas.");
 
         const citas = await response.json();
 
         if (citas.length === 0) {
-          resultadosDiv.innerHTML = `<p>No hay citas registradas para este correo.</p>`;
+          resultadosDiv.innerHTML = `<p style="padding:10px;">No hay citas registradas para este correo.</p>`;
           return;
         }
 
-        resultadosDiv.innerHTML = `<h4>Resultados:</h4>` + citas.map(cita => `
-          <div style="border:1px solid #ccc; padding:10px; border-radius:8px; margin-bottom:10px;">
-            <p><b>Nombre:</b> ${cita.Nombre}</p>
-            <p><b>Mascota:</b> ${cita.Nombre_Mascota}</p>
-            <p><b>Especie:</b> ${cita.Especie_Animal}</p>
-            <p><b>Raza:</b> ${cita.Raza || "—"}</p>
-            <p><b>Fecha:</b> ${cita.Fecha}</p>
-            <p><b>Hora:</b> ${cita.Hora}</p>
-            <p><b>Comentarios:</b> ${cita.Mensaje || "Sin comentarios"}</p>
-          </div>
-        `).join("");
+        // Generar tabla con los datos obtenidos
+        let tablaHTML = `
+          <table>
+            <thead>
+              <tr>
+                <th>Mascota</th>
+                <th>Especie</th>
+                <th>Fecha</th>
+                <th>Hora</th>
+                <th>Comentarios</th>
+              </tr>
+            </thead>
+            <tbody>
+        `;
+
+        citas.forEach(cita => {
+          tablaHTML += `
+            <tr>
+              <td>${cita.Nombre_Mascota}</td>
+              <td>${cita.Especie_Animal}</td>
+              <td>${cita.Fecha}</td>
+              <td>${cita.Hora}</td>
+              <td>${cita.Mensaje || "—"}</td>
+            </tr>
+          `;
+        });
+
+        tablaHTML += "</tbody></table>";
+        resultadosDiv.innerHTML = tablaHTML;
 
       } catch (error) {
         console.error(error);
