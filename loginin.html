@@ -14,13 +14,45 @@
       justify-content: center;
       align-items: center;
     }
-    .box { background:white; padding:30px; border-radius:15px; box-shadow:0 0 15px rgba(0,0,0,0.2); width:350px; }
-    h2 { color:#005f99; font-weight:bold; margin-bottom:25px; text-align:center; }
-    .btn-primary { background:#007acc; border:none; border-radius:25px; padding:10px 30px; }
-    .btn-primary:hover { background:#005f99; }
-    .btn-secondary { border-radius:25px; }
-    .links a { color:#007acc; text-decoration:none; }
-    .links a:hover { text-decoration:underline; }
+    .box {
+      background: white;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+      width: 350px;
+    }
+    h2 {
+      color: #005f99;
+      font-weight: bold;
+      margin-bottom: 25px;
+      text-align: center;
+    }
+    .btn-primary {
+      background: #007acc;
+      border: none;
+      border-radius: 25px;
+      padding: 10px 30px;
+    }
+    .btn-primary:hover {
+      background: #005f99;
+    }
+    .btn-secondary {
+      border-radius: 25px;
+    }
+    .btn-outline-info {
+      border-radius: 25px;
+    }
+    .links {
+      text-align: center;
+      margin-top: 10px;
+    }
+    .links a {
+      color: #007acc;
+      text-decoration: none;
+    }
+    .links a:hover {
+      text-decoration: underline;
+    }
   </style>
 </head>
 <body>
@@ -31,15 +63,15 @@
     <form id="loginForm">
       <div class="mb-3 text-start">
         <label class="form-label">Usuario</label>
-        <input type="text" name="usuario" id="usuario" class="form-control" autofocus />
+        <input type="text" name="usuario" id="usuario" class="form-control" required autofocus />
       </div>
       <div class="mb-3 text-start">
-        <label class="form-label">Clave</label>
-        <input type="password" name="clave" id="clave" class="form-control" />
+        <label class="form-label">Contraseña</label>
+        <input type="password" name="contraseña" id="contraseña" class="form-control" required />
       </div>
       <div class="d-flex justify-content-between mb-3">
         <button type="submit" class="btn btn-primary">Ingresar</button>
-        <button type="button" onclick="limpiar()" class="btn btn-secondary">Cancelar</button>
+        <button type="button" id="cancelarBtn" class="btn btn-secondary">Cancelar</button>
       </div>
       <div class="d-flex justify-content-between">
         <button type="button" id="recuperarBtn" class="btn btn-outline-info">Recuperar</button>
@@ -53,77 +85,87 @@
     const { createClient } = supabase;
     const supabaseUrl = 'https://erxgjoacksfghrddptvn.supabase.co';
     const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVyeGdqb2Fja3NmZ2hyZGRwdHZuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTMzMTA0NTksImV4cCI6MjA2ODg4NjQ1OX0.v0iv9fLe61PVduo3s2HIRFpgAIcMpUik3u82SGYmLE0';
-    const db = createClient(supabaseUrl, supabaseKey);
+    const supabaseClient = createClient(supabaseUrl, supabaseKey);
 
     const form = document.getElementById('loginForm');
     const msg = document.getElementById('mensaje');
+    const cancelarBtn = document.getElementById('cancelarBtn');
     const recuperarBtn = document.getElementById('recuperarBtn');
 
-    function mostrar(msj, tipo="danger") {
+    function mostrar(msj, tipo = "danger") {
       msg.innerHTML = `<div class="alert alert-${tipo}">${msj}</div>`;
     }
 
-    function limpiar() {
+    cancelarBtn.addEventListener('click', () => {
       form.usuario.value = '';
-      form.clave.value = '';
+      form.contraseña.value = '';
       msg.innerHTML = '';
       form.usuario.focus();
-    }
+    });
 
     // 🔐 Iniciar sesión
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
       const usuario = form.usuario.value.trim();
-      const clave = form.clave.value.trim();
+      const contraseña = form.contraseña.value.trim();
 
-      if (!usuario || !clave) return mostrar("Usuario y clave son obligatorios.");
+      if (!usuario || !contraseña) {
+        mostrar("Por favor ingrese usuario y contraseña.");
+        return;
+      }
 
-      const { data: user, error } = await db
-        .from('usuario')
-        .select('contrasena, estado')
-        .eq('nombreu', usuario)
+      const { data: usuarioExistente, error } = await supabaseClient
+        .from('registro')
+        .select('*')
+        .eq('usuario', usuario)
         .single();
 
-      if (error || !user) return mostrar("Usuario no encontrado.");
-      if (user.estado !== 'Activo') return mostrar("Usuario inactivo. Contacta al administrador.");
+      if (error || !usuarioExistente) {
+        mostrar("Usuario no encontrado.");
+        return;
+      }
 
-      if (user.contrasena === clave) {
+      if (usuarioExistente.contraseña === contraseña) {
         localStorage.setItem("usuario", usuario);
-        window.location.href = "menu.html"; // reemplaza por tu menú real
+        mostrar("Inicio de sesión exitoso.", "success");
+        setTimeout(() => window.location.href = "index.html", 1000);
       } else {
-        mostrar("Clave incorrecta.");
+        mostrar("Contraseña incorrecta.");
       }
     });
 
     // 🔄 Recuperar contraseña
     recuperarBtn.addEventListener('click', async () => {
       const usuario = form.usuario.value.trim();
-      if (!usuario) return mostrar("Ingrese su usuario para recuperar.");
+      if (!usuario) {
+        mostrar("Ingrese su nombre de usuario para recuperar la contraseña.");
+        return;
+      }
 
-      // Obtener correo del usuario
-      const { data: per, error } = await db
-        .from('personal')
-        .select('correo, idpersona')
-        .eq('idpersona',
-          (await db.from('usuario').select('idpersona').eq('nombreu', usuario).single()).data?.idpersona
-        )
+      const { data: usuarioExistente, error } = await supabaseClient
+        .from('registro')
+        .select('*')
+        .eq('usuario', usuario)
         .single();
 
-      if (error || !per) return mostrar("Usuario no encontrado.");
+      if (error || !usuarioExistente) {
+        mostrar("Usuario no encontrado.");
+        return;
+      }
 
-      // Generar clave temporal
       const nuevaClave = Math.random().toString(36).slice(-8);
 
-      // Actualizar contraseña
-      await db
-        .from('usuario')
-        .update({ contrasena: nuevaClave })
-        .eq('nombreu', usuario);
+      const { error: updateError } = await supabaseClient
+        .from('registro')
+        .update({ contraseña: nuevaClave })
+        .eq('usuario', usuario);
 
-      // Enviar correo (requiere Supabase función o SMTP externo)
-      mostrar("Se ha generado una nueva contraseña temporal y enviada al correo: " + per.correo, "success");
+      if (updateError) {
+        mostrar("Error al generar nueva contraseña.");
+        return;
+      }
 
-      // 🔸 Si Supabase no envía correos automáticamente, aquí podrías usar una función externa o servicio (EmailJS, etc.)
+      mostrar(`Se generó una nueva contraseña temporal: <b>${nuevaClave}</b>.<br>(Puedes reemplazar este aviso por envío de correo con EmailJS o Supabase Functions).`, "success");
     });
   </script>
 </body>
