@@ -14,6 +14,7 @@
       flex-direction: column;
     }
 
+    /* 🔹 Header con logo clickeable */
     header {
       background-color: #2bb2a2;
       color: white;
@@ -22,6 +23,16 @@
       align-items: center;
       justify-content: center;
       box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    header a {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      color: inherit;
     }
 
     header img {
@@ -30,6 +41,11 @@
       border-radius: 50%;
       margin-right: 15px;
       border: 3px solid white;
+      transition: transform 0.3s ease;
+    }
+
+    header img:hover {
+      transform: scale(1.05);
     }
 
     header h1 {
@@ -37,6 +53,7 @@
       font-weight: bold;
       margin: 0;
       text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+      color: white;
     }
 
     main {
@@ -105,11 +122,10 @@
 
   <header>
     <a href="index.html">
-      <img src="imh/logo.png" alt="Logo de Equilibrio Animal">
+      <img src="img/logo.png" alt="Logo de Equilibrio Animal">
       <h1>Equilibrio Animal</h1>
     </a>
   </header>
-
 
   <main>
     <div class="login-box">
@@ -143,6 +159,7 @@
     </div>
   </main>
 
+// Conexion Con Supabase
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script>
     const { createClient } = supabase;
@@ -164,6 +181,7 @@
       form.usuario.focus();
     });
 
+    // Inicio Sesion Supabase
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
 
@@ -175,6 +193,7 @@
         return;
       }
 
+      // Encontrar Usuario En Supabase
       const { data: usuarioExistente, error } = await supabaseClient
         .from('registro')
         .select('*')
@@ -186,6 +205,7 @@
         return;
       }
 
+      // Validar Contraseña si es correcta
       if (usuarioExistente.contraseña === contraseña) {
         localStorage.setItem("usuario", usuario);
         mostrar("Inicio de sesión exitoso.", "success");
@@ -197,11 +217,3 @@
   </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
