@@ -2,12 +2,16 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Formulario de Contacto</title>
   <link rel="stylesheet" href="styles.css" />
+
+  <!-- EmailJS -->
   <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
   <script>
     (function() {
-      emailjs.init("V_7XXS-cj433ImG5Q"); // Tu Public Key de EmailJS
+      // Inicializar EmailJS con tu Public Key
+      emailjs.init("V_7XXS-cj433ImG5Q");
     })();
   </script>
 </head>
@@ -15,29 +19,30 @@
   <section class="contact-section">
     <div class="contact-container">
       <h2>Agendar Cita</h2>
+
       <form id="registroForm">
         <label for="nombre">Nombre completo</label>
         <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required>
 
         <label for="telefono">Teléfono</label>
-        <input type="text" id="telefono" name="telefono" required>
+        <input type="text" id="telefono" name="telefono" placeholder="Tu número" required>
 
-        <label for="correo">Correo</label>
-        <input type="email" id="correo" name="correo" required>
+        <label for="correo">Correo electrónico</label>
+        <input type="email" id="correo" name="correo" placeholder="ejemplo@correo.com" required>
 
         <label for="nmascota">Nombre de la mascota</label>
-        <input type="text" id="nmascota" name="nmascota" required>
+        <input type="text" id="nmascota" name="nmascota" placeholder="Ej: Max, Luna..." required>
 
         <label for="raza">Raza</label>
         <input type="text" id="raza" name="raza" placeholder="Ej: Labrador, Persa...">
 
-        <label for="especie">Especie del animal</label>
+        <label for="especie">Especie</label>
         <input type="text" id="especie" name="especie" placeholder="Ej: Perro, Gato..." required>
 
         <label for="fecha">Fecha de la cita</label>
         <input type="date" id="fecha" name="fecha" required>
 
-        <label for="hora">Hora (en punto)</label>
+        <label for="hora">Hora de la cita</label>
         <input type="time" id="hora" name="hora" required>
 
         <label for="cadicionales">Comentarios adicionales</label>
@@ -48,6 +53,7 @@
     </div>
   </section>
 
+  <!-- Script principal -->
   <script>
     const SERVICE_ID = "service_ez5hhuq";
     const TEMPLATE_ID = "template_ih4h0k8";
@@ -59,21 +65,24 @@
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
 
+      // 1️⃣ Recolectar datos del formulario
       const data = {
-        Nombre: form.nombre.value,
-        Telefono: form.telefono.value,
-        Email: form.correo.value,
-        Nombre_Mascota: form.nmascota.value,
-        Raza: form.raza.value,
-        Especie_Animal: form.especie.value,
-        Fecha: form.fecha.value,
-        Hora: form.hora.value,
-        Mensaje: form.cadicionales.value
+        nombre: form.nombre.value,
+        telefono: form.telefono.value,
+        email: form.correo.value,
+        nmascota: form.nmascota.value,
+        raza: form.raza.value,
+        especie: form.especie.value,
+        fecha: form.fecha.value,
+        hora: form.hora.value,
+        cadicionales: form.cadicionales.value
       };
 
       try {
-        // 1️⃣ Guardar cita en Supabase
-        await fetch(SUPABASE_URL, {
+        console.log("📤 Enviando datos a Supabase:", data);
+
+        // 2️⃣ Enviar datos a Supabase
+        const response = await fetch(SUPABASE_URL, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -83,27 +92,25 @@
           body: JSON.stringify(data)
         });
 
-        // 2️⃣ Enviar correo con EmailJS
-        await emailjs.send(SERVICE_ID, TEMPLATE_ID, {
-          nombre_cliente: data.Nombre,
-          telefono_cliente: data.Telefono,
-          correo_cliente: data.Email,
-          nmascota: data.Nombre_Mascota,
-          raza: data.Raza,
-          especie: data.Especie_Animal,
-          fecha: data.Fecha,
-          hora: data.Hora,
-          cadicionales: data.Mensaje
-        });
+        if (!response.ok) {
+          const errorText = await response.text();
+          throw new Error("Error en Supabase: " + errorText);
+        }
 
-        // 3️⃣ Confirmación
+        console.log("✅ Datos guardados correctamente en Supabase.");
+
+        // 3️⃣ Enviar correo con EmailJS
+        console.log("📧 Enviando correo con EmailJS...");
+        await emailjs.send(SERVICE_ID, TEMPLATE_ID, data);
+
+        // 4️⃣ Confirmación y limpieza
         alert("✅ ¡Gracias! Tu cita ha sido asignada satisfactoriamente.");
         form.reset();
         window.location.href = "index.html";
 
       } catch (error) {
-        console.error("Error:", error);
-        alert("❌ Ocurrió un error al procesar la solicitud.");
+        console.error("Error completo:", error);
+        alert("❌ Error técnico: " + (error.message || "Ver consola para más detalles."));
       }
     });
   </script>
