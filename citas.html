@@ -99,9 +99,10 @@
 
         console.log("✅ Datos guardados correctamente en Supabase.");
 
-        // 3️⃣ Enviar correo con EmailJS
-        console.log("📧 Enviando correo con EmailJS...");
-        await emailjs.send(SERVICE_ID, TEMPLATE_ID, data);
+       await emailjs.send(SERVICE_ID, TEMPLATE_ID, {
+  ...data,
+  to_email: data.email // 👈 agrega el destinatario del correo
+});
 
         // 4️⃣ Confirmación y limpieza
         alert("✅ ¡Gracias! Tu cita ha sido asignada satisfactoriamente.");
