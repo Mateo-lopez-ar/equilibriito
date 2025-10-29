@@ -4,221 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Servicios - Equilibrio Animal</title>
-
-  <style>
-    /* ======= PALETA ======= */
-    :root {
-      --color1: #ffbd87; /* Naranja suave */
-      --color2: #ffd791; /* Amarillo cálido */
-      --color3: #f7e8a6; /* Amarillo pastel */
-      --color4: #d9e8ae; /* Verde claro */
-      --color5: #bfe3c0; /* Verde menta */
-    }
-
-    /* ======= ESTILO GENERAL ======= */
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: var(--color4);
-      margin: 0;
-      padding: 0;
-      color: #333;
-    }
-
-    /* ======= ENCABEZADO ======= */
-    header {
-      background-color: var(--color1);
-      color: white;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 12px 24px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    }
-
-    header .logo-container img {
-      height: 80px;
-      width: 80px;
-      border-radius: 50%;
-      border: 3px solid white;
-      box-shadow: 0 0 8px rgba(0,0,0,0.2);
-    }
-
-    header h1 {
-      flex: 2;
-      text-align: center;
-      font-size: 2em;
-      text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
-    }
-
-    /* ======= NAVEGACIÓN ======= */
-    nav {
-      background-color: var(--color1);
-      box-shadow: inset 0 -4px 8px rgba(0,0,0,0.08);
-    }
-
-    nav ul {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-
-    nav a {
-      display: block;
-      padding: 14px 22px;
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-      transition: background-color 0.3s;
-    }
-
-    nav a:hover {
-      background-color: var(--color3);
-      color: #333;
-    }
-
-    .submenu {
-      display: none;
-      position: absolute;
-      background-color: var(--color2);
-      top: 100%;
-      left: 0;
-      min-width: 220px;
-      z-index: 1000;
-      border-radius: 0 0 10px 10px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    }
-
-    .dropdown:hover .submenu {
-      display: block;
-    }
-
-    .submenu li a {
-      color: #333;
-      padding: 12px 18px;
-    }
-
-    .submenu li a:hover {
-      background-color: var(--color1);
-      color: white;
-    }
-
-    /* ======= SECCIÓN SERVICIOS ======= */
-    .servicios {
-      text-align: center;
-      padding: 60px 20px;
-    }
-
-    .servicios h2 {
-      color: var(--color1);
-      font-size: 2.5em;
-      margin-bottom: 20px;
-    }
-
-    .servicio-item {
-      background-color: white;
-      padding: 25px 30px;
-      margin-bottom: 40px;
-      border-radius: 20px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-      text-align: left;
-      border-left: 8px solid var(--color1);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .servicio-item:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 15px 35px rgba(0,0,0,0.15);
-    }
-
-    .servicio-item h3 {
-      color: var(--color1);
-      font-size: 1.8em;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .servicio-item svg {
-      width: 24px;
-      height: 24px;
-      fill: var(--color1);
-    }
-
-    .servicio-item p {
-      color: #444;
-      font-size: 1.1em;
-    }
-
-    .beneficios {
-      background-color: var(--color3);
-      padding: 20px;
-      border-radius: 12px;
-      margin-top: 20px;
-      box-shadow: inset 0 0 8px rgba(255,189,135,0.2);
-    }
-
-    .beneficios h4 {
-      color: var(--color1);
-      margin-bottom: 10px;
-    }
-
-    .beneficios ul {
-      list-style-type: disc;
-      margin-left: 20px;
-      text-align: left;
-      color: #333;
-    }
-
-    .servicio-item a {
-      display: inline-block;
-      margin-top: 15px;
-      background-color: var(--color1);
-      color: white;
-      padding: 10px 16px;
-      border-radius: 8px;
-      font-weight: bold;
-      text-decoration: none;
-      transition: background-color 0.3s;
-    }
-
-    .servicio-item a:hover {
-      background-color: var(--color3);
-      color: #333;
-    }
-
-    /* ======= PIE DE PÁGINA ======= */
-    footer {
-      background-color: var(--color2);
-      color: #333;
-      text-align: center;
-      padding: 20px 0;
-      margin-top: 60px;
-      font-size: 0.9em;
-      letter-spacing: 0.03em;
-      font-weight: 500;
-    }
-
-    /* ======= RESPONSIVE ======= */
-    @media (max-width: 768px) {
-      nav ul {
-        flex-direction: column;
-        display: none;
-      }
-
-      nav ul.show {
-        display: flex;
-      }
-
-      header h1 {
-        font-size: 1.5em;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
 
 <header>
@@ -255,8 +42,75 @@
 <section class="servicios">
   <h2>Nuestros Servicios</h2>
 
-  <!-- Cada servicio -->
-  <!-- (Todo tu contenido se mantiene igual, solo cambian los estilos por la paleta) -->
+  <div class="servicio-item">
+    <h3>Consulta Veterinaria</h3>
+    <p>Ofrecemos revisiones completas, diagnóstico y tratamientos personalizados para perros y gatos. Nuestro equipo de veterinarios está preparado para brindarte confianza y atención profesional.</p>
+    <div class="beneficios">
+      <h4>Beneficios:</h4>
+      <ul>
+        <li>Atención personalizada y cercana.</li>
+        <li>Diagnóstico temprano para enfermedades.</li>
+        <li>Plan de salud adaptado a cada mascota.</li>
+      </ul>
+    </div>
+    <a href="consulta_v.html" class="btn">Ver más →</a>
+  </div>
+
+  <div class="servicio-item">
+    <h3>Urgencias Veterinarias 24 Horas</h3>
+    <p>¿Una emergencia a cualquier hora del día? Nuestro servicio de urgencias está disponible las 24 horas para atender situaciones críticas de salud en tus mascotas con rapidez y eficacia.</p>
+    <div class="beneficios">
+      <h4>Beneficios:</h4>
+      <ul>
+        <li>Atención inmediata y profesional.</li>
+        <li>Equipo preparado para urgencias graves.</li>
+        <li>Servicio disponible todos los días del año.</li>
+      </ul>
+    </div>
+    <a href="Urg.html" class="btn">Ver más →</a>
+  </div>
+
+  <div class="servicio-item">
+    <h3>Cirugías y Desparasitación</h3>
+    <p>Realizamos esterilizaciones, cirugías de tejidos blandos y más, con protocolos seguros. Además, aplicamos tratamientos antiparasitarios internos y externos para prevenir enfermedades.</p>
+    <div class="beneficios">
+      <h4>Beneficios:</h4>
+      <ul>
+        <li>Procedimientos seguros y modernos.</li>
+        <li>Prevención efectiva contra parásitos.</li>
+        <li>Recuperación guiada y controlada.</li>
+      </ul>
+    </div>
+    <a href="cirugias.html" class="btn">Ver más →</a>
+  </div>
+
+  <div class="servicio-item">
+    <h3>Adopciones Responsables</h3>
+    <p>Fomentamos la adopción responsable para dar un hogar lleno de amor a perros y gatos necesitados. Acompañamos en el proceso para garantizar bienestar a los animales y a sus nuevos dueños.</p>
+    <div class="beneficios">
+      <h4>Beneficios:</h4>
+      <ul>
+        <li>Apoyo en la integración y cuidados iniciales.</li>
+        <li>Promoción de tenencia responsable.</li>
+        <li>Mejora de la calidad de vida de los animales.</li>
+      </ul>
+    </div>
+    <a href="adopta.html" class="btn">Ver más →</a>
+  </div>
+
+  <div class="servicio-item">
+    <h3>Laboratorio Clínico Veterinario</h3>
+    <p>Contamos con un laboratorio equipado para realizar análisis clínicos precisos que facilitan diagnósticos rápidos y certeros, mejorando la atención y el tratamiento de tus mascotas.</p>
+    <div class="beneficios">
+      <h4>Beneficios:</h4>
+      <ul>
+        <li>Resultados rápidos y confiables.</li>
+        <li>Detección temprana de enfermedades.</li>
+        <li>Mejor seguimiento y control del tratamiento.</li>
+      </ul>
+    </div>
+    <a href="lab.html" class="btn">Ver más →</a>
+  </div>
 </section>
 
 <footer>
@@ -264,14 +118,8 @@
 </footer>
 
 <script>
-  function toggleMenu() {
-    const menu = document.getElementById('navMenu');
-    menu.classList.toggle('show');
-  }
-
   const usuario = localStorage.getItem("usuario");
   const sesionBtn = document.getElementById("sesionBtn");
-
   if (usuario) {
     sesionBtn.textContent = "Cerrar Sesión";
     sesionBtn.href = "#";
