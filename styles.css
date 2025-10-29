@@ -1,32 +1,42 @@
-:root {
-  --color-primary: #ebbbff;
-  --color-secondary: #fcbbff;
-  --color-accent: #ff9beb;
-  --color-neutral: #ecbeff;
-  --color-base: #b8a6fe;
-}
+/*General*/
 
-/* ======= ESTILO GENERAL ======= */
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: var(--color-neutral);
+  background-color: #f7e8a6;
   margin: 0;
   padding: 0;
   color: #333;
 }
 
-/* ======= ENCABEZADO ======= */
+/*Encabezado*/
+
 header {
-  background-color: var(--color-primary);
+  background-color: #ffbd87;
   color: white;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 12px 24px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  padding: 10px 20px;
 }
 
-header .logo-container img {
+header .logo-container {
+  flex: 1;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: center; 
+  gap: 20px; 
+  padding: 10px;
+}
+
+.logo-container img {
+  height: 60px;
+}
+
+header .logo-container img,
+header img {
   height: 80px;
   width: 80px;
   border-radius: 50%;
@@ -35,28 +45,42 @@ header .logo-container img {
 }
 
 header h1 {
+  margin: 0;
+  font-size: 2em;
   flex: 2;
   text-align: center;
-  font-size: 2em;
-  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
 }
 
-/* ======= PIE DE PÁGINA ======= */
+/* Pie de pagina */
 footer {
-  background-color: var(--color-secondary);
-  color: #333;
+  background-color: #ffbd87;
+  color: white;
   text-align: center;
   padding: 20px 0;
   margin-top: 60px;
   font-size: 0.9em;
   letter-spacing: 0.03em;
-  font-weight: 500;
+  text-shadow: 0 0 5px rgba(0,0,0,0.15);
 }
 
-/* ======= NAVEGACIÓN ======= */
+/*Barra de naveg y menus*/
 nav {
-  background-color: var(--color-primary);
-  box-shadow: inset 0 -4px 8px rgba(0,0,0,0.08);
+  background-color: #ffd791;
+  position: relative;
+  box-shadow: inset 0 -4px 8px #ffbd87;
+}
+
+.menu-toggle {
+  display: none;
+  background-color: #ffd791;
+  color: white;
+  border: none;
+  font-size: 1.5em;
+  padding: 10px 20px;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
 }
 
 nav ul {
@@ -68,54 +92,60 @@ nav ul {
   flex-wrap: wrap;
 }
 
+nav li {
+  position: relative;
+  width: auto;
+}
+
 nav a {
   display: block;
-  padding: 14px 22px;
-  color: white;
+  padding: 14px 20px;
+  color: #333;
   text-decoration: none;
   font-weight: bold;
   transition: background-color 0.3s;
 }
 
 nav a:hover {
-  background-color: var(--color-accent);
+  background-color: #f7e8a6;
 }
 
-/* ======= SUBMENÚ ======= */
-.submenu {
-  display: none;
-  position: absolute;
-  background-color: var(--color-secondary);
-  top: 100%;
-  left: 0;
-  min-width: 220px;
-  z-index: 1000;
-  border-radius: 0 0 10px 10px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-}
+/*Dropdow y submenu*/
 
 .dropdown:hover .submenu {
   display: block;
 }
 
+.submenu {
+  display: none;
+  position: absolute;
+  background-color: #ffd791;
+  top: 100%;
+  left: 0;
+  min-width: 220px;
+  z-index: 1000;
+  border-radius: 0 0 10px 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
 .submenu li a {
-  color: #333;
   padding: 12px 18px;
+  color: #333;
+  font-weight: normal;
 }
 
 .submenu li a:hover {
-  background-color: var(--color-accent);
-  color: white;
+  background-color: #f7e8a6;
 }
 
-/* ======= SECCIONES PRINCIPALES ======= */
+/*secciones principales */
 .inicio, .contenido, .servicios, .form-section, .contact-section {
   text-align: center;
   padding: 60px 20px;
 }
 
 .inicio h2, .contenido h2, .servicios h2, .contact-section h2 {
-  color: var(--color-accent);
+  color: #ffbd87;
   font-size: 2.5em;
   margin-bottom: 20px;
 }
@@ -128,7 +158,15 @@ nav a:hover {
   color: #333;
 }
 
-/* ======= GALERÍA ======= */
+.inicio img, .contenido img {
+  margin-top: 40px;
+  width: 80%;
+  max-width: 700px;
+  border-radius: 15px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+}
+
+/*Galeria de animales*/
 .galeria {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -139,16 +177,11 @@ nav a:hover {
 }
 
 .animal {
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   border-radius: 15px;
   box-shadow: 0 0 10px rgba(0,0,0,0.1);
   padding: 15px;
   text-align: center;
-  transition: transform 0.3s ease;
-}
-
-.animal:hover {
-  transform: translateY(-5px);
 }
 
 .animal img {
@@ -157,7 +190,7 @@ nav a:hover {
 }
 
 .animal h3 {
-  color: var(--color-primary);
+  color: #ffbd87;
   margin-top: 10px;
   font-size: 1.3em;
 }
@@ -167,7 +200,22 @@ nav a:hover {
   font-size: 1em;
 }
 
-/* ======= SERVICIOS ======= */
+/*Servicios.php*/
+
+.servicios {
+  padding: 60px 20px;
+  max-width: 1000px;
+  margin: auto;
+  text-align: center;
+}
+
+.servicios h2 {
+  color: #ffbd87;
+  font-size: 2.8em;
+  margin-bottom: 50px;
+  text-shadow: 1px 1px 3px rgba(255,189,135,0.6);
+}
+
 .servicio-item {
   background-color: white;
   padding: 25px 30px;
@@ -175,8 +223,9 @@ nav a:hover {
   border-radius: 20px;
   box-shadow: 0 10px 25px rgba(0,0,0,0.1);
   text-align: left;
-  border-left: 8px solid var(--color-primary);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-left: 8px solid #ffbd87;
+  position: relative;
 }
 
 .servicio-item:hover {
@@ -185,96 +234,62 @@ nav a:hover {
 }
 
 .servicio-item h3 {
-  color: var(--color-accent);
-  font-size: 1.8em;
+  color: #ffd791;
+  margin-top: 0;
+  font-size: 1.9em;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  user-select: none;
+}
+
+.servicio-item h3 svg {
+  width: 28px;
+  height: 28px;
+  fill: #ffd791;
 }
 
 .servicio-item p {
   color: #444;
+  line-height: 1.7;
+  margin-top: 12px;
   font-size: 1.1em;
 }
 
-/* ======= BOTONES ======= */
-button, .btn-cerrar, .btn-volver, .boton-citas a, .btn-adoptar, .boton-adoptar {
+.servicio-item a {
   display: inline-block;
-  background-color: var(--color-primary);
-  color: white;
-  border: none;
-  border-radius: 8px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s;
+  margin-top: 15px;
+  color: #ffbd87;
+  font-weight: 700;
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+  transition: border-color 0.3s ease;
 }
 
-button:hover, .btn-cerrar:hover, .btn-volver:hover, .boton-citas a:hover, .btn-adoptar:hover, .boton-adoptar:hover {
-  background-color: var(--color-accent);
-  transform: translateY(-2px);
+.servicio-item a:hover {
+  border-color: #ffbd87;
 }
 
-/* ======= CONTACTO ======= */
-.contact-section {
-  background-color: var(--color-neutral);
-  padding: 60px 20px;
-}
-
-.contact-container {
-  background-color: white;
-  max-width: 900px;
-  margin: auto;
-  padding: 40px;
-  border-radius: 15px;
-  box-shadow: 0 0 15px rgba(0,0,0,0.1);
-}
-
-.contact-item i {
-  color: var(--color-primary);
-}
-
-/* ======= BENEFICIOS ======= */
+/*Beneficios*/
 .beneficios {
-  background-color: var(--color-base);
-  padding: 25px 30px;
+  margin-top: 18px;
+  background-color: #d9e8ae;
+  padding: 12px 18px;
   border-radius: 12px;
-  margin: 40px auto;
-  max-width: 850px;
-  box-shadow: inset 0 0 8px rgba(0,0,0,0.15);
+  box-shadow: inset 0 0 8px rgba(255,189,135,0.2);
 }
 
-.beneficios h3 {
-  color: var(--color-accent);
-  text-align: center;
-  margin-bottom: 15px;
+.beneficios h4, .beneficios h3 {
+  margin: 0 0 8px 0;
+  color: #ffbd87;
+  font-weight: 700;
+  font-size: 1.2em;
 }
 
-/* ======= ADOPCIONES ======= */
-.adopciones {
-  background-color: #FFFFFF;
-  padding: 40px 20px;
-  border-radius: 15px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.1);
-}
-
-.adopciones h2 {
-  color: var(--color-primary);
-  text-shadow: 1px 1px 3px rgba(0,0,0,0.15);
-}
-
-/* ======= RESPONSIVE ======= */
-@media (max-width: 768px) {
-  nav ul {
-    flex-direction: column;
-    display: none;
-  }
-
-  nav ul.show {
-    display: flex;
-  }
-
-  header h1 {
-    font-size: 1.5em;
-  }
-
-  .galeria {
-    grid-template-columns: 1fr;
-  }
+.beneficios ul {
+  list-style: inside disc;
+  color: #555;
+  font-size: 1em;
+  line-height: 1.5;
+  padding-left: 12px;
 }
