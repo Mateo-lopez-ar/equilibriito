@@ -8,7 +8,7 @@
 
   <style>
     body {
-      background: linear-gradient(to bottom right, #FFBBE1, #FFF58A);
+      background: linear-gradient(to bottom right, #FFD791, #BFE3C0);
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       min-height: 100vh;
       display: flex;
@@ -16,7 +16,7 @@
     }
 
     header {
-      background-color: #DD7BDF;
+      background-color: #FFBD87;
       color: white;
       padding: 10px 20px;
       display: flex;
@@ -78,41 +78,42 @@
 
     h2 {
       text-align: center;
-      color: #DD7BDF;
+      color: #FFBD87;
       font-weight: 700;
       margin-bottom: 30px;
     }
 
     .form-label {
-      color: #B3BFFF;
+      color: #6a855a;
       font-weight: 600;
     }
 
     .btn-success {
-      background-color: #DD7BDF;
+      background-color: #D9E8AE;
       border: none;
       border-radius: 25px;
       padding: 10px 30px;
       font-weight: bold;
-      transition: background-color 0.3s ease;
+      color: #2e4738;
+      transition: background-color 0.3s ease, transform 0.2s ease;
     }
 
     .btn-success:hover {
-      background-color: #B3BFFF;
-      color: white;
+      background-color: #BFE3C0;
+      transform: scale(1.03);
     }
 
     .alert { font-size: 0.9em; margin-top: 15px; }
 
     .links { text-align: center; margin-top: 20px; }
-    .links a { color: #DD7BDF; text-decoration: none; font-weight: bold; }
+    .links a { color: #FFBD87; text-decoration: none; font-weight: bold; }
     .links a:hover { text-decoration: underline; }
   </style>
 
   <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
   <script>
     (function() {
-      emailjs.init("V_7XXS-cj433ImG5Q"); // ⚠️ Reemplaza con tu Public Key
+      emailjs.init("V_7XXS-cj433ImG5Q");
     })();
   </script>
 </head>
