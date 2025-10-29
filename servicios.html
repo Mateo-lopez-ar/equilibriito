@@ -1,134 +1,192 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Servicios - Equilibrio Animal</title>
-  <link rel="stylesheet" href="styles.css">
-</head>
-<body>
+:root {
+  --color-primary: #ebbbff;
+  --color-secondary: #fcbbff;
+  --color-accent: #ff9beb;
+  --color-neutral: #ecbeff;
+  --color-base: #b8a6fe;
+  --color-bg: #d9e8ae; /* verde claro */
+  --color-text: #333;
+  --color-white: #fff;
+}
 
-<header>
-  <div class="logo-container">
-    <a href="index.html">
-      <img src="img/logo.png" alt="Logo Equilibrio Animal" />
-    </a>
-  </div>
-  <h1>Equilibrio Animal</h1>
-  <div style="width: 80px;"></div>
-</header>
+/* ---------- GENERAL ---------- */
+body {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+}
 
-<nav>
-  <ul id="navMenu">
-    <li><a href="index.html">Inicio</a></li>
-    <li><a href="nosotros.html">Nosotros</a></li>
-    <li class="dropdown">
-      <a href="servicios.html">Servicios ▾</a>
-      <ul class="submenu">
-        <li><a href="consulta_v.html">Consulta Veterinaria</a></li>
-        <li><a href="Urg.html">Urgencias Veterinarias 24 Horas</a></li>
-        <li><a href="cirugias.html">Cirugías</a></li>
-        <li><a href="adopciones.html">Adopciones Responsables</a></li>
-        <li><a href="lab.html">Laboratorio Clínico Veterinario</a></li>
-      </ul>
-    </li>
-    <li><a href="adopciones.html">Adopciones</a></li>
-    <li><a href="contacto.html">Contacto</a></li>
-    <li><a href="citas.html">Citas</a></li>
-    <li><a id="sesionBtn" href="login.html">Iniciar Sesión</a></li>
-  </ul>
-</nav>
+header {
+  background: var(--color-primary);
+  color: var(--color-white);
+  text-align: center;
+  padding: 1.2rem 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 
-<section class="servicios">
-  <h2>Nuestros Servicios</h2>
+header .logo-container img {
+  width: 90px;
+  height: auto;
+  margin-left: 20px;
+}
 
-  <div class="servicio-item">
-    <h3>Consulta Veterinaria</h3>
-    <p>Ofrecemos revisiones completas, diagnóstico y tratamientos personalizados para perros y gatos. Nuestro equipo de veterinarios está preparado para brindarte confianza y atención profesional.</p>
-    <div class="beneficios">
-      <h4>Beneficios:</h4>
-      <ul>
-        <li>Atención personalizada y cercana.</li>
-        <li>Diagnóstico temprano para enfermedades.</li>
-        <li>Plan de salud adaptado a cada mascota.</li>
-      </ul>
-    </div>
-    <a href="consulta_v.html" class="btn">Ver más →</a>
-  </div>
+header h1 {
+  font-size: 1.8rem;
+  letter-spacing: 1px;
+  margin: 0;
+}
 
-  <div class="servicio-item">
-    <h3>Urgencias Veterinarias 24 Horas</h3>
-    <p>¿Una emergencia a cualquier hora del día? Nuestro servicio de urgencias está disponible las 24 horas para atender situaciones críticas de salud en tus mascotas con rapidez y eficacia.</p>
-    <div class="beneficios">
-      <h4>Beneficios:</h4>
-      <ul>
-        <li>Atención inmediata y profesional.</li>
-        <li>Equipo preparado para urgencias graves.</li>
-        <li>Servicio disponible todos los días del año.</li>
-      </ul>
-    </div>
-    <a href="Urg.html" class="btn">Ver más →</a>
-  </div>
+/* ---------- NAV ---------- */
+nav {
+  background: var(--color-secondary);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
 
-  <div class="servicio-item">
-    <h3>Cirugías y Desparasitación</h3>
-    <p>Realizamos esterilizaciones, cirugías de tejidos blandos y más, con protocolos seguros. Además, aplicamos tratamientos antiparasitarios internos y externos para prevenir enfermedades.</p>
-    <div class="beneficios">
-      <h4>Beneficios:</h4>
-      <ul>
-        <li>Procedimientos seguros y modernos.</li>
-        <li>Prevención efectiva contra parásitos.</li>
-        <li>Recuperación guiada y controlada.</li>
-      </ul>
-    </div>
-    <a href="cirugias.html" class="btn">Ver más →</a>
-  </div>
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
 
-  <div class="servicio-item">
-    <h3>Adopciones Responsables</h3>
-    <p>Fomentamos la adopción responsable para dar un hogar lleno de amor a perros y gatos necesitados. Acompañamos en el proceso para garantizar bienestar a los animales y a sus nuevos dueños.</p>
-    <div class="beneficios">
-      <h4>Beneficios:</h4>
-      <ul>
-        <li>Apoyo en la integración y cuidados iniciales.</li>
-        <li>Promoción de tenencia responsable.</li>
-        <li>Mejora de la calidad de vida de los animales.</li>
-      </ul>
-    </div>
-    <a href="adopta.html" class="btn">Ver más →</a>
-  </div>
+nav ul li {
+  position: relative;
+}
 
-  <div class="servicio-item">
-    <h3>Laboratorio Clínico Veterinario</h3>
-    <p>Contamos con un laboratorio equipado para realizar análisis clínicos precisos que facilitan diagnósticos rápidos y certeros, mejorando la atención y el tratamiento de tus mascotas.</p>
-    <div class="beneficios">
-      <h4>Beneficios:</h4>
-      <ul>
-        <li>Resultados rápidos y confiables.</li>
-        <li>Detección temprana de enfermedades.</li>
-        <li>Mejor seguimiento y control del tratamiento.</li>
-      </ul>
-    </div>
-    <a href="lab.html" class="btn">Ver más →</a>
-  </div>
-</section>
+nav ul li a {
+  display: block;
+  padding: 0.9rem 1.2rem;
+  text-decoration: none;
+  color: #333;
+  font-weight: 600;
+  transition: 0.3s ease;
+}
 
-<footer>
-  &copy; 2025 Equilibrio Animal - Todos los derechos reservados.
-</footer>
+nav ul li a:hover {
+  background: var(--color-accent);
+  color: var(--color-white);
+  border-radius: 5px;
+}
 
-<script>
-  const usuario = localStorage.getItem("usuario");
-  const sesionBtn = document.getElementById("sesionBtn");
-  if (usuario) {
-    sesionBtn.textContent = "Cerrar Sesión";
-    sesionBtn.href = "#";
-    sesionBtn.onclick = () => {
-      localStorage.removeItem("usuario");
-      location.reload();
-    };
-  }
-</script>
+/* ---------- SUBMENÚ ---------- */
+.submenu {
+  display: none;
+  position: absolute;
+  background: var(--color-neutral);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  top: 100%;
+  left: 0;
+  min-width: 230px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  border-radius: 8px;
+}
 
-</body>
-</html>
+.dropdown:hover .submenu {
+  display: block;
+}
+
+.submenu li a {
+  padding: 0.8rem 1rem;
+  color: #444;
+}
+
+.submenu li a:hover {
+  background: var(--color-accent);
+  color: var(--color-white);
+}
+
+/* ---------- SECCIÓN SERVICIOS ---------- */
+.servicios {
+  max-width: 1000px;
+  margin: 3rem auto;
+  padding: 2rem;
+  background: var(--color-white);
+  border-radius: 15px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+}
+
+.servicios h2 {
+  text-align: center;
+  color: var(--color-base);
+  font-size: 2rem;
+  margin-bottom: 2rem;
+}
+
+.servicio-item {
+  background: var(--color-neutral);
+  border-radius: 15px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.servicio-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+.servicio-item h3 {
+  color: var(--color-base);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.3rem;
+}
+
+.servicio-item svg {
+  width: 24px;
+  height: 24px;
+  fill: var(--color-accent);
+}
+
+.servicio-item p {
+  margin-top: 10px;
+  line-height: 1.6;
+}
+
+.beneficios h4 {
+  margin-top: 15px;
+  color: var(--color-base);
+}
+
+.beneficios ul {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.beneficios li {
+  margin: 5px 0;
+}
+
+.servicio-item a {
+  display: inline-block;
+  margin-top: 15px;
+  padding: 10px 20px;
+  background: var(--color-base);
+  color: var(--color-white);
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background 0.3s ease;
+}
+
+.servicio-item a:hover {
+  background: var(--color-accent);
+}
+
+/* ---------- FOOTER ---------- */
+footer {
+  background: var(--color-primary);
+  color: var(--color-white);
+  text-align: center;
+  padding: 1rem;
+  font-size: 0.9rem;
+  border-top: 3px solid var(--color-accent);
+}
