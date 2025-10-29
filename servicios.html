@@ -1,480 +1,328 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Servicios - Equilibrio Animal</title>
-<style>
-    /* ======================================
-    Paleta de Colores
-    ======================================
-    --color-neutral: #bfe3c0; (Verde menta - Fondo principal)
-    --color-base: #ffbd87; (Naranja suave - Header/Footer/Títulos principales)
-    --color-primary: #f7e8a6; (Beige cálido - Navegación/Bordes de tarjetas)
-    --color-secondary: #ffd791; (Amarillo pastel - Hover/Acentos sutiles)
-    --color-accent: #d9e8ae; (Verde lima pálido - Íconos/CTA/Énfasis)
-    */
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Servicios - Equilibrio Animal</title>
+  <style>
+    /* ===== PALETA DE COLORES ===== */
     :root {
-        --color-neutral: #bfe3c0;
-        --color-base: #ffbd87;
-        --color-primary: #f7e8a6;
-        --color-secondary: #ffd791;
-        --color-accent: #d9e8ae;
-        --color-text-dark: #333333;
-        --color-text-light: white;
+      --color-naranja: #ffbd87;
+      --color-amarillo: #ffd791;
+      --color-beige: #f7e8a6;
+      --color-lima: #d9e8ae;
+      --color-menta: #bfe3c0;
+      --color-texto: #333;
+      --color-blanco: #fff;
     }
 
-    /* Base Styles */
     body {
-        background-color: var(--color-neutral); /* Fondo verde menta */
-        color: var(--color-text-dark);
-        font-family: 'Inter', Arial, sans-serif;
-        margin: 0;
-        padding: 0;
-        line-height: 1.6;
+      font-family: Arial, sans-serif;
+      background-color: var(--color-menta);
+      margin: 0;
+      color: var(--color-texto);
     }
 
-    /* Header Styling */
     header {
-        background-color: var(--color-base); /* Naranja suave */
-        color: var(--color-text-dark); /* Texto oscuro para mejor contraste */
-        padding: 1rem 1.5rem;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        border-bottom-left-radius: 12px;
-        border-bottom-right-radius: 12px;
-    }
-
-    .logo-container img {
-        /* Usando un placeholder simple para el logo, ya que la ruta 'img/logo.png' no existe aquí */
-        content: url(https://placehold.co/50x50/ffbd87/333?text=Logo);
-        height: 50px;
-        width: auto;
-        border-radius: 50%;
-        border: 2px solid var(--color-base); 
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      background-color: var(--color-naranja);
+      color: var(--color-blanco);
     }
 
     header h1 {
-        font-size: 1.8rem;
-        margin: 0;
-        flex-grow: 1;
-        text-align: center;
-        color: var(--color-text-dark);
-        text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.3);
+      text-align: center;
+      color: var(--color-blanco);
     }
 
-    /* Navigation Styling */
+    header .logo-container img {
+      height: 80px;
+      width: 80px;
+      border-radius: 50%;
+      border: 3px solid var(--color-blanco);
+    }
+
     nav {
-        background-color: var(--color-primary); /* Beige cálido */
-        position: sticky;
-        top: 0;
-        z-index: 100;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+      background-color: var(--color-amarillo);
     }
 
-    #navMenu {
-        list-style: none;
-        margin: 0;
-        padding: 0;
-        display: flex;
-        justify-content: center;
-        flex-wrap: wrap; 
+    nav ul {
+      display: flex;
+      list-style: none;
+      margin: 0;
+      padding: 0.5rem 2rem;
+      flex-wrap: wrap;
+      justify-content: center;
     }
 
-    #navMenu li {
-        position: relative;
+    nav ul li {
+      margin-right: 1.5rem;
+      position: relative;
     }
 
-    #navMenu a {
-        display: block;
-        padding: 1rem 1.25rem;
-        text-decoration: none;
-        color: var(--color-text-dark);
-        font-weight: 600;
-        transition: background-color 0.3s, color 0.3s;
+    nav ul li a {
+      text-decoration: none;
+      color: var(--color-texto);
+      font-weight: bold;
+      padding: 8px 12px;
+      display: block;
     }
 
-    #navMenu a:hover,
-    #navMenu li.dropdown:hover > a {
-        background-color: var(--color-secondary); /* Amarillo pastel para hover */
-        color: var(--color-text-dark);
+    nav ul li a:hover {
+      color: var(--color-naranja);
     }
 
-    /* Submenu (Dropdown) */
     .submenu {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-        background-color: var(--color-primary); /* Beige cálido */
-        position: absolute;
-        left: 0;
-        top: 100%;
-        min-width: 250px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        border-radius: 0 0 8px 8px;
-        display: none;
-        z-index: 200;
+      display: none;
+      position: absolute;
+      top: 2rem;
+      left: 0;
+      background-color: var(--color-beige);
+      list-style: none;
+      padding: 0.5rem 0;
+      min-width: 200px;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
     }
 
     .dropdown:hover .submenu {
-        display: block;
+      display: block;
     }
 
     .submenu li a {
-        padding: 0.75rem 1.25rem;
-        font-weight: 400;
+      padding: 0.5rem 1rem;
+      color: var(--color-texto);
     }
 
     .submenu li a:hover {
-        background-color: var(--color-secondary); /* Amarillo pastel para hover de submenu */
-        color: var(--color-text-dark);
+      background-color: var(--color-naranja);
+      color: var(--color-blanco);
     }
 
-    /* Main Content - Servicios Section */
     .servicios {
-        max-width: 1200px;
-        margin: 2rem auto;
-        padding: 0 1.5rem;
+      padding: 2rem;
     }
 
     .servicios h2 {
-        text-align: center;
-        color: var(--color-base); /* Naranja suave para el título principal */
-        font-size: 2.5rem;
-        margin-bottom: 2rem;
-        text-transform: uppercase;
-        border-bottom: 3px solid var(--color-primary);
-        padding-bottom: 0.5rem;
+      text-align: center;
+      color: var(--color-naranja);
     }
 
-    /* Grid Layout for Services */
-    .servicios {
-        display: grid;
-        gap: 2rem;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    }
-
-    /* Service Item Card */
     .servicio-item {
-        background-color: var(--color-text-light); /* Fondo blanco para las tarjetas */
-        padding: 2rem;
-        border-radius: 12px;
-        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-        transition: transform 0.3s, box-shadow 0.3s;
-        border: 2px solid var(--color-primary); /* Borde con color primario (beige) */
-        display: flex;
-        flex-direction: column;
-    }
-
-    .servicio-item:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
-        border-color: var(--color-base); /* Cambio de borde a naranja suave en hover */
+      background-color: var(--color-blanco);
+      margin: 1.5rem 0;
+      padding: 1.5rem;
+      border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     }
 
     .servicio-item h3 {
-        display: flex;
-        align-items: center;
-        color: var(--color-base); /* Naranja suave para títulos de servicio */
-        font-size: 1.5rem;
-        margin-top: 0;
-        margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      color: var(--color-amarillo);
     }
 
     .servicio-item h3 svg {
-        width: 30px;
-        height: 30px;
-        fill: var(--color-accent); /* Verde lima pálido para los íconos */
-        margin-right: 10px;
-        filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.1));
+      width: 24px;
+      height: 24px;
+      margin-right: 0.5rem;
+      fill: var(--color-lima);
+    }
+
+    .servicio-item p {
+      margin: 0.5rem 0 1rem;
+      color: var(--color-texto);
     }
 
     .beneficios {
-        margin-top: 1rem;
-        padding-top: 1rem;
-        border-top: 1px dashed var(--color-secondary); /* Separador sutil con línea discontinua */
+      background-color: var(--color-beige);
+      padding: 1rem 1.5rem;
+      border-radius: 10px;
+      margin: 1rem 0;
     }
 
     .beneficios h4 {
-        color: var(--color-text-dark);
-        margin-top: 0;
-        font-weight: 600;
-        font-size: 1.1rem;
+      color: var(--color-naranja);
+      margin-bottom: 0.5rem;
     }
 
     .beneficios ul {
-        list-style: none;
-        padding-left: 0;
-    }
-
-    .beneficios li {
-        margin-bottom: 0.5rem;
-        padding-left: 1.5em; /* Espacio para el checkmark */
-        position: relative;
-    }
-
-    .beneficios li::before {
-        content: '✓';
-        color: var(--color-base); /* Checkmark naranja suave */
-        font-weight: bold;
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 1em;
-        margin-left: 0;
+      margin: 0;
+      padding-left: 1.2rem;
+      color: var(--color-texto);
     }
 
     .servicio-item a {
-        margin-top: auto; 
-        display: inline-block;
-        padding: 0.5rem 1rem;
-        background-color: var(--color-accent); /* Fondo verde lima pálido para CTA */
-        color: var(--color-text-dark);
-        text-decoration: none;
-        font-weight: bold;
-        border-radius: 8px;
-        align-self: flex-start; /* Alinea el botón a la izquierda/inicio de la tarjeta */
-        transition: background-color 0.3s, transform 0.2s;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      display: inline-block;
+      margin-top: 1rem;
+      text-decoration: none;
+      font-weight: bold;
+      color: var(--color-naranja);
+      border-bottom: 2px solid var(--color-naranja);
     }
-    
+
     .servicio-item a:hover {
-        background-color: var(--color-base); /* Naranja suave en hover */
-        transform: translateY(-2px);
-        color: var(--color-text-light); /* Texto blanco para mejor contraste en hover */
+      color: var(--color-amarillo);
+      border-color: var(--color-amarillo);
     }
 
-
-    /* Footer Styling */
     footer {
-        background-color: var(--color-base); /* Naranja suave */
-        color: var(--color-text-dark);
-        text-align: center;
-        padding: 1rem;
-        margin-top: 3rem;
-        border-top-left-radius: 12px;
-        border-top-right-radius: 12px;
+      text-align: center;
+      padding: 1rem;
+      background-color: var(--color-lima);
+      color: var(--color-texto);
+      margin-top: 2rem;
     }
-
-    /* Responsive adjustments */
-    @media (max-width: 768px) {
-        header {
-            flex-direction: column;
-            text-align: center;
-            padding: 1rem;
-        }
-
-        header h1 {
-            font-size: 1.5rem;
-            margin: 10px 0;
-        }
-
-        /* En móvil, la navegación se apila */
-        #navMenu {
-            flex-direction: column;
-            align-items: stretch;
-            text-align: center;
-        }
-
-        #navMenu li {
-            border-top: 1px solid rgba(0, 0, 0, 0.1);
-        }
-        
-        /* Desactiva el dropdown por hover en móvil, la navegación simple es mejor */
-        .submenu {
-            position: static;
-            box-shadow: none;
-            border-radius: 0;
-            display: none; /* Asegura que esté oculto */
-        }
-        
-        .dropdown:hover .submenu {
-            display: none; 
-        }
-        
-        /* Asegurarse de que los enlaces sean bloques grandes para toque */
-        #navMenu a {
-            padding: 12px 20px;
-        }
-        
-        .servicios {
-            padding: 0 1rem;
-        }
-
-        .servicio-item {
-            padding: 1.5rem;
-        }
-    }
-</style>
+  </style>
 </head>
 <body>
 
 <header>
-  <div class="logo-container">
-    <a href="index.html">
-      <!-- Placeholder para logo, usaré la clase para el estilo -->
-      <img src="img/logo.png" alt="Logo Equilibrio Animal" />
-    </a>
-  </div>
-  <h1>Equilibrio Animal</h1>
-  <div style="width: 80px;"></div>
+  <div class="logo-container">
+    <a href="index.html">
+      <img src="img/logo.png" alt="Logo Equilibrio Animal" />
+    </a>
+  </div>
+  <h1>Equilibrio Animal</h1>
+  <div style="width: 80px;"></div>
 </header>
 
-
 <nav>
-    <ul id="navMenu">
-      <li><a href="index.html">Inicio</a></li>
-      <li><a href="nosotros.html">Nosotros</a></li>
-      <li class="dropdown">
-        <a href="servicios.html">Servicios ▾</a>
-        <ul class="submenu">
-          <li><a href="consulta_v.html">Consulta Veterinaria</a></li>
-          <li><a href="Urg.html">Urgencias Veterinarias 24 Horas</a></li>
-          <li><a href="cirugias.html">Cirugías </a></li>
-          <li><a href="adopciones.html">Adopciones Responsables</a></li>
-          <li><a href="lab.html">Laboratorio Clínico Veterinario</a></li>
-        </ul>
-      </li>
-      <li><a href="adopciones.html">Adopciones</a></li>
-      <li><a href="contacto.html">Contacto</a></li>
-      <li><a href="citas.html">Citas</a></li>
-      <li>
-        <a id="sesionBtn" href="login.html">Iniciar Sesión</a>
-      </li>
-    </ul>
-  </nav>
+  <ul id="navMenu">
+    <li><a href="index.html">Inicio</a></li>
+    <li><a href="nosotros.html">Nosotros</a></li>
+    <li class="dropdown">
+      <a href="servicios.html">Servicios ▾</a>
+      <ul class="submenu">
+        <li><a href="consulta_v.html">Consulta Veterinaria</a></li>
+        <li><a href="Urg.html">Urgencias Veterinarias 24 Horas</a></li>
+        <li><a href="cirugias.html">Cirugías </a></li>
+        <li><a href="adopciones.html">Adopciones Responsables</a></li>
+        <li><a href="lab.html">Laboratorio Clínico Veterinario</a></li>
+      </ul>
+    </li>
+    <li><a href="adopciones.html">Adopciones</a></li>
+    <li><a href="contacto.html">Contacto</a></li>
+    <li><a href="citas.html">Citas</a></li>
+    <li>
+      <a id="sesionBtn" href="login.html">Iniciar Sesión</a>
+    </li>
+  </ul>
+</nav>
 
 <section class="servicios">
-  <h2>Nuestros Servicios</h2>
+  <h2>Nuestros Servicios</h2>
 
-  <div class="servicio-item">
-    <h3>
-      <!-- Icono de Corazón/Pulso (Consulta) -->
-      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 00-7 7c0 3.86 3.14 7 7 7s7-3.14 7-7a7 7 0 00-7-7zM4 9a8 8 0 0116 0c0 4.418-3.582 8-8 8s-8-3.582-8-8zm8 2a1 1 0 110-2 1 1 0 010 2z"/></svg>
-      Consulta Veterinaria
-    </h3>
-    <p>Ofrecemos revisiones completas, diagnóstico y tratamientos personalizados para perros y gatos. Nuestro equipo de veterinarios está preparado para brindarte confianza y atención profesional.</p>
-    <div class="beneficios">
-      <h4>Beneficios:</h4>
-      <ul>
-        <li>Atención personalizada y cercana.</li>
-        <li>Diagnóstico temprano para enfermedades.</li>
-        <li>Plan de salud adaptado a cada mascota.</li>
-      </ul>
-    </div>
-    <a href="consulta_v.html">Ver más →</a>
-  </div>
+  <!-- Servicio 1 -->
+  <div class="servicio-item">
+    <h3>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 00-7 7c0 3.86 3.14 7 7 7s7-3.14 7-7a7 7 0 00-7-7zM4 9a8 8 0 0116 0c0 4.418-3.582 8-8 8s-8-3.582-8-8zm8 2a1 1 0 110-2 1 1 0 010 2z"/></svg>
+      Consulta Veterinaria
+    </h3>
+    <p>Ofrecemos revisiones completas, diagnóstico y tratamientos personalizados para perros y gatos. Nuestro equipo de veterinarios está preparado para brindarte confianza y atención profesional.</p>
+    <div class="beneficios">
+      <h4>Beneficios:</h4>
+      <ul>
+        <li>Atención personalizada y cercana.</li>
+        <li>Diagnóstico temprano para enfermedades.</li>
+        <li>Plan de salud adaptado a cada mascota.</li>
+      </ul>
+    </div>
+    <a href="consulta_v.html">Ver más →</a>
+  </div>
 
-  <div class="servicio-item">
-    <h3>
-      <!-- Icono de Alerta/24 Horas (Urgencias) -->
-      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C6.486 2 2 6.486 2 12c0 5.514 4.486 10 10 10s10-4.486 10-10c0-5.514-4.486-10-10-10zm0 18a7.958 7.958 0 01-4.9-1.704l11.196-11.196A7.958 7.958 0 0120 12c0 4.411-3.589 8-8 8zm-6.102-5.196l11.298-11.297A7.95 7.95 0 014 12a7.957 7.957 0 011.898 2.804z"/></svg>
-      Urgencias Veterinarias 24 Horas
-    </h3>
-    <p>¿Una emergencia a cualquier hora del día? Nuestro servicio de urgencias está disponible las 24 horas para atender situaciones críticas de salud en tus mascotas con rapidez y eficacia.</p>
-    <div class="beneficios">
-      <h4>Beneficios:</h4>
-      <ul>
-        <li>Atención inmediata y profesional.</li>
-        <li>Equipo preparado para urgencias graves.</li>
-        <li>Servicio disponible todos los días del año.</li>
-      </ul>
-    </div>
-    <a href="Urg.html">Ver más →</a>
-  </div>
+  <!-- Servicio 2 -->
+  <div class="servicio-item">
+    <h3>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C6.486 2 2 6.486 2 12c0 5.514 4.486 10 10 10s10-4.486 10-10c0-5.514-4.486-10-10-10zm0 18a7.958 7.958 0 01-4.9-1.704l11.196-11.196A7.958 7.958 0 0120 12c0 4.411-3.589 8-8 8zm-6.102-5.196l11.298-11.297A7.95 7.95 0 014 12a7.957 7.957 0 011.898 2.804z"/></svg>
+      Urgencias Veterinarias 24 Horas
+    </h3>
+    <p>¿Una emergencia a cualquier hora del día? Nuestro servicio de urgencias está disponible las 24 horas para atender situaciones críticas de salud en tus mascotas con rapidez y eficacia.</p>
+    <div class="beneficios">
+      <h4>Beneficios:</h4>
+      <ul>
+        <li>Atención inmediata y profesional.</li>
+        <li>Equipo preparado para urgencias graves.</li>
+        <li>Servicio disponible todos los días del año.</li>
+      </ul>
+    </div>
+    <a href="Urg.html">Ver más →</a>
+  </div>
 
-  <div class="servicio-item">
-    <h3>
-      <!-- Icono de Bisturí/Cirugía -->
-      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 9v7a4 4 0 01-4 4H9a4 4 0 01-4-4v-7H4l8-8 8 8h-3z"/></svg>
-      Cirugías y Desparasitación
-    </h3>
-    <p>Realizamos esterilizaciones, cirugías de tejidos blandos y más, con protocolos seguros. Además, aplicamos tratamientos antiparasitarios internos y externos para prevenir enfermedades.</p>
-    <div class="beneficios">
-      <h4>Beneficios:</h4>
-      <ul>
-        <li>Procedimientos seguros y modernos.</li>
-        <li>Prevención efectiva contra parásitos.</li>
-        <li>Recuperación guiada y controlada.</li>
-      </ul>
-    </div>
-    <a href="cirugias.html">Ver más →</a>
-  </div>
+  <!-- Servicio 3 -->
+  <div class="servicio-item">
+    <h3>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 9v7a4 4 0 01-4 4H9a4 4 0 01-4-4v-7H4l8-8 8 8h-3z"/></svg>
+      Cirugías y Desparasitación
+    </h3>
+    <p>Realizamos esterilizaciones, cirugías de tejidos blandos y más, con protocolos seguros. Además, aplicamos tratamientos antiparasitarios internos y externos para prevenir enfermedades.</p>
+    <div class="beneficios">
+      <h4>Beneficios:</h4>
+      <ul>
+        <li>Procedimientos seguros y modernos.</li>
+        <li>Prevención efectiva contra parásitos.</li>
+        <li>Recuperación guiada y controlada.</li>
+      </ul>
+    </div>
+    <a href="cirugias.html">Ver más →</a>
+  </div>
 
-  <div class="servicio-item">
-    <h3>
-      <!-- Icono de Corazón/Adopción -->
-      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09A6.52 6.52 0 0116.5 3C19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
-      Adopciones Responsables
-    </h3>
-    <p>Fomentamos la adopción responsable para dar un hogar lleno de amor a perros y gatos necesitados. Acompañamos en el proceso para garantizar bienestar a los animales y a sus nuevos dueños.</p>
-    <div class="beneficios">
-      <h4>Beneficios:</h4>
-      <ul>
-        <li>Apoyo en la integración y cuidados iniciales.</li>
-        <li>Promoción de tenencia responsable.</li>
-        <li>Mejora de la calidad de vida de los animales.</li>
-      </ul>
-    </div>
-    <a href="adopta.html">Ver más →</a>
-  </div>
+  <!-- Servicio 4 -->
+  <div class="servicio-item">
+    <h3>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09A6.52 6.52 0 0116.5 3C19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+      Adopciones Responsables
+    </h3>
+    <p>Fomentamos la adopción responsable para dar un hogar lleno de amor a perros y gatos necesitados. Acompañamos en el proceso para garantizar bienestar a los animales y a sus nuevos dueños.</p>
+    <div class="beneficios">
+      <h4>Beneficios:</h4>
+      <ul>
+        <li>Apoyo en la integración y cuidados iniciales.</li>
+        <li>Promoción de tenencia responsable.</li>
+        <li>Mejora de la calidad de vida de los animales.</li>
+      </ul>
+    </div>
+    <a href="adopta.html">Ver más →</a>
+  </div>
 
-  <div class="servicio-item">
-    <h3>
-      <!-- Icono de Microscopio/Análisis (Laboratorio) -->
-      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 17.25V21h3.75l11-11.03-3.75-3.75L3 17.25zM20.71 7.04a1.003 1.003 0 000-1.41l-2.34-2.34a1.003 1.003 0 00-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>
-      Laboratorio Clínico Veterinario
-    </h3>
-    <p>Contamos con un laboratorio equipado para realizar análisis clínicos precisos que facilitan diagnósticos rápidos y certeros, mejorando la atención y el tratamiento de tus mascotas.</p>
-    <div class="beneficios">
-      <h4>Beneficios:</h4>
-      <ul>
-        <li>Resultados rápidos y confiables.</li>
-        <li>Detección temprana de enfermedades.</li>
-        <li>Mejor seguimiento y control del tratamiento.</li>
-      </ul>
-    </div>
-    <a href="lab.html">Ver más →</a>
-  </div>
+  <!-- Servicio 5 -->
+  <div class="servicio-item">
+    <h3>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 17.25V21h3.75l11-11.03-3.75-3.75L3 17.25zM20.71 7.04a1.003 1.003 0 000-1.41l-2.34-2.34a1.003 1.003 0 00-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>
+      Laboratorio Clínico Veterinario
+    </h3>
+    <p>Contamos con un laboratorio equipado para realizar análisis clínicos precisos que facilitan diagnósticos rápidos y certeros, mejorando la atención y el tratamiento de tus mascotas.</p>
+    <div class="beneficios">
+      <h4>Beneficios:</h4>
+      <ul>
+        <li>Resultados rápidos y confiables.</li>
+        <li>Detección temprana de enfermedades.</li>
+        <li>Mejor seguimiento y control del tratamiento.</li>
+      </ul>
+    </div>
+    <a href="lab.html">Ver más →</a>
+  </div>
+
 </section>
 
 <footer>
-  &copy; 2025 Equilibrio Animal - Todos los derechos reservados.
+  &copy; 2025 Equilibrio Animal - Todos los derechos reservados.
 </footer>
 
 <script>
-  // Funciones de navegación (útiles para menús móviles si se implementan)
-  function toggleMenu() {
-    const menu = document.getElementById('navMenu');
-    menu.classList.toggle('show');
-  }
+  const usuario = localStorage.getItem("usuario");
+  const sesionBtn = document.getElementById("sesionBtn");
 
-  function toggleSubmenu(event) {
-    event.preventDefault();
-    const submenu = event.target.nextElementSibling;
-    if (submenu) {
-      submenu.classList.toggle('show');
-    }
-  }
-
-  // Lógica de autenticación simple usando localStorage
-  document.addEventListener('DOMContentLoaded', () => {
-    const usuario = localStorage.getItem("usuario");
-    const sesionBtn = document.getElementById("sesionBtn");
-
-    if (usuario) {
-      // Si hay usuario, cambiar el botón a "Cerrar Sesión"
-      sesionBtn.textContent = "Cerrar Sesión";
-      sesionBtn.href = "#";
-      sesionBtn.onclick = (e) => {
-        e.preventDefault(); // Evitar navegación predeterminada
-        localStorage.removeItem("usuario");
-        location.reload();
-      };
-    }
-  });
+  if (usuario) {
+    sesionBtn.textContent = "Cerrar Sesión";
+    sesionBtn.href = "#";
+    sesionBtn.onclick = () => {
+      localStorage.removeItem("usuario");
+      location.reload();
+    };
+  }
 </script>
 
 </body>
