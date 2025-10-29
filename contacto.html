@@ -8,7 +8,7 @@
 
   <style>
     body {
-      background: linear-gradient(to bottom right, #FFD791, #BFE3C0);
+      background: linear-gradient(to bottom right, #ccebea, #ffffff);
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       min-height: 100vh;
       display: flex;
@@ -16,7 +16,7 @@
     }
 
     header {
-      background-color: #FFBD87;
+      background-color: #2bb2a2;
       color: white;
       padding: 10px 20px;
       display: flex;
@@ -78,42 +78,36 @@
 
     h2 {
       text-align: center;
-      color: #FFBD87;
+      color: #2bb2a2;
       font-weight: 700;
       margin-bottom: 30px;
     }
 
-    .form-label {
-      color: #6a855a;
-      font-weight: 600;
-    }
+    .form-label { color: #23988b; font-weight: 600; }
 
     .btn-success {
-      background-color: #D9E8AE;
+      background-color: #2bb2a2;
       border: none;
       border-radius: 25px;
       padding: 10px 30px;
       font-weight: bold;
-      color: #2e4738;
-      transition: background-color 0.3s ease, transform 0.2s ease;
+      transition: background-color 0.3s ease;
     }
 
-    .btn-success:hover {
-      background-color: #BFE3C0;
-      transform: scale(1.03);
-    }
+    .btn-success:hover { background-color: #23988b; }
 
     .alert { font-size: 0.9em; margin-top: 15px; }
 
     .links { text-align: center; margin-top: 20px; }
-    .links a { color: #FFBD87; text-decoration: none; font-weight: bold; }
+    .links a { color: #2bb2a2; text-decoration: none; font-weight: bold; }
     .links a:hover { text-decoration: underline; }
   </style>
+
 
   <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
   <script>
     (function() {
-      emailjs.init("V_7XXS-cj433ImG5Q");
+      emailjs.init("V_7XXS-cj433ImG5Q"); // ⚠️ Reemplaza con tu Public Key
     })();
   </script>
 </head>
@@ -165,6 +159,7 @@
       const correo = form.correo.value.trim();
 
       try {
+        // 1️⃣ Enviar datos a Supabase
         const res = await fetch("https://erxgjoacksfghrddptvn.supabase.co/rest/v1/usuarios", {
           method: "POST",
           headers: {
@@ -180,6 +175,7 @@
           throw new Error("Error en Supabase: " + text);
         }
 
+        // 2️⃣ Enviar correo por EmailJS
         const emailParams = {
           from_name: nombre,
           from_email: correo,

@@ -7,6 +7,14 @@
 </head>
 <body>
 
+  <div id="site-loader">
+    <div class="paw-wrap">
+      <svg viewBox="0 0 512 512">
+        <path d="M256 128c-42 0-76 34-76 76s34 76 76 76 76-34 76-76-34-76-76-76zM114 240c-28 0-50 22-50 50s22 50 50 50 50-22 50-50-22-50-50-50zm284 0c-28 0-50 22-50 50s22 50 50 50 50-22 50-50-22-50-50-50zm-186 130c-22 0-40 18-40 40s18 40 40 40 40-18 40-40-18-40-40-40zm104 0c-22 0-40 18-40 40s18 40 40 40 40-18 40-40-18-40-40-40z"/>
+      </svg>
+    </div>
+  </div>
+
   <header>
     <div class="logo-container">
       <a href="index.html">
@@ -68,7 +76,7 @@
       <div class="animal">
         <img src="img/copito.jpg" alt="Copito">
         <h3>Copito</h3>
-        <p>Macho, 2 años. jugueton, travieso y curioso.</p>
+        <p>Macho, 2 años. Juguetón, travieso y curioso.</p>
         <a href="https://wa.me/573503399402?text=Hola!%20Estoy%20interesado%20en%20adoptar%20a%20una%20mascota." target="_blank" class="boton-adoptar">Adoptar 🐾</a>
       </div>
 
@@ -82,11 +90,9 @@
       <div class="animal">
         <img src="img/garfield.jpg" alt="Garfield">
         <h3>Garfield</h3>
-        <p>macho, 3 años. cariñoso, consentido y mordelon .</p>
+        <p>Macho, 3 años. Cariñoso, consentido y mordelón.</p>
         <a href="https://wa.me/573503399402?text=Hola!%20Estoy%20interesado%20en%20adoptar%20a%20una%20mascota." target="_blank" class="boton-adoptar">Adoptar 🐾</a>
       </div>
-
-    
 
       <div class="animal">
         <img src="img/firulais2.webp" alt="Toby">
@@ -112,6 +118,12 @@
   </footer>
 
   <script>
+
+    window.addEventListener('load', () => {
+      document.getElementById('site-loader').classList.add('hidden');
+    });
+
+
     const usuario = localStorage.getItem("usuario");
     const sesionBtn = document.getElementById("sesionBtn");
 
@@ -125,8 +137,5 @@
     }
   </script>
 
-
-<script src="js/main.js"></script>
 </body>
 </html>
-

@@ -1,51 +1,54 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Cirugías y Desparasitación - Equilibrio Animal</title>
-<link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-<header>
-    <div class="logo-container">
-      <a href="index.html">
-        <img src="img/logo.png" alt="Logo Equilibrio Animal"/>
-      </a>
+  <div id="site-loader">
+    <div class="paw-wrap">
+      <svg viewBox="0 0 512 512">
+        <path d="M256 128c-42 0-76 34-76 76s34 76 76 76 76-34 76-76-34-76-76-76zM114 240c-28 0-50 22-50 50s22 50 50 50 50-22 50-50-22-50-50-50zm284 0c-28 0-50 22-50 50s22 50 50 50 50-22 50-50-22-50-50-50zm-186 130c-22 0-40 18-40 40s18 40 40 40 40-18 40-40-18-40-40-40zm104 0c-22 0-40 18-40 40s18 40 40 40 40-18 40-40-18-40-40-40z"/>
+      </svg>
     </div>
-  
+  </div>
+
+<header>
+  <div class="logo-container">
+    <a href="index.html">
+      <img src="img/logo.png" alt="Logo Equilibrio Animal"/>
+    </a>
+  </div>
   <h1>Equilibrio Animal</h1>
   <div style="width: 80px;"></div>
 </header>
 
 <nav>
-    <ul id="navMenu">
-      <li><a href="index.html">Inicio</a></li>
-      <li><a href="nosotros.html">Nosotros</a></li>
-      <li class="dropdown">
-        <a href="servicios.html">Servicios ▾</a>
-        <ul class="submenu">
-          <li><a href="consulta_v.html">Consulta Veterinaria</a></li>
-          <li><a href="Urg.html">Urgencias Veterinarias 24 Horas</a></li>
-          <li><a href="cirugias.html">Cirugías y Desparasitación</a></li>
-          <li><a href="adopta.html">Adopciones Responsables</a></li>
-          <li><a href="lab.html">Laboratorio Clínico Veterinario</a></li>
-        </ul>
-      </li>
-      <li><a href="adopciones.html">Adopciones</a></li>
-      <li><a href="contacto.html">Contacto</a></li>
-      <li><a href="citas.html">Citas</a></li>
-      <li>
-        <a id="sesionBtn" href="login.html">Iniciar Sesión</a>
-      </li>
-    </ul>
-  </nav>
+  <ul id="navMenu">
+    <li><a href="index.html">Inicio</a></li>
+    <li><a href="nosotros.html">Nosotros</a></li>
+    <li class="dropdown">
+      <a href="servicios.html">Servicios ▾</a>
+      <ul class="submenu">
+        <li><a href="consulta_v.html">Consulta Veterinaria</a></li>
+        <li><a href="Urg.html">Urgencias Veterinarias 24 Horas</a></li>
+        <li><a href="cirugias.html" class="active">Cirugías y Desparasitación</a></li>
+        <li><a href="adopta.html">Adopciones Responsables</a></li>
+        <li><a href="lab.html">Laboratorio Clínico Veterinario</a></li>
+      </ul>
+    </li>
+    <li><a href="adopciones.html">Adopciones</a></li>
+    <li><a href="contacto.html">Contacto</a></li>
+    <li><a href="citas.html">Citas</a></li>
+    <li><a id="sesionBtn" href="login.html">Iniciar Sesión</a></li>
+  </ul>
+</nav>
 
 <section class="contenido">
   <h2>Cirugías y Desparasitación</h2>
-
   <p>
     En <strong>Equilibrio Animal</strong>, contamos con una moderna área quirúrgica equipada para realizar una amplia gama de procedimientos, desde esterilizaciones hasta cirugías correctivas y de emergencia.
     Nuestro equipo de profesionales aplica protocolos de anestesia seguros y realiza seguimientos posoperatorios personalizados.
@@ -78,6 +81,10 @@
 </footer>
 
 <script>
+  window.addEventListener('load', () => {
+    document.getElementById('site-loader').classList.add('hidden');
+  });
+
   function toggleMenu() {
     const menu = document.getElementById('navMenu');
     menu.classList.toggle('show');
@@ -86,30 +93,21 @@
   function toggleSubmenu(event) {
     event.preventDefault();
     const submenu = event.target.nextElementSibling;
-    if (submenu) {
-      submenu.classList.toggle('show');
-    }
+    if (submenu) submenu.classList.toggle('show');
+  }
+
+  const usuario = localStorage.getItem("usuario");
+  const sesionBtn = document.getElementById("sesionBtn");
+
+  if (usuario) {
+    sesionBtn.textContent = "Cerrar Sesión";
+    sesionBtn.href = "#";
+    sesionBtn.onclick = () => {
+      localStorage.removeItem("usuario");
+      location.reload();
+    };
   }
 </script>
-  <script>
-    // Mostrar nombre si el usuario está en localStorage
-    const usuario = localStorage.getItem("usuario");
-    const bienvenida = document.getElementById("bienvenidaTexto");
-    const sesionBtn = document.getElementById("sesionBtn");
 
-    if (usuario) {
-    
-      sesionBtn.textContent = "Cerrar Sesión";
-      sesionBtn.href = "#";
-      sesionBtn.onclick = () => {
-        localStorage.removeItem("usuario");
-        location.reload();
-      };
-    }
-  </script>
-
-
-<script src="js/main.js"></script>
 </body>
 </html>
-
