@@ -133,15 +133,6 @@
   </style>
 </head>
 <body>
-
-  <div id="site-loader">
-    <div class="paw-wrap">
-      <svg viewBox="0 0 512 512">
-        <path d="M256 128c-42 0-76 34-76 76s34 76 76 76 76-34 76-76-34-76-76-76zM114 240c-28 0-50 22-50 50s22 50 50 50 50-22 50-50-22-50-50-50zm284 0c-28 0-50 22-50 50s22 50 50 50 50-22 50-50-22-50-50-50zm-186 130c-22 0-40 18-40 40s18 40 40 40 40-18 40-40-18-40-40-40zm104 0c-22 0-40 18-40 40s18 40 40 40 40-18 40-40-18-40-40-40z"/>
-      </svg>
-    </div>
-  </div>
-
   <header>
     <a href="index.html">
       <img src="img/logo.png" alt="Logo">
@@ -186,10 +177,6 @@
   </section>
 
   <script>
-    window.addEventListener('load', () => {
-      document.getElementById('site-loader').classList.add('hidden');
-    });
-
     const usuario = localStorage.getItem("usuario");
     if (!usuario) {
       alert("Debes iniciar sesión para agendar una cita.");
