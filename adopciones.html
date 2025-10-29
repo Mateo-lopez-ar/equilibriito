@@ -2,339 +2,78 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Adopciones - Equilibrio Animal</title>
-  <link rel="stylesheet" href="styles.css" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="adopciones.css" />
 </head>
-<style>
-  .:root {
-  --color1: #ffbd87;
-  --color2: #ffd791;
-  --color3: #f7e8a6;
-  --color4: #d9e8ae;
-  --color5: #bfe3c0;
-}
-
-body {
-  margin: 0;
-  padding: 0;
-  font-family: 'Poppins', sans-serif;
-  background-color: var(--color5);
-  color: #333;
-}
-
-/* ===== Loader ===== */
-#site-loader {
-  position: fixed;
-  inset: 0;
-  background: var(--color5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 9999;
-  transition: opacity 0.5s ease, visibility 0.5s ease;
-}
-
-#site-loader.hidden {
-  opacity: 0;
-  visibility: hidden;
-}
-
-.paw-wrap svg {
-  fill: var(--color1);
-  width: 80px;
-  animation: pulse 1.5s infinite;
-}
-
-@keyframes pulse {
-  0%, 100% { transform: scale(1); opacity: 0.9; }
-  50% { transform: scale(1.1); opacity: 1; }
-}
-
-/* ===== Header ===== */
-header {
-  background-color: var(--color1);
-  color: white;
-  text-align: center;
-  padding: 1rem;
-}
-
-header img {
-  height: 80px;
-  width: 80px;
-}
-
-/* ===== Nav ===== */
-nav {
-  background-color: var(--color3);
-  padding: 0.5rem;
-  text-align: center;
-}
-
-nav ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-nav ul li {
-  display: inline-block;
-  position: relative;
-}
-
-nav a {
-  text-decoration: none;
-  color: #333;
-  padding: 10px 15px;
-  display: inline-block;
-  transition: 0.3s;
-}
-
-nav a:hover, nav a.active {
-  background-color: var(--color2);
-  border-radius: 8px;
-}
-
-/* ===== Submenú ===== */
-.submenu {
-  display: none;
-  position: absolute;
-  background-color: var(--color3);
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-}
-
-.dropdown:hover .submenu {
-  display: block;
-}
-
-.submenu li {
-  display: block;
-}
-
-/* ===== Adopciones ===== */
-.adopciones {
-  text-align: center;
-  padding: 2rem;
-}
-
-.adopciones h2 {
-  color: var(--color1);
-  font-size: 2rem;
-}
-
-.intro-text {
-  max-width: 700px;
-  margin: 1rem auto 2rem;
-  color: #555;
-}
-
-/* ===== Galería ===== */
-.galeria {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 1.5rem;
-}
-
-.animal {
-  background-color: var(--color4);
-  border-radius: 15px;
-  padding: 1rem;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-  transition: transform 0.3s ease;
-}
-
-.animal:hover {
-  transform: translateY(-5px);
-}
-
-.animal img {
-  width: 100%;
-  border-radius: 10px;
-}
-
-.animal h3 {
-  color: var(--color1);
-  margin: 0.5rem 0;
-}
-
-.boton-adoptar {
-  display: inline-block;
-  background-color: var(--color1);
-  color: white;
-  padding: 0.5rem 1rem;
-  border-radius: 10px;
-  text-decoration: none;
-  transition: background 0.3s;
-}
-
-.boton-adoptar:hover {
-  background-color: var(--color2);
-}
-
-/* ===== Beneficios ===== */
-.beneficios {
-  background-color: var(--color3);
-  padding: 2rem;
-  text-align: center;
-}
-
-.beneficios h3 {
-  color: var(--color1);
-  margin-bottom: 1rem;
-}
-
-.beneficios ul {
-  list-style: none;
-  padding: 0;
-}
-
-.beneficios li {
-  margin: 0.5rem 0;
-  color: #444;
-}
-
-/* ===== Footer ===== */
-footer {
-  background-color: var(--color1);
-  color: white;
-  text-align: center;
-  padding: 1rem;
-  margin-top: 2rem;
-  font-weight: 500;
-}
-
-  </style>
 <body>
-
-  <div id="site-loader">
-    <div class="paw-wrap">
-      <svg viewBox="0 0 512 512">
-        <path d="M256 128c-42 0-76 34-76 76s34 76 76 76 76-34 76-76-34-76-76-76zM114 240c-28 0-50 22-50 50s22 50 50 50 50-22 50-50-22-50-50-50zm284 0c-28 0-50 22-50 50s22 50 50 50 50-22 50-50-22-50-50-50zm-186 130c-22 0-40 18-40 40s18 40 40 40 40-18 40-40-18-40-40-40zm104 0c-22 0-40 18-40 40s18 40 40 40 40-18 40-40-18-40-40-40z"/>
-      </svg>
-    </div>
-  </div>
-
-  <header>
-    <div class="logo-container">
-      <a href="index.html">
-        <img src="img/logo.png" alt="Logo Equilibrio Animal" />
-      </a>
-    </div>
-    <h1>Equilibrio Animal</h1>
-    <div class="logo-container" style="visibility: hidden;">
-      <img src="img/logo.png" alt="" style="height: 80px; width: 80px;" />
+  <header class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
+    <div class="container">
+      <a class="navbar-brand fw-bold text-primary" href="#">🐾 Equilibrio Animal</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
+          <li class="nav-item"><a class="nav-link" href="nosotros.html">Nosotros</a></li>
+          <li class="nav-item"><a class="nav-link active" href="#">Adopciones</a></li>
+          <li class="nav-item"><a class="nav-link" href="contacto.html">Contacto</a></li>
+        </ul>
+      </div>
     </div>
   </header>
 
-  <nav>
-    <ul id="navMenu">
-      <li><a href="index.html">Inicio</a></li>
-      <li><a href="nosotros.html">Nosotros</a></li>
-      <li class="dropdown">
-        <a href="servicios.html">Servicios ▾</a>
-        <ul class="submenu">
-          <li><a href="consulta_v.html">Consulta Veterinaria</a></li>
-          <li><a href="Urg.html">Urgencias Veterinarias 24 Horas</a></li>
-          <li><a href="cirugias.html">Cirugías y Desparasitación</a></li>
-          <li><a href="adopciones.html">Adopciones Responsables</a></li>
-          <li><a href="lab.html">Laboratorio Clínico Veterinario</a></li>
-        </ul>
-      </li>
-      <li><a href="adopciones.html" class="active">Adopciones</a></li>
-      <li><a href="contacto.html">Contacto</a></li>
-      <li><a href="citas.html">Citas</a></li>
-      <li>
-        <a id="sesionBtn" href="login.html">Iniciar Sesión</a>
-      </li>
-    </ul>
-  </nav>
-
-  <section class="adopciones">
-    <h2>Adopciones</h2>
-
-    <p class="intro-text">
-      En <strong>Equilibrio Animal</strong> creemos que adoptar es un acto de amor. 
-      Muchos animalitos esperan un hogar donde puedan recibir cariño, cuidado y una segunda oportunidad.
+  <main class="container py-5">
+    <h1 class="text-center mb-4 titulo">Adopta un amigo</h1>
+    <p class="text-center subtitulo mb-5">
+      Cada adopción es una nueva oportunidad para un peludo. Conócelos y encuentra tu compañero ideal.
     </p>
 
-    <div class="galeria">
-      <div class="animal">
-        <img src="img/firulais.jpeg" alt="Firulais">
-        <h3>Firulais</h3>
-        <p>Macho, 3 años. Juguetón, leal y muy cariñoso.</p>
-        <a href="https://wa.me/573503399402?text=Hola!%20Estoy%20interesado%20en%20adoptar%20a%20una%20mascota." target="_blank" class="boton-adoptar">Adoptar 🐾</a>
+    <div class="row g-4">
+      <!-- Tarjeta 1 -->
+      <div class="col-md-4">
+        <div class="card mascota shadow-lg">
+          <img src="https://placekitten.com/400/250" class="card-img-top" alt="Gato en adopción" />
+          <div class="card-body text-center">
+            <h5 class="card-title">Luna</h5>
+            <p class="card-text">Cariñosa, juguetona y muy sociable. 2 años.</p>
+            <button class="btn btn-primary">Adoptar</button>
+          </div>
+        </div>
       </div>
 
-      <div class="animal">
-        <img src="img/miau.jpg" alt="Mimi">
-        <h3>Mimi</h3>
-        <p>Hembra, 2 años. Tranquila, independiente y mimosa.</p>
-        <a href="https://wa.me/573503399402?text=Hola!%20Estoy%20interesado%20en%20adoptar%20a%20una%20mascota." target="_blank" class="boton-adoptar">Adoptar 🐾</a>
+      <!-- Tarjeta 2 -->
+      <div class="col-md-4">
+        <div class="card mascota shadow-lg">
+          <img src="https://placedog.net/400/250" class="card-img-top" alt="Perro en adopción" />
+          <div class="card-body text-center">
+            <h5 class="card-title">Max</h5>
+            <p class="card-text">Fiel, protector y lleno de energía. 3 años.</p>
+            <button class="btn btn-primary">Adoptar</button>
+          </div>
+        </div>
       </div>
 
-      <div class="animal">
-        <img src="img/copito.jpg" alt="Copito">
-        <h3>Copito</h3>
-        <p>Macho, 2 años. Juguetón, travieso y curioso.</p>
-        <a href="https://wa.me/573503399402?text=Hola!%20Estoy%20interesado%20en%20adoptar%20a%20una%20mascota." target="_blank" class="boton-adoptar">Adoptar 🐾</a>
-      </div>
-
-      <div class="animal">
-        <img src="img/molly.jpg" alt="Molly">
-        <h3>Molly</h3>
-        <p>Hembra, 3 años. Tranquila, independiente y mimosa.</p>
-        <a href="https://wa.me/573503399402?text=Hola!%20Estoy%20interesado%20en%20adoptar%20a%20una%20mascota." target="_blank" class="boton-adoptar">Adoptar 🐾</a>
-      </div>
-
-      <div class="animal">
-        <img src="img/garfield.jpg" alt="Garfield">
-        <h3>Garfield</h3>
-        <p>Macho, 3 años. Cariñoso, consentido y mordelón.</p>
-        <a href="https://wa.me/573503399402?text=Hola!%20Estoy%20interesado%20en%20adoptar%20a%20una%20mascota." target="_blank" class="boton-adoptar">Adoptar 🐾</a>
-      </div>
-
-      <div class="animal">
-        <img src="img/firulais2.webp" alt="Toby">
-        <h3>Toby</h3>
-        <p>Macho, 1 año. Activo, ideal para familias con niños.</p>
-        <a href="https://wa.me/573503399402?text=Hola!%20Estoy%20interesado%20en%20adoptar%20a%20una%20mascota." target="_blank" class="boton-adoptar">Adoptar 🐾</a>
+      <!-- Tarjeta 3 -->
+      <div class="col-md-4">
+        <div class="card mascota shadow-lg">
+          <img src="https://placekitten.com/401/250" class="card-img-top" alt="Gato en adopción" />
+          <div class="card-body text-center">
+            <h5 class="card-title">Milo</h5>
+            <p class="card-text">Tranquilo, curioso y muy tierno. 1 año.</p>
+            <button class="btn btn-primary">Adoptar</button>
+          </div>
+        </div>
       </div>
     </div>
-  </section>
-  
-  <section class="beneficios">
-    <h3>¿Por qué adoptar?</h3>
-    <ul>
-      <li>Le das una segunda oportunidad a un ser que lo necesita.</li>
-      <li>Ayudas a reducir el abandono y maltrato animal.</li>
-      <li>Ganas un amigo fiel y lleno de amor.</li>
-      <li>Contribuyes a una sociedad más compasiva.</li>
-    </ul>
-  </section>
+  </main>
 
-  <footer>
-    &copy; 2025 Equilibrio Animal | Todos los derechos reservados
+  <footer class="text-center py-4 mt-5">
+    <p>© 2025 Equilibrio Animal. Todos los derechos reservados.</p>
   </footer>
 
-  <script>
-
-    window.addEventListener('load', () => {
-      document.getElementById('site-loader').classList.add('hidden');
-    });
-
-
-    const usuario = localStorage.getItem("usuario");
-    const sesionBtn = document.getElementById("sesionBtn");
-
-    if (usuario) {
-      sesionBtn.textContent = "Cerrar Sesión";
-      sesionBtn.href = "#";
-      sesionBtn.onclick = () => {
-        localStorage.removeItem("usuario");
-        location.reload();
-      };
-    }
-  </script>
-
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
