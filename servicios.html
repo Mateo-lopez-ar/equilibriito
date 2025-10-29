@@ -6,7 +6,7 @@
   <title>Servicios - Equilibrio Animal</title>
 <style>
     /* ======================================
-    Paleta de Colores (Nueva)
+    Paleta de Colores
     ======================================
     --color-neutral: #bfe3c0; (Verde menta - Fondo principal)
     --color-base: #ffbd87; (Naranja suave - Header/Footer/Títulos principales)
@@ -48,10 +48,12 @@
     }
 
     .logo-container img {
-        height: 50px; /* Ajusta el tamaño del logo */
+        /* Usando un placeholder simple para el logo, ya que la ruta 'img/logo.png' no existe aquí */
+        content: url(https://placehold.co/50x50/ffbd87/333?text=Logo);
+        height: 50px;
         width: auto;
         border-radius: 50%;
-        border: 2px solid var(--color-base); /* Borde con color base */
+        border: 2px solid var(--color-base); 
     }
 
     header h1 {
@@ -143,6 +145,8 @@
         font-size: 2.5rem;
         margin-bottom: 2rem;
         text-transform: uppercase;
+        border-bottom: 3px solid var(--color-primary);
+        padding-bottom: 0.5rem;
     }
 
     /* Grid Layout for Services */
@@ -184,17 +188,20 @@
         height: 30px;
         fill: var(--color-accent); /* Verde lima pálido para los íconos */
         margin-right: 10px;
+        filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.1));
     }
 
     .beneficios {
         margin-top: 1rem;
         padding-top: 1rem;
-        border-top: 1px solid var(--color-secondary); /* Separador sutil */
+        border-top: 1px dashed var(--color-secondary); /* Separador sutil con línea discontinua */
     }
 
     .beneficios h4 {
-        color: var(--color-base);
+        color: var(--color-text-dark);
         margin-top: 0;
+        font-weight: 600;
+        font-size: 1.1rem;
     }
 
     .beneficios ul {
@@ -202,29 +209,43 @@
         padding-left: 0;
     }
 
+    .beneficios li {
+        margin-bottom: 0.5rem;
+        padding-left: 1.5em; /* Espacio para el checkmark */
+        position: relative;
+    }
+
     .beneficios li::before {
         content: '✓';
-        color: var(--color-accent); /* Checkmark verde lima pálido */
+        color: var(--color-base); /* Checkmark naranja suave */
         font-weight: bold;
-        display: inline-block;
+        position: absolute;
+        left: 0;
+        top: 0;
         width: 1em;
-        margin-left: -1em;
+        margin-left: 0;
     }
 
     .servicio-item a {
         margin-top: auto; 
         display: inline-block;
-        color: var(--color-base); /* Naranja suave para CTA */
+        padding: 0.5rem 1rem;
+        background-color: var(--color-accent); /* Fondo verde lima pálido para CTA */
+        color: var(--color-text-dark);
         text-decoration: none;
         font-weight: bold;
-        transition: color 0.3s;
-        align-self: flex-end;
+        border-radius: 8px;
+        align-self: flex-start; /* Alinea el botón a la izquierda/inicio de la tarjeta */
+        transition: background-color 0.3s, transform 0.2s;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    
+    .servicio-item a:hover {
+        background-color: var(--color-base); /* Naranja suave en hover */
+        transform: translateY(-2px);
+        color: var(--color-text-light); /* Texto blanco para mejor contraste en hover */
     }
 
-    .servicio-item a:hover {
-        color: var(--color-accent); /* Verde lima pálido en hover */
-        text-decoration: underline;
-    }
 
     /* Footer Styling */
     footer {
@@ -242,6 +263,7 @@
         header {
             flex-direction: column;
             text-align: center;
+            padding: 1rem;
         }
 
         header h1 {
@@ -249,6 +271,7 @@
             margin: 10px 0;
         }
 
+        /* En móvil, la navegación se apila */
         #navMenu {
             flex-direction: column;
             align-items: stretch;
@@ -264,6 +287,7 @@
             position: static;
             box-shadow: none;
             border-radius: 0;
+            display: none; /* Asegura que esté oculto */
         }
         
         .dropdown:hover .submenu {
@@ -274,6 +298,14 @@
         #navMenu a {
             padding: 12px 20px;
         }
+        
+        .servicios {
+            padding: 0 1rem;
+        }
+
+        .servicio-item {
+            padding: 1.5rem;
+        }
     }
 </style>
 </head>
@@ -282,6 +314,7 @@
 <header>
   <div class="logo-container">
     <a href="index.html">
+      <!-- Placeholder para logo, usaré la clase para el estilo -->
       <img src="img/logo.png" alt="Logo Equilibrio Animal" />
     </a>
   </div>
@@ -295,7 +328,7 @@
       <li><a href="index.html">Inicio</a></li>
       <li><a href="nosotros.html">Nosotros</a></li>
       <li class="dropdown">
-        <a href="servicios.html" onclick="toggleSubmenu(event)">Servicios ▾</a>
+        <a href="servicios.html">Servicios ▾</a>
         <ul class="submenu">
           <li><a href="consulta_v.html">Consulta Veterinaria</a></li>
           <li><a href="Urg.html">Urgencias Veterinarias 24 Horas</a></li>
@@ -412,6 +445,7 @@
 </footer>
 
 <script>
+  // Funciones de navegación (útiles para menús móviles si se implementan)
   function toggleMenu() {
     const menu = document.getElementById('navMenu');
     menu.classList.toggle('show');
@@ -425,20 +459,23 @@
     }
   }
 
-    // Mostrar nombre si el usuario está en localStorage
+  // Lógica de autenticación simple usando localStorage
+  document.addEventListener('DOMContentLoaded', () => {
     const usuario = localStorage.getItem("usuario");
     const sesionBtn = document.getElementById("sesionBtn");
 
     if (usuario) {
-    
+      // Si hay usuario, cambiar el botón a "Cerrar Sesión"
       sesionBtn.textContent = "Cerrar Sesión";
       sesionBtn.href = "#";
-      sesionBtn.onclick = () => {
+      sesionBtn.onclick = (e) => {
+        e.preventDefault(); // Evitar navegación predeterminada
         localStorage.removeItem("usuario");
         location.reload();
       };
     }
-  </script>
+  });
+</script>
 
 </body>
 </html>
