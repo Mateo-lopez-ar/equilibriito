@@ -87,13 +87,22 @@ nav a:hover {
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
+.servicio-tabla{
+  padding: 60px 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  background-color: #bfe3c0;
+}
+
 .servicio-cuadro{
 
-  background-color: #bfe3c0;
+  background-color: #d9e8ae;;
   padding: 60px;
-  display: grid;
+  
 
 }
+
+/* .servicio-cuadro */
 
 .dropdown:hover .submenu {
   display: block;
