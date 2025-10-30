@@ -87,22 +87,71 @@ nav a:hover {
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
-.servicio-tabla{
-  padding: 60px 20px;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  background-color: #bfe3c0;
-}
 
-.servicio-cuadro{
-
-  background-color: #d9e8ae;;
-  padding: 60px;
-  
-
-}
 
 /* .servicio-cuadro */
+
+/* ======= SERVICIOS COMO LISTA HORIZONTAL ======= */
+.servicios-tabla {
+  display: flex;
+  flex-direction: column; /* cada servicio ocupa una fila */
+  gap: 20px;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+.servicio-cuadro {
+  background-color: white;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  display: flex;
+  align-items: center; /* alinea imagen y texto verticalmente */
+  gap: 20px;
+  padding: 20px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.servicio-cuadro:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+}
+
+.servicio-cuadro img {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.servicio-cuadro div {
+  flex: 1; /* el texto ocupa el resto del espacio */
+}
+
+.servicio-cuadro h3 {
+  color: #ffbd87;
+  margin-bottom: 10px;
+  font-size: 1.5em;
+}
+
+.servicio-cuadro p {
+  color: #555;
+  font-size: 1.1em;
+  line-height: 1.5;
+}
+
+/* ======= RESPONSIVE ======= */
+@media (max-width: 768px) {
+  .servicio-cuadro {
+    flex-direction: column; /* apila imagen y texto en móvil */
+    text-align: center;
+  }
+
+  .servicio-cuadro img {
+    margin-bottom: 15px;
+  }
+}
+
 
 .dropdown:hover .submenu {
   display: block;
