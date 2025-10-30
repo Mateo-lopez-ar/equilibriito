@@ -1,7 +1,7 @@
 /* ======= ESTILO GENERAL ======= */
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #d9e8ae; /* Fondo verde suave */
+  background-color: #f7e8a6;
   margin: 0;
   padding: 0;
   color: #333;
@@ -85,6 +85,14 @@ nav a:hover {
   z-index: 1000;
   border-radius: 0 0 10px 10px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.servicio-cuadro{
+
+  background-color: #bfe3c0;
+  padding: 60px;
+  display: grid;
+
 }
 
 .dropdown:hover .submenu {
