@@ -108,7 +108,7 @@
 
     /* ======== SECCIÓN PRINCIPAL ======== */
     .nosotros {
-      max-width: 1100px;
+      max-width: 800px;
       margin: 50px auto;
       background-color: var(--color-lima);
       padding: 40px;
@@ -130,22 +130,22 @@
       margin-bottom: 40px;
     }
 
-    /* ======== CUADRÍCULA 3x2 ======== */
+    /* ======== SERVICIOS EN CASCADA ======== */
     .servicios-tabla {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      display: flex;
+      flex-direction: column;
       gap: 25px;
+      align-items: center;
     }
 
     .servicio-cuadro {
-      background-color: var(--color-menta);
+      background-color: var(--color-blanco);
       border-radius: 12px;
-      padding: 20px;
+      padding: 25px;
+      width: 90%;
+      max-width: 500px;
       text-align: center;
       box-shadow: 0 3px 6px rgba(0,0,0,0.1);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
       transition: transform 0.2s ease;
     }
 
@@ -154,13 +154,12 @@
     }
 
     .servicio-cuadro img {
-      width: 100%;
-      max-width: 220px;
-      height: 220px;
-      object-fit: cover;
-      border-radius: 10px;
+      width: 180px;
+      height: 180px;
+      object-fit: contain;
       margin-bottom: 15px;
-      background-color: var(--color-beige);
+      background-color: var(--color-blanco);
+      border-radius: 10px;
     }
 
     .servicio-cuadro h3 {
@@ -206,19 +205,6 @@
       font-size: 0.95rem;
       box-shadow: 0 -2px 8px rgba(0,0,0,0.15);
     }
-
-    /* ======== RESPONSIVE ======== */
-    @media (max-width: 900px) {
-      .servicios-tabla {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-
-    @media (max-width: 600px) {
-      .servicios-tabla {
-        grid-template-columns: 1fr;
-      }
-    }
   </style>
 </head>
 <body>
@@ -226,9 +212,7 @@
   <!-- ENCABEZADO -->
   <header>
     <div class="logo-container">
-      <a href="index.html">
-        <img src="img/logo.png" alt="Logo Equilibrio Animal">
-      </a>
+      <a href="index.html"><img src="img/logo.png" alt="Logo Equilibrio Animal"></a>
     </div>
     <h1><a href="index.html" style="color:white; text-decoration:none;">Equilibrio Animal</a></h1>
     <div class="logo-container" style="visibility:hidden;">
@@ -286,18 +270,6 @@
         <img src="img/lab.png" alt="Laboratorio Clínico">
         <h3>Laboratorio Clínico</h3>
         <p>Exámenes de sangre, orina, coprológicos y más para un análisis integral de la salud animal.</p>
-      </div>
-
-      <div class="servicio-cuadro">
-        <img src="img/ecografia.jpg" alt="Ecografía">
-        <h3>Ecografía</h3>
-        <p>Diagnóstico por imagen no invasivo para evaluar órganos internos y embarazos en mascotas.</p>
-      </div>
-
-      <div class="servicio-cuadro">
-        <img src="img/vacuna.jpg" alt="Vacunación">
-        <h3>Vacunación</h3>
-        <p>Protege a tu mascota con vacunas actualizadas para prevenir enfermedades comunes.</p>
       </div>
     </section>
   </section>
