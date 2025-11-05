@@ -1,18 +1,17 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Inicio - Equilibrio Animal</title>
+  <title>Consultas Veterinarias - Equilibrio Animal</title>
   <link rel="stylesheet" href="styles.css">
   <style>
     /* ======== PALETA ======== */
     :root {
-      --color-naranja: #ffbd87;  /*color1*/
-      --color-amarillo: #ffd791;  /*color2*/
-      --color-beige: #f7e8a6;     /*color3*/
-      --color-lima: #d9e8ae;      /*color4*/
-      --color-menta: #bfe3c0;     /*color5*/
+      --color-naranja: #ffbd87;
+      --color-amarillo: #ffd791;
+      --color-beige: #f7e8a6;
+      --color-lima: #d9e8ae;
+      --color-menta: #bfe3c0;
       --color-texto: #333;
       --color-blanco: #fff;
     }
@@ -22,12 +21,12 @@
       margin: 0;
       font-family: "Poppins", sans-serif;
       background-color: var(--color-beige);
-      color: #333;
+      color: var(--color-texto);
     }
 
     header {
       background-color: var(--color-naranja);
-      color: white;
+      color: var(--color-blanco);
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -55,178 +54,42 @@
     nav ul {
       list-style: none;
       margin: 0;
-      padding: 0;
-      display: inline-flex;
+      padding: 0.5rem 2rem;
+      display: flex;
       flex-wrap: wrap;
+      justify-content: center;
     }
 
-    nav li {
+    nav ul li {
       position: relative;
+      margin: 0 1rem;
     }
 
     nav a {
-      display: block;
-      padding: 14px 20px;
-      color: #333;
+      color: var(--color-texto);
       text-decoration: none;
-      font-weight: 500;
-      transition: background 0.3s;
+      font-weight: bold;
+      padding: 10px 15px;
+      display: block;
+      transition: all 0.3s ease;
     }
 
     nav a:hover {
       background-color: var(--color-lima);
-      border-radius: 5px;
+      border-radius: 8px;
     }
 
     /* Submenú */
     .submenu {
       display: none;
       position: absolute;
-      top: 48px;
-      left: 0;
-      background-color: var(--color-amarillo);
-      border-radius: 5px;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    }
-
-    .dropdown:hover .submenu {
-      display: block;
-    }
-
-    .submenu li a {
-      padding: 10px 18px;
-      white-space: nowrap;
-    }
-
-    /* ======== SECCIÓN NOSOTROS ======== */
-    .nosotros {
-      max-width: 1100px;
-      margin: 40px auto;
-      background-color: var(--color-menta);
-      padding: 40px;
-      border-radius: 15px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    }
-
-    .nosotros h2 {
-      text-align: center;
-      color: #333;
-      font-size: 2rem;
-      margin-bottom: 20px;
-    }
-
-    .nosotros p {
-      line-height: 1.6;
-      text-align: justify;
-      font-size: 1.05rem;
-    }
-
-    .nosotros img {
-      display: block;
-      width: 100%;
-      max-width: 600px;
-      margin: 30px auto;
-      border-radius: 10px;
-    }
-
-    /* ======== MISIÓN Y VISIÓN ======== */
-    .vision-mision {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      margin-top: 30px;
-      gap: 20px;
-    }
-
-    .vision-mision > div {
-      flex: 1;
-      min-width: 300px;
-      background-color: var(--color-lima);
-      padding: 20px;
-      border-radius: 12px;
-      box-shadow: 0 3px 6px rgba(0,0,0,0.1);
-    }
-
-    .vision-mision h3 {
-      text-align: center;
-      color: #333;
-    }
-
-    /* ======== CARACTERÍSTICAS ======== */
-    .caracteristicas {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      margin-top: 30px;
-      gap: 20px;
-    }
-
-    .caracteristicas > div {
-      flex: 1;
-      min-width: 300px;
-      background-color: var(--color-lima);
-      padding: 20px;
-      border-radius: 12px;
-      box-shadow: 0 3px 6px rgba(0,0,0,0.1);
-    }
-
-    .caracteristicas h3 {
-      text-align: center;
-      color: #333;
-    }
-
-    /* ======== FOOTER ======== */
-    footer {
-      text-align: center;
-      padding: 15px 0;
-      background-color: var(--color-naranja);
-      color: #333;
-      margin-top: 40px;
-      font-size: 0.95rem;
-      box-shadow: 0 -2px 8px rgba(0,0,0,0.15);
-    }
-
-     nav {
-      background-color: var(--color-amarillo);
-    }
-
-    nav ul {
-      display: flex;
-      list-style: none;
-      margin: 0;
-      padding: 0.5rem 2rem;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-
-    nav ul li {
-      margin-right: 1.5rem;
-      position: relative;
-    }
-
-    nav ul li a {
-      text-decoration: none;
-      color: var(--color-texto);
-      font-weight: bold;
-      padding: 8px 12px;
-      display: block;
-    }
-
-    nav ul li a:hover {
-      color: var(--color-naranja);
-    }
-
-    .submenu {
-      display: none;
-      position: absolute;
-      top: 2rem;
+      top: 45px;
       left: 0;
       background-color: var(--color-beige);
-      list-style: none;
-      padding: 0.5rem 0;
-      min-width: 200px;
       border-radius: 5px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+      min-width: 200px;
+      z-index: 100;
     }
 
     .dropdown:hover .submenu {
@@ -234,8 +97,8 @@
     }
 
     .submenu li a {
-      padding: 0.5rem 1rem;
-      color: var(--color-texto);
+      padding: 10px 15px;
+      text-align: left;
     }
 
     .submenu li a:hover {
@@ -243,38 +106,138 @@
       color: var(--color-blanco);
     }
 
+    /* ======== SECCIÓN PRINCIPAL ======== */
+    .nosotros {
+      max-width: 1100px;
+      margin: 50px auto;
+      background-color: var(--color-lima);
+      padding: 40px;
+      border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      border: 5px solid var(--color-beige);
+    }
+
+    .nosotros h2 {
+      text-align: center;
+      color: var(--color-texto);
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
+
+    .nosotros p {
+      text-align: center;
+      font-size: 1.1rem;
+      margin-bottom: 40px;
+    }
+
+    /* ======== CUADRÍCULA 3x2 ======== */
+    .servicios-tabla {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
+    }
+
+    .servicio-cuadro {
+      background-color: var(--color-menta);
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: transform 0.2s ease;
+    }
+
+    .servicio-cuadro:hover {
+      transform: translateY(-5px);
+    }
+
+    .servicio-cuadro img {
+      width: 100%;
+      max-width: 220px;
+      height: 220px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin-bottom: 15px;
+      background-color: var(--color-beige);
+    }
+
+    .servicio-cuadro h3 {
+      color: var(--color-texto);
+      font-size: 1.3rem;
+      margin-bottom: 10px;
+    }
+
+    .servicio-cuadro p {
+      font-size: 1rem;
+      text-align: justify;
+      color: var(--color-texto);
+    }
+
+    /* ======== BOTÓN CITA ======== */
+    .boton-citas {
+      text-align: center;
+      margin: 30px 0;
+    }
+
+    .btn {
+      display: inline-block;
+      background-color: var(--color-naranja);
+      color: var(--color-texto);
+      font-weight: bold;
+      padding: 12px 30px;
+      border-radius: 10px;
+      text-decoration: none;
+      transition: background 0.3s;
+    }
+
+    .btn:hover {
+      background-color: var(--color-amarillo);
+    }
+
+    /* ======== FOOTER ======== */
+    footer {
+      text-align: center;
+      padding: 15px 0;
+      background-color: var(--color-naranja);
+      color: var(--color-texto);
+      margin-top: 40px;
+      font-size: 0.95rem;
+      box-shadow: 0 -2px 8px rgba(0,0,0,0.15);
+    }
+
     /* ======== RESPONSIVE ======== */
-    @media (max-width: 768px) {
-      header {
-        flex-direction: column;
-        text-align: center;
+    @media (max-width: 900px) {
+      .servicios-tabla {
+        grid-template-columns: repeat(2, 1fr);
       }
+    }
 
-      nav ul {
-        flex-direction: column;
-      }
-
-      .vision-mision, .caracteristicas {
-        flex-direction: column;
+    @media (max-width: 600px) {
+      .servicios-tabla {
+        grid-template-columns: 1fr;
       }
     }
   </style>
 </head>
 <body>
-/*s*/
-<header>
-  <div class="logo-container">
-    <a href="index.html">
-      <img src="img/logo.png" alt="Logo Equilibrio Animal">
-    </a>
-  </div> <h1><a href ="index.html" style="color: white; text-emphasis: unset; text-underline-offset: unset;">Equilibrio Animal</a></h1>
-  
-  <div class="logo-container" style="visibility: hidden;">
-    <img src="img/logo.png" alt="" style="height: 80px; width: 80px;">
-  </div>
-</header>
 
-<nav>
+  <!-- ENCABEZADO -->
+  <header>
+    <div class="logo-container">
+      <a href="index.html">
+        <img src="img/logo.png" alt="Logo Equilibrio Animal">
+      </a>
+    </div>
+    <h1><a href="index.html" style="color:white; text-decoration:none;">Equilibrio Animal</a></h1>
+    <div class="logo-container" style="visibility:hidden;">
+      <img src="img/logo.png" alt="" style="height:80px; width:80px;">
+    </div>
+  </header>
+
+  <!-- NAVEGACIÓN -->
+  <nav>
     <ul id="navMenu">
       <li><a href="index.html">Inicio</a></li>
       <li><a href="nosotros.html">Nosotros</a></li>
@@ -291,81 +254,69 @@
       <li><a href="adopciones.html">Adopciones</a></li>
       <li><a href="contacto.html">Contacto</a></li>
       <li><a href="citas.html">Citas</a></li>
-      <li>
-        <a id="sesionBtn" href="login.html">Iniciar Sesión</a>
-      </li>
+      <li><a id="sesionBtn" href="login.html">Iniciar Sesión</a></li>
     </ul>
   </nav>
 
-<section class="nosotros">
-  <h2 style="text-align: center;">Consultas Veterinarias</h2>
-  <p style="text-align: center;">Encuentra acá todas las opciones para darle a tu mascota la mejor atención, incluyendo especialistas, pruebas de laboratorio, entre otros.</p>
+  <!-- SECCIÓN PRINCIPAL -->
+  <section class="nosotros">
+    <h2>Consultas Veterinarias</h2>
+    <p>Encuentra acá todas las opciones para darle a tu mascota la mejor atención, incluyendo especialistas, pruebas de laboratorio y más.</p>
 
-<section class="servicios-tabla">
-  <div class="servicio-cuadro">
-    <img src="img/esteto.png" alt="Médico General">
-    <div>
-      <h3>Medicina General</h3>
-      <p>Consulta básica para revisión de signos vitales, diagnóstico general y control preventivo.</p>
-    </div>
+    <section class="servicios-tabla">
+      <div class="servicio-cuadro">
+        <img src="img/esteto.png" alt="Médico General">
+        <h3>Medicina General</h3>
+        <p>Consulta básica para revisión de signos vitales, diagnóstico general y control preventivo.</p>
+      </div>
+
+      <div class="servicio-cuadro">
+        <img src="img/corss.png" alt="Especialista Veterinario">
+        <h3>Especialistas</h3>
+        <p>Atención en dermatología, oftalmología, cardiología, ortopedia y más, con profesionales capacitados.</p>
+      </div>
+
+      <div class="servicio-cuadro">
+        <img src="img/rayos.png" alt="Rayos X">
+        <h3>Rayos X</h3>
+        <p>Radiografías de alta resolución para un diagnóstico interno preciso y sin dolor para tu mascota.</p>
+      </div>
+
+      <div class="servicio-cuadro">
+        <img src="img/lab.png" alt="Laboratorio Clínico">
+        <h3>Laboratorio Clínico</h3>
+        <p>Exámenes de sangre, orina, coprológicos y más para un análisis integral de la salud animal.</p>
+      </div>
+
+      <div class="servicio-cuadro">
+        <img src="img/ecografia.jpg" alt="Ecografía">
+        <h3>Ecografía</h3>
+        <p>Diagnóstico por imagen no invasivo para evaluar órganos internos y embarazos en mascotas.</p>
+      </div>
+
+      <div class="servicio-cuadro">
+        <img src="img/vacuna.jpg" alt="Vacunación">
+        <h3>Vacunación</h3>
+        <p>Protege a tu mascota con vacunas actualizadas para prevenir enfermedades comunes.</p>
+      </div>
+    </section>
+  </section>
+
+  <!-- BOTÓN CITA -->
+  <div class="boton-citas">
+    <a href="citas.html" class="btn">Agendar cita</a>
   </div>
 
-  <div class="servicio-cuadro">
-    <img src="img/corss.png" alt="Especialista Veterinario">
-    <div>
-      <h3>Especialistas</h3>
-      <p>Atención en dermatología, oftalmología, cardiología, ortopedia y más, con profesionales capacitados.</p>
-    </div>
-  </div>
+  <!-- PIE DE PÁGINA -->
+  <footer>
+    &copy; 2025 Equilibrio Animal | Todos los derechos reservados
+  </footer>
 
-  <div class="servicio-cuadro">
-    <img src="img/rayos.png" alt="Rayos X">
-    <div>
-      <h3>Rayos X</h3>
-      <p>Radiografías de alta resolución para un diagnóstico interno preciso y sin dolor para tu mascota.</p>
-    </div>
-  </div>
-
-  <div class="servicio-cuadro" >
-    <img src="img/lab.png" alt="Laboratorio Clínico">
-    <div>
-      <h3>Laboratorio Clínico</h3>
-      <p>Exámenes de sangre, orina, coprológicos y más para un análisis integral de la salud animal.</p>
-    </div>
-  </div>
-</section>
-
-
-</section>
-
-
-<div class="boton-citas">
-  <a href="citas.html" class="btn">Agendar cita</a>
-</div>
-
-<footer>
-  &copy; 2025 Equilibrio Animal | Todos los derechos reservados
-</footer>
-
-<script>
-  function toggleMenu() {
-    document.getElementById("navMenu").classList.toggle("show");
-  }
-
-  function toggleSubmenu(e) {
-    e.preventDefault();
-    var submenu = e.target.nextElementSibling;
-    submenu.classList.toggle("show");
-  }
-</script>
   <script>
-    // Mostrar nombre si el usuario está en localStorage
     const usuario = localStorage.getItem("usuario");
-    const bienvenida = document.getElementById("bienvenidaTexto");
     const sesionBtn = document.getElementById("sesionBtn");
 
     if (usuario) {
-    
       sesionBtn.textContent = "Cerrar Sesión";
       sesionBtn.href = "#";
       sesionBtn.onclick = () => {
@@ -374,7 +325,5 @@
       };
     }
   </script>
-
 </body>
 </html>
-
