@@ -7,66 +7,190 @@
 </head>
 
 <style>
-
   :root {
-      --color-naranja: #ffbd87;
-      --color-amarillo: #ffd791;
-      --color-beige: #f7e8a6;
-      --color-lima: #d9e8ae;
-      --color-menta: #bfe3c0;
-      --color-texto: #333;
-      --color-blanco: #fff;
-    }
+    --color-naranja: #ffbd87;
+    --color-amarillo: #ffd791;
+    --color-beige: #f7e8a6;
+    --color-lima: #d9e8ae;
+    --color-menta: #bfe3c0;
+    --color-texto: #333;
+    --color-blanco: #fff;
+  }
 
+  body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: var(--color-texto);
+    background-color: var(--color-lima);
+  }
+
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--color-naranja);
+    padding: 15px 30px;
+    color: var(--color-blanco);
+  }
+
+  header img {
+    height: 80px;
+  }
+
+  nav {
+    background-color: var(--color-amarillo);
+  }
+
+  nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    padding: 10px 0;
+    gap: 20px;
+  }
+
+  nav ul li a {
+    text-decoration: none;
+    color: var(--color-texto);
+    font-weight: bold;
+  }
+
+  nav ul li a.active {
+    text-decoration: underline;
+  }
+
+  /* ===== SECCIÓN ADOPCIONES ===== */
 
   .nosotros {
-      max-width: 1100px;
-      margin: 40px auto;
-      background-color: var(--color-menta);
-      padding: 40px;
-      border-radius: 15px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    max-width: 1200px;
+    margin: 40px auto;
+    background-color: var(--color-menta);
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  }
+
+  .nosotros h2 {
+    text-align: center;
+    font-size: 2.2rem;
+    color: var(--color-texto);
+  }
+
+  .nosotros .intro-text {
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 1.1rem;
+  }
+
+  /* ===== GALERÍA DE ANIMALES ===== */
+
+  .galeria {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 25px;
+  }
+
+  .animal {
+    background-color: var(--color-beige);
+    width: 300px;
+    height: 420px;
+    border-radius: 15px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+  }
+
+  .animal:hover {
+    transform: translateY(-5px);
+  }
+
+  .animal img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+  }
+
+  .animal h3 {
+    font-size: 1.4rem;
+    margin: 10px 0 5px;
+  }
+
+  .animal p {
+    font-size: 1rem;
+    padding: 0 15px;
+    flex-grow: 1;
+  }
+
+  .boton-adoptar {
+    background-color: var(--color-naranja);
+    color: var(--color-blanco);
+    text-decoration: none;
+    padding: 10px 15px;
+    border-radius: 20px;
+    margin: 15px auto;
+    display: inline-block;
+    width: fit-content;
+    transition: background-color 0.3s ease;
+  }
+
+  .boton-adoptar:hover {
+    background-color: var(--color-amarillo);
+    color: var(--color-texto);
+  }
+
+  /* ===== SECCIÓN BENEFICIOS ===== */
+
+  .beneficios {
+    margin-top: 50px;
+    background-color: var(--color-beige);
+    padding: 30px;
+    border-radius: 10px;
+  }
+
+  .beneficios h3 {
+    text-align: center;
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+  }
+
+  .beneficios ul {
+    list-style-type: "🐾 ";
+    line-height: 1.8;
+    font-size: 1.05rem;
+  }
+
+  /* ===== PIE DE PÁGINA ===== */
+
+  footer {
+    background-color: var(--color-naranja);
+    text-align: center;
+    color: var(--color-blanco);
+    padding: 15px 0;
+    margin-top: 40px;
+    border-radius: 0 0 15px 15px;
+  }
+
+  /* ===== RESPONSIVE ===== */
+
+  @media (max-width: 768px) {
+    .animal {
+      width: 90%;
+      height: auto;
     }
-
-    .animal{
-
-      background-color: var(--color-beige);
-
-    }
-  .animal h2 {
-      text-align: center;
-      color: #333;
-      font-size: 2rem;
-      margin-bottom: 20px;
-    }
-
-    .animal p {
-      line-height: 1.6;
-      text-align: justify;
-      font-size: 1.05rem;
-    }
-
     .animal img {
-      display: block;
-      width: 100%;
-      max-width: 458px fit-content;
-      max-height: 331px fit-content;      
-      margin: 30px auto;
-      border-radius: 10px;
+      height: 220px;
     }
-
-    .boton-adoptar{
-      position:  relative;
-      align-self: center;
-      padding-bottom: 10px;
-    }
+  }
 
 </style>
 
 <body>
-
-  <!-- CARGADOR -->
-  
 
   <!-- ENCABEZADO -->
   <header>
@@ -74,8 +198,8 @@
       <a href="index.html">
         <img src="img/logo.png" alt="Logo Equilibrio Animal" />
       </a>
-    </div> <h1><a href ="index.html" style="color: white; text-emphasis: unset; text-underline-offset: unset;">Equilibrio Animal</a></h1>
-  
+    </div>
+    <h1><a href="index.html" style="color: white; text-decoration: none;">Equilibrio Animal</a></h1>
     <div class="logo-container" style="visibility: hidden;">
       <img src="img/logo.png" alt="" style="height: 80px; width: 80px;" />
     </div>
@@ -92,11 +216,10 @@
           <li><a href="consulta_v.html">Consulta Veterinaria</a></li>
           <li><a href="Urg.html">Urgencias Veterinarias 24 Horas</a></li>
           <li><a href="cirugias.html">Cirugías y Desparasitación</a></li>
-          <li><a href="adopciones.html">Adopciones Responsables</a></li>
+          <li><a href="adopciones.html" class="active">Adopciones Responsables</a></li>
           <li><a href="lab.html">Laboratorio Clínico Veterinario</a></li>
         </ul>
       </li>
-      <li><a href="adopciones.html" class="active">Adopciones</a></li>
       <li><a href="contacto.html">Contacto</a></li>
       <li><a href="citas.html">Citas</a></li>
       <li><a id="sesionBtn" href="login.html">Iniciar Sesión</a></li>
@@ -105,7 +228,7 @@
 
   <!-- SECCIÓN ADOPCIONES -->
   <section class="nosotros">
-    <h2 style="text-align: center;"> Adopciones</h2>
+    <h2>Adopciones</h2>
 
     <p class="intro-text">
       En <strong>Equilibrio Animal</strong> creemos que adoptar es un acto de amor. 
@@ -131,7 +254,7 @@
         <img src="img/copito.jpg" alt="Copito">
         <h3>Copito</h3>
         <p>Macho, 2 años. Juguetón, travieso y curioso.</p>
-        <a href="https://wa.me/573503399402?text=Hola!%20Estoy%20interesado%20en%20adoptar%20a%20una%20mascota." target="_blank" class="boton-adoptar">  Adoptar 🐾 </a>
+        <a href="https://wa.me/573503399402?text=Hola!%20Estoy%20interesado%20en%20adoptar%20a%20una%20mascota." target="_blank" class="boton-adoptar">Adoptar 🐾</a>
       </div>
 
       <div class="animal">
@@ -157,18 +280,15 @@
     </div>
 
     <section class="beneficios">
-    <h3>¿Por qué adoptar?</h3>
-    <ul>
-      <li>Le das una segunda oportunidad a un ser que lo necesita.</li>
-      <li>Ayudas a reducir el abandono y maltrato animal.</li>
-      <li>Ganas un amigo fiel y lleno de amor.</li>
-      <li>Contribuyes a una sociedad más compasiva.</li>
-    </ul>
+      <h3>¿Por qué adoptar?</h3>
+      <ul>
+        <li>Le das una segunda oportunidad a un ser que lo necesita.</li>
+        <li>Ayudas a reducir el abandono y maltrato animal.</li>
+        <li>Ganas un amigo fiel y lleno de amor.</li>
+        <li>Contribuyes a una sociedad más compasiva.</li>
+      </ul>
+    </section>
   </section>
-  </section>
-
-  <!-- SECCIÓN BENEFICIOS -->
-  
 
   <!-- PIE DE PÁGINA -->
   <footer>
@@ -176,10 +296,6 @@
   </footer>
 
   <script>
-    window.addEventListener('load', () => {
-      document.getElementById('site-loader').classList.add('hidden');
-    });
-
     const usuario = localStorage.getItem("usuario");
     const sesionBtn = document.getElementById("sesionBtn");
 
