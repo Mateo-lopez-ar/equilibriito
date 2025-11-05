@@ -65,9 +65,10 @@
   .nosotros {
     max-width: 1200px;
     margin: 40px auto;
-    background-color: var(--color-menta);
+    background-color: var(--color-lima);
+    border: 6px solid var(--color-beige); /* borde beige */
     padding: 40px;
-    border-radius: 15px;
+    border-radius: 20px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
   }
 
@@ -83,18 +84,18 @@
     font-size: 1.1rem;
   }
 
-  /* ===== GALERÍA DE ANIMALES ===== */
+  /* ===== GALERÍA DE ANIMALES (3x2) ===== */
 
   .galeria {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
     gap: 25px;
+    justify-items: center;
   }
 
   .animal {
     background-color: var(--color-beige);
-    width: 300px;
+    width: 320px;
     height: 420px;
     border-radius: 15px;
     overflow: hidden;
@@ -178,7 +179,16 @@
 
   /* ===== RESPONSIVE ===== */
 
-  @media (max-width: 768px) {
+  @media (max-width: 992px) {
+    .galeria {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 650px) {
+    .galeria {
+      grid-template-columns: 1fr;
+    }
     .animal {
       width: 90%;
       height: auto;
