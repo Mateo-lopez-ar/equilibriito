@@ -1,126 +1,162 @@
-<style>
-  :root {
-    --color-naranja: #ffbd87;
-    --color-amarillo: #ffd791;
-    --color-beige: #f7e8a6;
-    --color-lima: #d9e8ae;
-    --color-menta: #bfe3c0;
-    --color-texto: #333;
-    --color-blanco: #fff;
-  }
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registro - Equilibrio Animal</title>
+  <link rel="stylesheet" href="styles.css">
 
-  body {
-    margin: 0;
-    font-family: "Poppins", sans-serif;
-    background-color: var(--color-beige);
-    color: var(--color-texto);
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-  }
+  <style>
+    :root {
+      --color-naranja: #ffbd87;
+      --color-amarillo: #ffd791;
+      --color-beige: #f7e8a6;
+      --color-lima: #d9e8ae;
+      --color-menta: #bfe3c0;
+      --color-texto: #333;
+      --color-blanco: #fff;
+    }
 
-  header {
-    background-color: var(--color-naranja);
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 15px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-  }
+    body {
+      margin: 0;
+      font-family: "Poppins", sans-serif;
+      background-color: var(--color-beige);
+      color: var(--color-texto);
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
 
-  header img {
-    height: 70px;
-    margin-right: 10px;
-  }
+    header {
+      background-color: var(--color-naranja);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 15px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    }
 
-  header h1 a {
-    color: white;
-    text-decoration: none;
-  }
+    header img {
+      height: 70px;
+      margin-right: 10px;
+    }
 
-  main {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+    header h1 a {
+      color: white;
+      text-decoration: none;
+    }
 
-  .registro-box {
-    background-color: var(--color-blanco);
-    padding: 40px;
-    border-radius: 15px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 400px;
-    text-align: center;
-  }
+    main {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
 
-  .registro-box h2 {
-    margin-bottom: 25px;
-    color: var(--color-texto);
-    font-weight: 600;
-  }
+    .registro-box {
+      background-color: var(--color-blanco);
+      padding: 40px;
+      border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 400px;
+      text-align: center;
+    }
 
-  .form-label {
-    font-weight: 500;
-  }
+    .registro-box h2 {
+      margin-bottom: 25px;
+      color: var(--color-texto);
+      font-weight: 600;
+    }
 
-  input.form-control {
-    border: 2px solid var(--color-lima);
-    border-radius: 8px;
-  }
+    .form-label {
+      font-weight: 500;
+      display: block;
+      text-align: left;
+      margin-bottom: 5px;
+    }
 
-  input.form-control:focus {
-    border-color: var(--color-menta);
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-  }
+    input.form-control {
+      width: 100%;
+      padding: 10px;
+      border: 2px solid var(--color-lima);
+      border-radius: 8px;
+      margin-bottom: 15px;
+      font-size: 15px;
+    }
 
-  .btn-primary {
-    background-color: var(--color-naranja);
-    border: none;
-  }
+    input.form-control:focus {
+      border-color: var(--color-menta);
+      outline: none;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    }
 
-  .btn-primary:hover {
-    background-color: var(--color-amarillo);
-    color: var(--color-texto);
-  }
+    .btn {
+      padding: 10px;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.3s;
+      width: 48%;
+    }
 
-  .btn-secondary {
-    background-color: var(--color-lima);
-    border: none;
-    color: var(--color-texto);
-  }
+    .btn-primary {
+      background-color: var(--color-naranja);
+      border: none;
+      color: var(--color-texto);
+    }
 
-  .btn-secondary:hover {
-    background-color: var(--color-menta);
-  }
+    .btn-primary:hover {
+      background-color: var(--color-amarillo);
+    }
 
-  .links a {
-    color: var(--color-naranja);
-    text-decoration: none;
-  }
+    .btn-secondary {
+      background-color: var(--color-lima);
+      border: none;
+      color: var(--color-texto);
+    }
 
-  .links a:hover {
-    text-decoration: underline;
-  }
+    .btn-secondary:hover {
+      background-color: var(--color-menta);
+    }
 
-  footer {
-    text-align: center;
-    padding: 10px;
-    background-color: var(--color-naranja);
-    color: var(--color-texto);
-    box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
-  }
-</style>
+    .botones {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      margin-top: 10px;
+    }
 
+    .links {
+      margin-top: 15px;
+    }
+
+    .links a {
+      color: var(--color-naranja);
+      text-decoration: none;
+    }
+
+    .links a:hover {
+      text-decoration: underline;
+    }
+
+    footer {
+      text-align: center;
+      padding: 10px;
+      background-color: var(--color-naranja);
+      color: var(--color-texto);
+      box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
+    }
+  </style>
 </head>
+
 <body>
 
   <header>
-    <a href="index.html">
-      <img src="img/logo.png" alt="Logo de Equilibrio Animal"> <h1><a href ="index.html" >Equilibrio Animal</a></h1>
-  
+    <a href="index.html" style="display: flex; align-items: center; text-decoration: none; color: white;">
+      <img src="img/logo.png" alt="Logo de Equilibrio Animal">
+      <h1>Equilibrio Animal</h1>
     </a>
   </header>
 
@@ -130,29 +166,21 @@
       <div id="mensaje"></div>
 
       <form id="registroForm">
-        <div class="mb-3">
-          <label class="form-label" for="nombre">Nombre completo</label>
-          <input type="text" id="nombre" name="nombre" class="form-control" required>
-        </div>
+        <label class="form-label" for="nombre">Nombre completo</label>
+        <input type="text" id="nombre" name="nombre" class="form-control" required>
 
-        <div class="mb-3">
-          <label class="form-label" for="correo">Correo electrónico</label>
-          <input type="email" id="correo" name="correo" class="form-control" required>
-        </div>
+        <label class="form-label" for="correo">Correo electrónico</label>
+        <input type="email" id="correo" name="correo" class="form-control" required>
 
-        <div class="mb-3">
-          <label class="form-label" for="usuario">Usuario</label>
-          <input type="text" id="usuario" name="usuario" class="form-control" required>
-        </div>
+        <label class="form-label" for="usuario">Usuario</label>
+        <input type="text" id="usuario" name="usuario" class="form-control" required>
 
-        <div class="mb-3">
-          <label class="form-label" for="contraseña">Contraseña</label>
-          <input type="password" id="contraseña" name="contraseña" class="form-control" required>
-        </div>
+        <label class="form-label" for="contraseña">Contraseña</label>
+        <input type="password" id="contraseña" name="contraseña" class="form-control" required>
 
-        <div class="d-flex justify-content-between mb-3">
-          <button type="submit" class="btn btn-primary w-50 me-1">Registrar</button>
-          <button type="button" id="cancelarBtn" class="btn btn-secondary w-50 ms-1">Cancelar</button>
+        <div class="botones">
+          <button type="submit" class="btn btn-primary">Registrar</button>
+          <button type="button" id="cancelarBtn" class="btn btn-secondary">Cancelar</button>
         </div>
       </form>
 
@@ -161,6 +189,10 @@
       </div>
     </div>
   </main>
+
+  <footer>
+    <p>© 2025 Equilibrio Animal. Todos los derechos reservados.</p>
+  </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script>
@@ -197,7 +229,7 @@
       }
 
       // Verificar si el usuario ya existe
-      const { data: existente, error: errorExistente } = await supabaseClient
+      const { data: existente } = await supabaseClient
         .from('registro')
         .select('usuario')
         .eq('usuario', usuario)
@@ -219,9 +251,10 @@
         return;
       }
 
-      mostrar("Registro exitoso. Ahora puede iniciar sesión.", "success");
+      mostrar("Registro exitoso. Redirigiendo...", "success");
       setTimeout(() => window.location.href = "login.html", 1500);
     });
   </script>
+
 </body>
 </html>
