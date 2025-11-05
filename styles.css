@@ -29,6 +29,14 @@
       text-align: center;
       color: var(--color-blanco);
     }
+header a {
+  color: var(--color-texto);
+  text-decoration: none;
+}
+
+header a:hover {
+  text-decoration: underline; /* opcional si quieres que se subraye al pasar el mouse */
+}
 
     header .logo-container img {
       height: 80px;
