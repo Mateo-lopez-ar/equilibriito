@@ -33,7 +33,7 @@
       align-items: center;
       justify-content: flex-start;
       margin: 0;
-      padding-top: 100px;
+      padding-top: 120px;
     }
 
     header {
@@ -68,14 +68,15 @@
 
     .cita-box {
       background-color: var(--color-blanco);
-      padding: 40px;
+      padding: 50px 60px;
       border-radius: 15px;
       width: 100%;
-      max-width: 550px;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+      max-width: 650px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.15);
       text-align: center;
       animation: aparecer 0.6s ease-out;
-      margin-top: 40px;
+      margin-top: 30px;
+      margin-bottom: 50px;
     }
 
     @keyframes aparecer {
@@ -116,7 +117,7 @@
 
     textarea {
       resize: none;
-      height: 80px;
+      height: 100px;
     }
 
     .btn-primary {
@@ -124,8 +125,10 @@
       border: none;
       font-weight: 600;
       width: 100%;
-      margin-top: 15px;
-      padding: 10px;
+      margin-top: 20px;
+      padding: 12px;
+      font-size: 1rem;
+      border-radius: 8px;
     }
 
     .btn-primary:hover {
@@ -138,6 +141,7 @@
       border: none;
       color: white;
       font-weight: 600;
+      border-radius: 8px;
     }
 
     #buscarBtn:hover {
@@ -145,7 +149,7 @@
     }
 
     #tablaCitas {
-      margin-top: 20px;
+      margin-top: 25px;
       text-align: left;
     }
 
@@ -158,13 +162,14 @@
     #tablaCitas th,
     #tablaCitas td {
       border: 1px solid var(--color-lima);
-      padding: 8px;
+      padding: 10px;
     }
 
     #tablaCitas th {
       background-color: var(--color-menta);
     }
 
+    /* Loader */
     #globalLoader {
       position: fixed;
       inset: 0;
@@ -185,8 +190,8 @@
     }
 
     .spinner {
-      width: 60px;
-      height: 60px;
+      width: 65px;
+      height: 65px;
       border: 6px solid rgba(0, 0, 0, 0.1);
       border-top-color: var(--color-verde);
       border-radius: 50%;
@@ -196,6 +201,13 @@
     @keyframes spin {
       to {
         transform: rotate(360deg);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .cita-box {
+        width: 90%;
+        padding: 35px 25px;
       }
     }
   </style>
@@ -255,9 +267,10 @@
   </main>
 
   <script>
+    // Protección: redirigir si no hay sesión activa
     const usuario = localStorage.getItem("usuario");
     if (!usuario) {
-      alert("⚠️ Debes iniciar sesión para pedir tu cita.");
+      alert("⚠️ Debes iniciar sesión para acceder a esta página.");
       window.location.href = "login.html";
     }
 
@@ -375,4 +388,4 @@
     });
   </script>
 </body>
-</html>
+</ht
