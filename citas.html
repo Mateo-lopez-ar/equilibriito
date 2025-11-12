@@ -4,175 +4,159 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Agendar Cita - Equilibrio Animal</title>
-  <link rel="stylesheet" href="styles.css" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
   <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
   <script>
     (function() {
       emailjs.init("V_7XXS-cj433ImG5Q");
     })();
   </script>
-
   <style>
     :root {
-      --color1: #ffbd87;
-      --color2: #ffd791;
-      --color3: #f7e8a6;
-      --color4: #d9e8ae;
-      --color5: #bfe3c0;
-      --texto: #333;
-      --blanco: #fff;
+      --color-naranja: #ffbd87;
+      --color-amarillo: #ffd791;
+      --color-beige: #f7e8a6;
+      --color-lima: #d9e8ae;
+      --color-menta: #bfe3c0;
+      --color-texto: #333;
+      --color-blanco: #fff;
     }
 
     body {
-      background: linear-gradient(135deg, var(--color3), var(--color5));
       font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, var(--color-beige), var(--color-menta));
+      height: 100vh;
       margin: 0;
-      min-height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
+      justify-content: center;
     }
 
     header {
-      background-color: var(--color1);
-      color: white;
-      width: 100%;
-      padding: 15px 0;
+      position: absolute;
+      top: 20px;
+      left: 40px;
       display: flex;
       align-items: center;
-      justify-content: center;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-      position: sticky;
-      top: 0;
-      z-index: 10;
-    }
-
-    header a {
-      display: flex;
-      align-items: center;
-      text-decoration: none;
-      color: inherit;
+      gap: 10px;
     }
 
     header img {
-      height: 70px;
-      width: 70px;
+      height: 60px;
+      width: 60px;
       border-radius: 50%;
-      margin-right: 15px;
-      border: 2px solid white;
-      transition: transform 0.3s ease;
+      object-fit: cover;
+      border: 3px solid var(--color-naranja);
+      box-shadow: 0 0 6px rgba(0,0,0,0.2);
     }
 
-    header img:hover { transform: scale(1.05); }
-
-    header h1 {
-      font-size: 1.8em;
-      font-weight: bold;
-      margin: 0;
-      color: white;
+    header h1 a {
+      color: var(--color-texto);
+      text-decoration: none;
+      font-size: 1.8rem;
+      font-weight: 700;
     }
 
-    .contact-section {
-      flex: 1;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+    header h1 a:hover {
+      color: var(--color-naranja);
+    }
+
+    .registro-box {
+      background-color: var(--color-blanco);
+      padding: 40px;
+      border-radius: 15px;
       width: 100%;
-      padding: 40px 15px;
+      max-width: 600px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+      text-align: center;
+      animation: aparecer 0.6s ease-out;
+      overflow-y: auto;
+      max-height: 90vh;
     }
 
-    .contact-container {
-      background: var(--blanco);
-      border-radius: 20px;
-      padding: 40px 40px;
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-      width: 100%;
-      max-width: 620px;
-      animation: fadeIn 0.6s ease;
-    }
-
-    @keyframes fadeIn {
+    @keyframes aparecer {
       from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
     }
 
-    h2, h3 {
-      text-align: center;
-      color: var(--texto);
+    .registro-box h2 {
+      color: var(--color-texto);
       font-weight: 700;
       margin-bottom: 25px;
     }
 
-    h2 { color: var(--color1); }
-
     label {
-      color: var(--texto);
       font-weight: 600;
-      margin-top: 12px;
+      color: var(--color-texto);
       display: block;
+      text-align: left;
+      margin-top: 10px;
     }
 
     input, select, textarea {
       width: 100%;
-      padding: 10px 12px;
-      margin-top: 6px;
-      border: 2px solid var(--color4);
-      border-radius: 10px;
-      font-size: 1rem;
-      outline: none;
-      transition: all 0.3s ease;
+      padding: 10px;
+      border: 2px solid var(--color-lima);
+      border-radius: 8px;
+      margin-bottom: 10px;
+      font-size: 15px;
+      transition: 0.3s;
     }
 
     input:focus, select:focus, textarea:focus {
-      border-color: var(--color1);
-      box-shadow: 0 0 5px rgba(255, 189, 135, 0.3);
+      border-color: var(--color-menta);
+      outline: none;
+      box-shadow: 0 0 5px rgba(0,0,0,0.1);
     }
-
-    textarea { resize: none; height: 80px; }
 
     button {
-      background-color: var(--color1);
-      color: var(--texto);
+      background-color: var(--color-naranja);
       border: none;
-      border-radius: 25px;
-      padding: 12px 25px;
-      font-weight: bold;
-      font-size: 1rem;
-      margin-top: 25px;
-      width: 100%;
-      transition: background-color 0.3s ease;
+      color: var(--color-texto);
+      padding: 10px;
+      border-radius: 8px;
+      font-weight: 600;
       cursor: pointer;
+      transition: 0.3s;
+      width: 100%;
+      margin-top: 15px;
     }
 
-    button:hover { background-color: var(--color2); }
-
-    hr {
-      border: 1px solid var(--color4);
-      margin: 35px 0 25px;
+    button:hover {
+      background-color: var(--color-amarillo);
     }
 
     .buscar-container {
       display: flex;
       gap: 10px;
-      margin-top: 10px;
-    }
-
-    .buscar-container input {
-      flex: 1;
-      border-radius: 10px;
-      padding: 8px 10px;
+      margin-top: 15px;
     }
 
     .buscar-container button {
-      width: auto;
-      padding: 10px 20px;
-      background-color: var(--color4);
+      background-color: var(--color-lima);
       font-weight: 600;
-      border-radius: 10px;
+      border: none;
     }
 
     .buscar-container button:hover {
-      background-color: var(--color5);
+      background-color: var(--color-menta);
+    }
+
+    .volver a {
+      display: inline-block;
+      margin-top: 20px;
+      background-color: var(--color-lima);
+      color: var(--color-texto);
+      padding: 10px 20px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: 0.3s;
+    }
+
+    .volver a:hover {
+      background-color: var(--color-menta);
     }
 
     table {
@@ -183,38 +167,17 @@
     }
 
     table th, table td {
-      border: 1px solid var(--color4);
+      border: 1px solid var(--color-lima);
       padding: 8px;
       text-align: left;
     }
 
     table th {
-      background-color: var(--color5);
+      background-color: var(--color-menta);
       font-weight: 600;
     }
 
     table tr:nth-child(even) { background-color: #fafafa; }
-    table tr:hover { background-color: var(--color3); }
-
-    .volver {
-      text-align: center;
-      margin-top: 20px;
-    }
-
-    .volver a {
-      display: inline-block;
-      background-color: var(--color4);
-      color: var(--texto);
-      text-decoration: none;
-      padding: 10px 20px;
-      border-radius: 25px;
-      font-weight: 600;
-      transition: background-color 0.3s ease;
-    }
-
-    .volver a:hover {
-      background-color: var(--color5);
-    }
 
     #globalLoader {
       position: fixed;
@@ -222,7 +185,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      background: rgba(255, 255, 255, 0.9);
+      background: rgba(255, 255, 255, 0.92);
       z-index: 9999;
       transition: opacity 0.4s ease, visibility 0.4s ease;
       visibility: visible;
@@ -239,7 +202,7 @@
       width: 60px;
       height: 60px;
       border: 6px solid rgba(0, 0, 0, 0.1);
-      border-top-color: var(--color1);
+      border-top-color: #00a676;
       border-radius: 50%;
       animation: spin 0.9s linear infinite;
     }
@@ -249,69 +212,69 @@
     }
   </style>
 </head>
+
 <body>
   <div id="globalLoader"><div class="spinner"></div></div>
 
   <header>
-    <a href="index.html">
-      <img src="img/logo.png" alt="Logo">
-      <h1>Equilibrio Animal</h1>
-    </a>
+    <img src="img/logo.png" alt="Logo de Equilibrio Animal">
+    <h1><a href="index.html">Equilibrio Animal</a></h1>
   </header>
 
-  <section class="contact-section">
-    <div class="contact-container">
+  <main>
+    <div class="registro-box">
       <h2>Agendar Cita</h2>
+
       <form id="registroForm">
         <label for="nombre">Nombre completo</label>
-        <input type="text" id="nombre" name="nombre" required>
+        <input type="text" id="nombre" required>
 
         <label for="telefono">Teléfono</label>
-        <input type="text" id="telefono" name="telefono" required>
+        <input type="text" id="telefono" required>
 
         <label for="correo">Correo electrónico</label>
-        <input type="email" id="correo" name="correo" required>
+        <input type="email" id="correo" required>
 
         <label for="nmascota">Nombre de la mascota</label>
-        <input type="text" id="nmascota" name="nmascota" required>
+        <input type="text" id="nmascota" required>
 
         <label for="raza">Raza</label>
-        <input type="text" id="raza" name="raza">
+        <input type="text" id="raza">
 
         <label for="especie">Especie</label>
-        <input type="text" id="especie" name="especie" required>
+        <input type="text" id="especie" required>
 
-        <label for="fecha">Fecha de la cita</label>
-        <input type="date" id="fecha" name="fecha" required>
+        <label for="fecha">Fecha</label>
+        <input type="date" id="fecha" required>
 
-        <label for="hora">Hora de la cita</label>
-        <select id="hora" name="hora" required>
+        <label for="hora">Hora</label>
+        <select id="hora" required>
           <option value="">Selecciona una hora</option>
         </select>
 
         <label for="cadicionales">Comentarios adicionales</label>
-        <textarea id="cadicionales" name="cadicionales"></textarea>
+        <textarea id="cadicionales"></textarea>
 
         <button type="submit">Enviar</button>
       </form>
 
       <hr>
 
-      <h3>Consultar citas próximas</h3>
+      <h2>Consultar citas</h2>
       <div class="buscar-container">
-        <input type="email" id="buscarCorreo" placeholder="Ingresa tu correo electrónico">
+        <input type="email" id="buscarCorreo" placeholder="Ingresa tu correo">
         <button id="buscarBtn">Buscar</button>
       </div>
+
       <div id="tablaCitas"></div>
 
       <div class="volver">
         <a href="index.html">← Volver al inicio</a>
       </div>
     </div>
-  </section>
+  </main>
 
   <script>
-    // 🔒 Verificar sesión antes de permitir acceso
     if (!localStorage.getItem("usuario")) {
       alert("Debes iniciar sesión para acceder a esta página.");
       window.location.href = "login.html";
@@ -402,39 +365,23 @@
           headers: { apikey: SUPABASE_KEY, Authorization: `Bearer ${SUPABASE_KEY}` }
         });
 
-        if (!res.ok) throw new Error("Error al consultar las citas.");
         const citas = await res.json();
-
         if (citas.length === 0) {
-          tablaCitas.innerHTML = "<p>No se encontraron citas próximas con este correo.</p>";
+          tablaCitas.innerHTML = "<p>No se encontraron citas próximas.</p>";
           return;
         }
 
         let tabla = `
           <table>
             <thead>
-              <tr>
-                <th>Fecha</th>
-                <th>Hora</th>
-                <th>Mascota</th>
-                <th>Especie</th>
-              </tr>
-            </thead>
-            <tbody>
-        `;
+              <tr><th>Fecha</th><th>Hora</th><th>Mascota</th><th>Especie</th></tr>
+            </thead><tbody>`;
         citas.forEach(c => {
-          tabla += `
-            <tr>
-              <td>${c.Fecha}</td>
-              <td>${c.Hora}</td>
-              <td>${c.Nombre_Mascota}</td>
-              <td>${c.Especie_Animal}</td>
-            </tr>`;
+          tabla += `<tr><td>${c.Fecha}</td><td>${c.Hora}</td><td>${c.Nombre_Mascota}</td><td>${c.Especie_Animal}</td></tr>`;
         });
         tabla += "</tbody></table>";
         tablaCitas.innerHTML = tabla;
-      } catch (error) {
-        console.error(error);
+      } catch {
         alert("Ocurrió un error al buscar tus citas.");
       }
     });
