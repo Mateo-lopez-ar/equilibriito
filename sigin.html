@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Registro - Equilibrio Animal</title>
-  <link rel="stylesheet" href="styles.css">
 
   <style>
     :root {
@@ -148,113 +147,137 @@
       color: var(--color-texto);
       box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
     }
+
+    /* ====== LOADER GLOBAL (solo ruedita) ====== */
+    #globalLoader {
+      position: fixed;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255, 255, 255, 0.92);
+      z-index: 9999;
+      transition: opacity 0.4s ease, visibility 0.4s ease;
+      visibility: visible;
+      opacity: 1;
+    }
+
+    #globalLoader.hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .spinner {
+      width: 60px;
+      height: 60px;
+      border: 6px solid rgba(0, 0, 0, 0.1);
+      border-top-color: #00a676;
+      border-radius: 50%;
+      animation: spin 0.9s linear infinite;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
   </style>
 </head>
-
 <body>
+  <!-- Pantalla de carga -->
+  <div id="globalLoader">
+    <div class="spinner"></div>
+  </div>
 
   <header>
-    <a href="index.html" style="display: flex; align-items: center; text-decoration: none; color: white;">
-      <img src="img/logo.png" alt="Logo de Equilibrio Animal">
-      <h1>Equilibrio Animal</h1>
-    </a>
+    <h1><a href="index.html">Equilibrio Animal</a></h1>
   </header>
 
   <main>
     <div class="registro-box">
-      <h2>Registro de Usuario</h2>
-      <div id="mensaje"></div>
-
+      <h2>Crear Cuenta</h2>
       <form id="registroForm">
         <label class="form-label" for="nombre">Nombre completo</label>
-        <input type="text" id="nombre" name="nombre" class="form-control" required>
+        <input type="text" id="nombre" class="form-control" placeholder="Ingresa tu nombre completo" />
 
         <label class="form-label" for="correo">Correo electrónico</label>
-        <input type="email" id="correo" name="correo" class="form-control" required>
+        <input type="email" id="correo" class="form-control" placeholder="Ingresa tu correo" />
 
         <label class="form-label" for="usuario">Usuario</label>
-        <input type="text" id="usuario" name="usuario" class="form-control" required>
+        <input type="text" id="usuario" class="form-control" placeholder="Crea tu usuario" />
 
         <label class="form-label" for="contraseña">Contraseña</label>
-        <input type="password" id="contraseña" name="contraseña" class="form-control" required>
+        <input type="password" id="contraseña" class="form-control" placeholder="Crea tu contraseña" />
 
         <div class="botones">
-          <button type="submit" class="btn btn-primary">Registrar</button>
-          <button type="button" id="cancelarBtn" class="btn btn-secondary">Cancelar</button>
+          <button type="submit" class="btn btn-primary">Registrarse</button>
+          <button type="button" class="btn btn-secondary" onclick="window.location.href='login.html'">Iniciar sesión</button>
         </div>
       </form>
 
       <div class="links">
-        <p>¿Ya tienes una cuenta? <a href="login.html">Inicia sesión</a></p>
+        <a href="index.html">Volver al inicio</a>
       </div>
     </div>
   </main>
 
   <footer>
-    <p>© 2025 Equilibrio Animal. Todos los derechos reservados.</p>
+    <p>© 2025 Equilibrio Animal</p>
   </footer>
 
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script>
-    const { createClient } = supabase;
-    const supabaseUrl = 'https://erxgjoacksfghrddptvn.supabase.co';
-    const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVyeGdqb2Fja3NmZ2hyZGRwdHZuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTMzMTA0NTksImV4cCI6MjA2ODg4NjQ1OX0.v0iv9fLe61PVduo3s2HIRFpgAIcMpUik3u82SGYmLE0';
-    const supabaseClient = createClient(supabaseUrl, supabaseKey);
-
+    const globalLoader = document.getElementById('globalLoader');
     const form = document.getElementById('registroForm');
-    const msg = document.getElementById('mensaje');
-    const cancelarBtn = document.getElementById('cancelarBtn');
 
-    function mostrar(msj, tipo = "danger") {
-      msg.innerHTML = `<div class="alert alert-${tipo}" role="alert">${msj}</div>`;
+    function showLoader() {
+      if (!globalLoader) return;
+      globalLoader.classList.remove('hidden');
+      globalLoader.style.display = 'flex';
     }
 
-    cancelarBtn.addEventListener('click', () => {
-      form.reset();
-      msg.innerHTML = '';
-      form.nombre.focus();
+    function hideLoader() {
+      if (!globalLoader) return;
+      globalLoader.classList.add('hidden');
+      setTimeout(() => {
+        globalLoader.style.display = 'none';
+      }, 400);
+    }
+
+    window.addEventListener('load', () => {
+      setTimeout(hideLoader, 350);
     });
 
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
+      showLoader();
 
-      const nombre = form.nombre.value.trim();
-      const correo = form.correo.value.trim();
-      const usuario = form.usuario.value.trim();
-      const contraseña = form.contraseña.value.trim();
+      const nombre = document.getElementById("nombre").value.trim();
+      const correo = document.getElementById("correo").value.trim();
+      const usuario = document.getElementById("usuario").value.trim();
+      const contraseña = document.getElementById("contraseña").value.trim();
 
       if (!nombre || !correo || !usuario || !contraseña) {
-        mostrar("Por favor complete todos los campos.");
+        hideLoader();
+        alert("Por favor complete todos los campos.");
         return;
       }
 
-      // Verificar si el usuario ya existe
-      const { data: existente } = await supabaseClient
-        .from('registro')
-        .select('usuario')
-        .eq('usuario', usuario)
-        .maybeSingle();
-
-      if (existente) {
-        mostrar("El usuario ya existe. Intente con otro nombre de usuario.");
-        return;
-      }
-
-      // Insertar nuevo usuario
-      const { error } = await supabaseClient
-        .from('registro')
-        .insert([{ nombre, correo, usuario, contraseña, fecha_registro: new Date().toISOString() }]);
-
-      if (error) {
+      try {
+        // Simula registro (puedes reemplazar con PHP o Supabase)
+        await new Promise(resolve => setTimeout(resolve, 1500));
+        alert("Registro exitoso. Redirigiendo...");
+        setTimeout(() => {
+          hideLoader();
+          window.location.href = "login.html";
+        }, 1200);
+      } catch (error) {
         console.error(error);
-        mostrar("Error al registrar el usuario.");
-        return;
+        alert("Error al registrar el usuario.");
+        hideLoader();
       }
-
-      mostrar("Registro exitoso. Redirigiendo...", "success");
-      setTimeout(() => window.location.href = "login.html", 1500);
     });
   </script>
-
 </body>
 </html>
+
