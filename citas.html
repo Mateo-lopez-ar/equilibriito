@@ -23,24 +23,31 @@
       --color-blanco: #fff;
     }
 
+    * {
+      box-sizing: border-box;
+    }
+
     body {
       font-family: "Poppins", sans-serif;
       background: linear-gradient(135deg, var(--color-beige), var(--color-menta));
-      height: 100vh;
       margin: 0;
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
+      min-height: 100vh;
+      overflow-y: auto;
+      padding-top: 100px;
+      padding-bottom: 60px;
     }
 
     header {
-      position: absolute;
+      position: fixed;
       top: 20px;
       left: 40px;
       display: flex;
       align-items: center;
       gap: 10px;
+      z-index: 100;
     }
 
     header img {
@@ -64,11 +71,11 @@
     }
 
     main {
+      width: 100%;
       display: flex;
       justify-content: center;
-      align-items: center;
-      flex: 1;
-      padding: 80px 20px;
+      align-items: flex-start;
+      padding: 20px;
     }
 
     .cita-box {
@@ -76,7 +83,7 @@
       padding: 40px 50px;
       border-radius: 15px;
       width: 100%;
-      max-width: 600px;
+      max-width: 650px;
       box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
       text-align: center;
       animation: aparecer 0.6s ease-out;
@@ -167,6 +174,18 @@
       background-color: var(--color-menta);
     }
 
+    .volver {
+      display: block;
+      margin-top: 25px;
+      text-decoration: none;
+      color: var(--color-texto);
+      font-weight: 600;
+    }
+
+    .volver:hover {
+      color: var(--color-naranja);
+    }
+
     #globalLoader {
       position: fixed;
       inset: 0;
@@ -196,9 +215,7 @@
     }
 
     @keyframes spin {
-      to {
-        transform: rotate(360deg);
-      }
+      to { transform: rotate(360deg); }
     }
   </style>
 </head>
@@ -253,6 +270,8 @@
         <button id="buscarBtn" class="btn btn-secondary">Buscar</button>
       </div>
       <div id="tablaCitas"></div>
+
+      <a href="index.html" class="volver">← Volver al inicio</a>
     </div>
   </main>
 
