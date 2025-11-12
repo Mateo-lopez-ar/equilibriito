@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Servicios - Equilibrio Animal</title>
   <style>
-    /* ===== PALETA DE COLORES ===== */
     :root {
       --color-naranja: #ffbd87;
       --color-amarillo: #ffd791;
@@ -17,35 +16,44 @@
     }
 
     body {
-      font-family: Arial, sans-serif;
-      background-color: #f7e8a6;
+      font-family: "Poppins", sans-serif;
+      background-color: var(--color-beige);
       margin: 0;
       color: var(--color-texto);
     }
 
+    /* ====== HEADER ====== */
     header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1rem 2rem;
       background-color: var(--color-naranja);
       color: var(--color-blanco);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 40px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
     }
 
     header h1 {
-      text-align: center;
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin: 0;
+    }
+
+    header h1 a {
       color: var(--color-blanco);
+      text-decoration: none;
     }
 
     header .logo-container img {
-      height: 80px;
-      width: 80px;
+      height: 70px;
       border-radius: 50%;
       border: 3px solid var(--color-blanco);
     }
 
+    /* ====== NAV ====== */
     nav {
       background-color: var(--color-amarillo);
+      box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
     }
 
     nav ul {
@@ -101,13 +109,18 @@
       color: var(--color-blanco);
     }
 
+    /* ====== SERVICIOS ====== */
     .servicios {
       padding: 2rem;
+      max-width: 1100px;
+      margin: 40px auto;
     }
 
     .servicios h2 {
       text-align: center;
       color: var(--color-texto);
+      font-size: 2rem;
+      margin-bottom: 2rem;
     }
 
     .servicio-item {
@@ -122,22 +135,24 @@
       display: flex;
       align-items: center;
       color: var(--color-texto);
+      font-size: 1.4rem;
     }
 
     .servicio-item h3 svg {
-      width: 24px;
-      height: 24px;
+      width: 26px;
+      height: 26px;
       margin-right: 0.5rem;
-      fill: white;
+      fill: var(--color-naranja);
     }
 
     .servicio-item p {
       margin: 0.5rem 0 1rem;
       color: var(--color-texto);
+      line-height: 1.5;
     }
 
     .beneficios {
-      background-color: #d9e8ae;;
+      background-color: var(--color-lima);
       padding: 1rem 1.5rem;
       border-radius: 10px;
       margin: 1rem 0;
@@ -161,151 +176,182 @@
       font-weight: bold;
       color: var(--color-texto);
       border-bottom: 2px solid var(--color-texto);
+      transition: 0.3s;
     }
 
     .servicio-item a:hover {
-      color: var(--color-amarillo);
-      border-color: var(--color-amarillo);
+      color: var(--color-naranja);
+      border-color: var(--color-naranja);
     }
 
+    /* ====== FOOTER ====== */
     footer {
       text-align: center;
-      padding: 1rem;
-      background-color: var(--color-lima);
+      padding: 15px;
+      background-color: var(--color-naranja);
       color: var(--color-texto);
-      margin-top: 2rem;
+      font-size: 0.95rem;
+      box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
+      margin-top: 40px;
+    }
+
+    /* ====== LOADER ====== */
+    #globalLoader {
+      position: fixed;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255, 255, 255, 0.92);
+      z-index: 9999;
+      transition: opacity 0.4s ease, visibility 0.4s ease;
+      visibility: visible;
+      opacity: 1;
+    }
+
+    #globalLoader.hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .spinner {
+      width: 60px;
+      height: 60px;
+      border: 6px solid rgba(0, 0, 0, 0.1);
+      border-top-color: #00a676;
+      border-radius: 50%;
+      animation: spin 0.9s linear infinite;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
     }
   </style>
 </head>
 <body>
 
-<header>
-  <div class="logo-container">
-    <a href="index.html">
-      <img src="img/logo.png" alt="Logo Equilibrio Animal" />
-    </a>
-  </div> <h1><a href ="index.html" >Equilibrio Animal</a></h1>
-  
-  <div style="width: 80px;"></div>
-</header>
-
-<nav>
-  <ul id="navMenu">
-    <li><a href="index.html">Inicio</a></li>
-    <li><a href="nosotros.html">Nosotros</a></li>
-    <li class="dropdown">
-      <a href="servicios.html">Servicios ▾</a>
-      <ul class="submenu">
-        <li><a href="consulta_v.html">Consulta Veterinaria</a></li>
-        <li><a href="Urg.html">Urgencias Veterinarias 24 Horas</a></li>
-        <li><a href="cirugias.html">Cirugías </a></li>
-        <li><a href="lab.html">Laboratorio Clínico Veterinario</a></li>
-      </ul>
-    </li>
-    <li><a href="adopciones.html">Adopciones</a></li>
-    <li><a href="contacto.html">Contacto</a></li>
-    <li><a href="citas.html">Citas</a></li>
-    <li>
-      <a id="sesionBtn" href="login.html">Iniciar Sesión</a>
-    </li>
-  </ul>
-</nav>
-
-<section class="servicios">
-  <h2>Nuestros Servicios</h2>
-
-  <!-- Servicio 1 -->
-  <div class="servicio-item">
-    <h3>
-      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 00-7 7c0 3.86 3.14 7 7 7s7-3.14 7-7a7 7 0 00-7-7zM4 9a8 8 0 0116 0c0 4.418-3.582 8-8 8s-8-3.582-8-8zm8 2a1 1 0 110-2 1 1 0 010 2z"/></svg>
-      Consulta Veterinaria
-    </h3>
-    <p>Ofrecemos revisiones completas, diagnóstico y tratamientos personalizados para perros y gatos. Nuestro equipo de veterinarios está preparado para brindarte confianza y atención profesional.</p>
-    <div class="beneficios">
-      <h4>Beneficios:</h4>
-      <ul>
-        <li>Atención personalizada y cercana.</li>
-        <li>Diagnóstico temprano para enfermedades.</li>
-        <li>Plan de salud adaptado a cada mascota.</li>
-      </ul>
-    </div>
-    <a href="consulta_v.html">Ver más →</a>
+  <div id="globalLoader">
+    <div class="spinner"></div>
   </div>
 
-  <!-- Servicio 2 -->
-  <div class="servicio-item">
-    <h3>
-      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C6.486 2 2 6.486 2 12c0 5.514 4.486 10 10 10s10-4.486 10-10c0-5.514-4.486-10-10-10zm0 18a7.958 7.958 0 01-4.9-1.704l11.196-11.196A7.958 7.958 0 0120 12c0 4.411-3.589 8-8 8zm-6.102-5.196l11.298-11.297A7.95 7.95 0 014 12a7.957 7.957 0 011.898 2.804z"/></svg>
-      Urgencias Veterinarias 24 Horas
-    </h3>
-    <p>¿Una emergencia a cualquier hora del día? Nuestro servicio de urgencias está disponible las 24 horas para atender situaciones críticas de salud en tus mascotas con rapidez y eficacia.</p>
-    <div class="beneficios">
-      <h4>Beneficios:</h4>
-      <ul>
-        <li>Atención inmediata y profesional.</li>
-        <li>Equipo preparado para urgencias graves.</li>
-        <li>Servicio disponible todos los días del año.</li>
-      </ul>
+  <header>
+    <div class="logo-container">
+      <a href="index.html"><img src="img/logo.png" alt="Logo Equilibrio Animal" /></a>
     </div>
-    <a href="Urg.html">Ver más →</a>
-  </div>
-
-  <!-- Servicio 3 -->
-  <div class="servicio-item">
-    <h3>
-      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 9v7a4 4 0 01-4 4H9a4 4 0 01-4-4v-7H4l8-8 8 8h-3z"/></svg>
-      Cirugías y Desparasitación
-    </h3>
-    <p>Realizamos esterilizaciones, cirugías de tejidos blandos y más, con protocolos seguros. Además, aplicamos tratamientos antiparasitarios internos y externos para prevenir enfermedades.</p>
-    <div class="beneficios">
-      <h4>Beneficios:</h4>
-      <ul>
-        <li>Procedimientos seguros y modernos.</li>
-        <li>Prevención efectiva contra parásitos.</li>
-        <li>Recuperación guiada y controlada.</li>
-      </ul>
+    <h1><a href="index.html">Equilibrio Animal</a></h1>
+    <div class="logo-container" style="visibility:hidden;">
+      <img src="logo.png" alt="">
     </div>
-    <a href="cirugias.html">Ver más →</a>
-  </div>
+  </header>
 
+  <nav>
+    <ul id="navMenu">
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="nosotros.html">Nosotros</a></li>
+      <li class="dropdown">
+        <a href="servicios.html">Servicios ▾</a>
+        <ul class="submenu">
+          <li><a href="consulta_v.html">Consulta Veterinaria</a></li>
+          <li><a href="Urg.html">Urgencias Veterinarias 24 Horas</a></li>
+          <li><a href="cirugias.html">Cirugías</a></li>
+          <li><a href="lab.html">Laboratorio Clínico Veterinario</a></li>
+        </ul>
+      </li>
+      <li><a href="adopciones.html">Adopciones</a></li>
+      <li><a href="contacto.html">Contacto</a></li>
+      <li><a href="citas.html">Citas</a></li>
+      <li><a id="sesionBtn" href="login.html">Iniciar Sesión</a></li>
+    </ul>
+  </nav>
 
-  <!-- Servicio 5 -->
-  <div class="servicio-item">
-    <h3>
-      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 17.25V21h3.75l11-11.03-3.75-3.75L3 17.25zM20.71 7.04a1.003 1.003 0 000-1.41l-2.34-2.34a1.003 1.003 0 00-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/></svg>
-      Laboratorio Clínico Veterinario
-    </h3>
-    <p>Contamos con un laboratorio equipado para realizar análisis clínicos precisos que facilitan diagnósticos rápidos y certeros, mejorando la atención y el tratamiento de tus mascotas.</p>
-    <div class="beneficios">
-      <h4>Beneficios:</h4>
-      <ul>
-        <li>Resultados rápidos y confiables.</li>
-        <li>Detección temprana de enfermedades.</li>
-        <li>Mejor seguimiento y control del tratamiento.</li>
-      </ul>
+  <section class="servicios">
+    <h2>Nuestros Servicios</h2>
+
+    <div class="servicio-item">
+      <h3>Consulta Veterinaria</h3>
+      <p>Ofrecemos revisiones completas, diagnóstico y tratamientos personalizados para perros y gatos. Nuestro equipo está preparado para brindarte confianza y atención profesional.</p>
+      <div class="beneficios">
+        <h4>Beneficios:</h4>
+        <ul>
+          <li>Atención personalizada y cercana.</li>
+          <li>Diagnóstico temprano para enfermedades.</li>
+          <li>Plan de salud adaptado a cada mascota.</li>
+        </ul>
+      </div>
+      <a href="consulta_v.html">Ver más →</a>
     </div>
-    <a href="lab.html">Ver más →</a>
-  </div>
 
-</section>
+    <div class="servicio-item">
+      <h3>Urgencias Veterinarias 24 Horas</h3>
+      <p>¿Una emergencia a cualquier hora del día? Nuestro servicio de urgencias está disponible las 24 horas para atender situaciones críticas con rapidez y eficacia.</p>
+      <div class="beneficios">
+        <h4>Beneficios:</h4>
+        <ul>
+          <li>Atención inmediata y profesional.</li>
+          <li>Equipo preparado para urgencias graves.</li>
+          <li>Disponible todos los días del año.</li>
+        </ul>
+      </div>
+      <a href="Urg.html">Ver más →</a>
+    </div>
 
-<footer>
-  &copy; 2025 Equilibrio Animal - Todos los derechos reservados.
-</footer>
+    <div class="servicio-item">
+      <h3>Cirugías y Desparasitación</h3>
+      <p>Realizamos esterilizaciones y cirugías seguras, además de tratamientos antiparasitarios internos y externos.</p>
+      <div class="beneficios">
+        <h4>Beneficios:</h4>
+        <ul>
+          <li>Procedimientos seguros y modernos.</li>
+          <li>Prevención efectiva contra parásitos.</li>
+          <li>Recuperación guiada y controlada.</li>
+        </ul>
+      </div>
+      <a href="cirugias.html">Ver más →</a>
+    </div>
 
-<script>
-  const usuario = localStorage.getItem("usuario");
-  const sesionBtn = document.getElementById("sesionBtn");
+    <div class="servicio-item">
+      <h3>Laboratorio Clínico Veterinario</h3>
+      <p>Contamos con un laboratorio equipado para realizar análisis clínicos precisos y rápidos, mejorando la atención y el diagnóstico.</p>
+      <div class="beneficios">
+        <h4>Beneficios:</h4>
+        <ul>
+          <li>Resultados rápidos y confiables.</li>
+          <li>Detección temprana de enfermedades.</li>
+          <li>Seguimiento y control de tratamientos.</li>
+        </ul>
+      </div>
+      <a href="lab.html">Ver más →</a>
+    </div>
+  </section>
 
-  if (usuario) {
-    sesionBtn.textContent = "Cerrar Sesión";
-    sesionBtn.href = "#";
-    sesionBtn.onclick = () => {
-      localStorage.removeItem("usuario");
-      location.reload();
-    };
-  }
-</script>
+  <footer>
+    &copy; 2025 Equilibrio Animal | Todos los derechos reservados.
+  </footer>
+
+  <script>
+    const usuario = localStorage.getItem("usuario");
+    const sesionBtn = document.getElementById("sesionBtn");
+
+    if (usuario) {
+      sesionBtn.textContent = "Cerrar Sesión";
+      sesionBtn.href = "#";
+      sesionBtn.onclick = () => {
+        localStorage.removeItem("usuario");
+        location.reload();
+      };
+    }
+
+    const globalLoader = document.getElementById("globalLoader");
+    window.addEventListener("load", () => {
+      setTimeout(() => {
+        globalLoader.classList.add("hidden");
+        setTimeout(() => (globalLoader.style.display = "none"), 400);
+      }, 350);
+    });
+  </script>
 
 </body>
 </html>
