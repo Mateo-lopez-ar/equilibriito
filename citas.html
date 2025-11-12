@@ -27,11 +27,11 @@
       font-family: "Poppins", sans-serif;
       background: linear-gradient(135deg, var(--color-beige), var(--color-menta));
       height: 100vh;
+      margin: 0;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      margin: 0;
     }
 
     header {
@@ -63,12 +63,20 @@
       color: var(--color-naranja);
     }
 
+    main {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex: 1;
+      padding: 80px 20px;
+    }
+
     .cita-box {
       background-color: var(--color-blanco);
-      padding: 40px;
+      padding: 40px 50px;
       border-radius: 15px;
       width: 100%;
-      max-width: 500px;
+      max-width: 600px;
       box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
       text-align: center;
       animation: aparecer 0.6s ease-out;
@@ -85,7 +93,7 @@
       margin-bottom: 25px;
     }
 
-    .form-label {
+    label {
       font-weight: 600;
       color: var(--color-texto);
       text-align: left;
@@ -93,21 +101,20 @@
       margin-top: 10px;
     }
 
-    .form-control,
-    select,
-    textarea {
+    input, select, textarea {
+      width: 100%;
+      padding: 10px 12px;
       border: 2px solid var(--color-lima);
       border-radius: 8px;
-      padding: 10px;
-      width: 100%;
+      margin-top: 5px;
+      font-size: 15px;
+      outline: none;
+      transition: border-color 0.3s ease;
     }
 
-    .form-control:focus,
-    select:focus,
-    textarea:focus {
+    input:focus, select:focus, textarea:focus {
       border-color: var(--color-naranja);
       box-shadow: 0 0 0 0.2rem rgba(255, 189, 135, 0.25);
-      outline: none;
     }
 
     textarea {
@@ -115,18 +122,28 @@
       height: 80px;
     }
 
-    .btn-primary {
+    button {
       background-color: var(--color-naranja);
       border: none;
-      font-weight: 600;
+      border-radius: 25px;
+      padding: 12px 25px;
+      font-weight: bold;
+      font-size: 1rem;
+      margin-top: 25px;
       width: 100%;
-      margin-top: 15px;
-      padding: 10px;
+      transition: background-color 0.3s ease;
+      cursor: pointer;
+      color: var(--color-texto);
     }
 
-    .btn-primary:hover {
+    button:hover {
       background-color: var(--color-amarillo);
+    }
+
+    h4 {
+      margin-top: 35px;
       color: var(--color-texto);
+      font-weight: 700;
     }
 
     #tablaCitas {
@@ -200,37 +217,37 @@
     <div class="cita-box">
       <h2>Agendar Cita</h2>
       <form id="registroForm">
-        <label class="form-label" for="nombre">Nombre completo</label>
-        <input type="text" id="nombre" name="nombre" class="form-control" required>
+        <label for="nombre">Nombre completo</label>
+        <input type="text" id="nombre" name="nombre" required>
 
-        <label class="form-label" for="telefono">Teléfono</label>
-        <input type="text" id="telefono" name="telefono" class="form-control" required>
+        <label for="telefono">Teléfono</label>
+        <input type="text" id="telefono" name="telefono" required>
 
-        <label class="form-label" for="correo">Correo electrónico</label>
-        <input type="email" id="correo" name="correo" class="form-control" required>
+        <label for="correo">Correo electrónico</label>
+        <input type="email" id="correo" name="correo" required>
 
-        <label class="form-label" for="nmascota">Nombre de la mascota</label>
-        <input type="text" id="nmascota" name="nmascota" class="form-control" required>
+        <label for="nmascota">Nombre de la mascota</label>
+        <input type="text" id="nmascota" name="nmascota" required>
 
-        <label class="form-label" for="raza">Raza</label>
-        <input type="text" id="raza" name="raza" class="form-control">
+        <label for="raza">Raza</label>
+        <input type="text" id="raza" name="raza">
 
-        <label class="form-label" for="especie">Especie</label>
-        <input type="text" id="especie" name="especie" class="form-control" required>
+        <label for="especie">Especie</label>
+        <input type="text" id="especie" name="especie" required>
 
-        <label class="form-label" for="fecha">Fecha de la cita</label>
-        <input type="date" id="fecha" name="fecha" class="form-control" required>
+        <label for="fecha">Fecha de la cita</label>
+        <input type="date" id="fecha" name="fecha" required>
 
-        <label class="form-label" for="hora">Hora</label>
-        <select id="hora" name="hora" class="form-control" required></select>
+        <label for="hora">Hora</label>
+        <select id="hora" name="hora" required></select>
 
-        <label class="form-label" for="cadicionales">Comentarios adicionales</label>
-        <textarea id="cadicionales" name="cadicionales" class="form-control"></textarea>
+        <label for="cadicionales">Comentarios adicionales</label>
+        <textarea id="cadicionales" name="cadicionales"></textarea>
 
-        <button type="submit" class="btn btn-primary">Enviar</button>
+        <button type="submit">Enviar</button>
       </form>
 
-      <h4 class="mt-4">Consultar citas</h4>
+      <h4>Consultar citas</h4>
       <div class="input-group mt-2">
         <input type="email" id="buscarCorreo" class="form-control" placeholder="Correo electrónico">
         <button id="buscarBtn" class="btn btn-secondary">Buscar</button>
@@ -254,7 +271,7 @@
 
     function generarHoras() {
       for (let h = 8; h <= 16; h++) {
-        const hora = h.toString().padStart(2, '0') + ":00";
+        const hora = h.toString().padStart(2, "0") + ":00";
         const option = document.createElement("option");
         option.value = hora;
         option.textContent = hora;
@@ -282,7 +299,7 @@
         Especie_Animal: form.especie.value,
         Fecha: form.fecha.value,
         Hora: form.hora.value,
-        Mensaje: form.cadicionales.value
+        Mensaje: form.cadicionales.value,
       };
 
       try {
@@ -291,9 +308,9 @@
           headers: {
             "Content-Type": "application/json",
             apikey: SUPABASE_KEY,
-            Authorization: `Bearer ${SUPABASE_KEY}`
+            Authorization: `Bearer ${SUPABASE_KEY}`,
           },
-          body: JSON.stringify(data)
+          body: JSON.stringify(data),
         });
 
         if (!res.ok) throw new Error(await res.text());
@@ -303,7 +320,7 @@
           nmascota: data.Nombre_Mascota,
           fecha: data.Fecha,
           hora: data.Hora,
-          cadicionales: data.Mensaje
+          cadicionales: data.Mensaje,
         });
 
         alert("✅ ¡Tu cita ha sido registrada correctamente!");
@@ -322,9 +339,10 @@
         const res = await fetch(`${SUPABASE_URL}?Email=eq.${correo}&select=*`, {
           headers: {
             apikey: SUPABASE_KEY,
-            Authorization: `Bearer ${SUPABASE_KEY}`
-          }
+            Authorization: `Bearer ${SUPABASE_KEY}`,
+          },
         });
+
         if (!res.ok) throw new Error("Error al consultar.");
         const citas = await res.json();
 
@@ -334,7 +352,7 @@
         }
 
         let tabla = `<table><tr><th>Fecha</th><th>Hora</th><th>Mascota</th><th>Especie</th></tr>`;
-        citas.forEach(c => {
+        citas.forEach((c) => {
           tabla += `<tr><td>${c.Fecha}</td><td>${c.Hora}</td><td>${c.Nombre_Mascota}</td><td>${c.Especie_Animal}</td></tr>`;
         });
         tabla += "</table>";
@@ -355,4 +373,3 @@
   </script>
 </body>
 </html>
-
