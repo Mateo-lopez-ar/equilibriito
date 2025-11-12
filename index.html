@@ -4,32 +4,29 @@
   <meta charset="UTF-8" />
   <title>Inicio - Equilibrio Animal</title>
   <link rel="stylesheet" href="styles.css" />
-</head>
-<style>
 
-:root {
-      --color-naranja: #ffbd87;  /*color1*/
-      --color-amarillo: #ffd791;  /*color2*/
-      --color-beige: #f7e8a6;     /*color3*/
-      --color-lima: #d9e8ae;      /*color4*/
-      --color-menta: #bfe3c0;     /*color5*/
+  <style>
+    :root {
+      --color-naranja: #ffbd87;
+      --color-amarillo: #ffd791;
+      --color-beige: #f7e8a6;
+      --color-lima: #d9e8ae;
+      --color-menta: #bfe3c0;
       --color-texto: #333;
       --color-blanco: #fff;
     }
 
+    .inicio img {
+      display: block;
+      width: 100%;
+      max-width: 600px;
+      height: auto;
+      margin: 30px auto;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    }
 
-.inicio img {
-  display: block;
-  width: 100%;
-  max-width: 600px; /* Tamaño máximo */
-  height: auto;
-  margin: 30px auto;
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-}
-
-
-   nav {
+    nav {
       background-color: var(--color-amarillo);
     }
 
@@ -86,16 +83,53 @@
       color: var(--color-blanco);
     }
 
-</style>
+    /* ===== Loader ===== */
+    #globalLoader {
+      position: fixed;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255, 255, 255, 0.92);
+      z-index: 9999;
+      transition: opacity 0.4s ease, visibility 0.4s ease;
+      visibility: visible;
+      opacity: 1;
+    }
+
+    #globalLoader.hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .spinner {
+      width: 60px;
+      height: 60px;
+      border: 6px solid rgba(0, 0, 0, 0.1);
+      border-top-color: #00a676;
+      border-radius: 50%;
+      animation: spin 0.9s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+
 <body>
+  <div id="globalLoader">
+    <div class="spinner"></div>
+  </div>
 
   <header>
     <div class="logo-container">
       <a href="index.html">
         <img src="img/logo.png" alt="Logo Equilibrio Animal" />
       </a>
-    </div> <h1><a href ="index.html" >Equilibrio Animal</a></h1>
-  
+    </div>
+    <h1><a href="index.html">Equilibrio Animal</a></h1>
     <div class="logo-container" style="visibility: hidden;">
       <img src="img/logo.png" alt="" style="height: 80px; width: 80px;" />
     </div>
@@ -117,9 +151,7 @@
       <li><a href="adopciones.html">Adopciones</a></li>
       <li><a href="contacto.html">Contacto</a></li>
       <li><a href="citas.html">Citas</a></li>
-      <li>
-        <a id="sesionBtn" href="login.html">Iniciar Sesión</a>
-      </li>
+      <li><a id="sesionBtn" href="login.html">Iniciar Sesión</a></li>
     </ul>
   </nav>
 
@@ -133,11 +165,10 @@
   </section>
 
   <footer>
-    &copy; 2025 Equilibrio Animal | Todos los derechos reservados | Si necesitas saber como usar la pagina, aquí esta el manual de uso <a href="Manual de Usuario Equilibrio Animal (1).docx" download>Descargar Manual</a>
+    &copy; 2025 Equilibrio Animal | Todos los derechos reservados | Si necesitas saber cómo usar la página, aquí está el manual de uso <a href="Manual de Usuario Equilibrio Animal (1).docx" download>Descargar Manual</a>
   </footer>
 
   <script>
-    // Mostrar nombre si el usuario está en localStorage
     const usuario = localStorage.getItem("usuario");
     const bienvenida = document.getElementById("bienvenidaTexto");
     const sesionBtn = document.getElementById("sesionBtn");
@@ -151,7 +182,15 @@
         location.reload();
       };
     }
-  </script>
 
+    const globalLoader = document.getElementById('globalLoader');
+    function hideLoader() {
+      if (!globalLoader) return;
+      globalLoader.classList.add('hidden');
+      setTimeout(() => { globalLoader.style.display = 'none'; }, 400);
+    }
+    window.addEventListener('load', () => { setTimeout(hideLoader, 350); });
+  </script>
 </body>
 </html>
+
