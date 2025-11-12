@@ -2,8 +2,8 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Agendar Cita - Equilibrio Animal</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contacto - Equilibrio Animal</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
   <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
   <script>
@@ -63,12 +63,12 @@
       color: var(--color-naranja);
     }
 
-    .cita-box {
+    .contacto-box {
       background-color: var(--color-blanco);
       padding: 40px;
       border-radius: 15px;
       width: 100%;
-      max-width: 600px; /* 🔹 Más ancho sin hacerlo más alto */
+      max-width: 550px;
       box-shadow: 0 6px 20px rgba(0,0,0,0.15);
       text-align: center;
       animation: aparecer 0.6s ease-out;
@@ -79,7 +79,7 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    .cita-box h2 {
+    .contacto-box h2 {
       color: var(--color-texto);
       font-weight: 700;
       margin-bottom: 25px;
@@ -93,7 +93,7 @@
       margin-top: 10px;
     }
 
-    input, select, textarea {
+    input, textarea {
       width: 100%;
       padding: 10px;
       border: 2px solid var(--color-lima);
@@ -103,7 +103,7 @@
       transition: 0.3s;
     }
 
-    input:focus, select:focus, textarea:focus {
+    input:focus, textarea:focus {
       border-color: var(--color-naranja);
       outline: none;
       box-shadow: 0 0 5px rgba(0,0,0,0.1);
@@ -111,7 +111,7 @@
 
     textarea {
       resize: none;
-      height: 80px;
+      height: 90px;
     }
 
     button {
@@ -147,28 +147,6 @@
       background-color: var(--color-menta);
     }
 
-    hr {
-      border: 1px solid var(--color-lima);
-      margin: 25px 0;
-    }
-
-    #tablaCitas table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 10px;
-      font-size: 0.9rem;
-    }
-
-    #tablaCitas th, #tablaCitas td {
-      border: 1px solid var(--color-lima);
-      padding: 8px;
-    }
-
-    #tablaCitas th {
-      background-color: var(--color-menta);
-    }
-
-    /* Loader */
     #globalLoader {
       position: fixed;
       inset: 0;
@@ -212,48 +190,21 @@
   </header>
 
   <main>
-    <div class="cita-box">
-      <h2>Agendar Cita</h2>
-      <form id="registroForm">
-        <label for="nombre">Nombre completo</label>
-        <input type="text" id="nombre" name="nombre" required>
+    <div class="contacto-box">
+      <h2>Contáctanos</h2>
 
-        <label for="telefono">Teléfono</label>
-        <input type="text" id="telefono" name="telefono" required>
+      <form id="contactForm">
+        <label for="nombre">Nombre</label>
+        <input type="text" id="nombre" name="nombre" required />
 
         <label for="correo">Correo electrónico</label>
-        <input type="email" id="correo" name="correo" required>
+        <input type="email" id="correo" name="correo" required />
 
-        <label for="nmascota">Nombre de la mascota</label>
-        <input type="text" id="nmascota" name="nmascota" required>
+        <label for="mensaje">Mensaje</label>
+        <textarea id="mensaje" name="mensaje" required></textarea>
 
-        <label for="raza">Raza</label>
-        <input type="text" id="raza" name="raza">
-
-        <label for="especie">Especie</label>
-        <input type="text" id="especie" name="especie" required>
-
-        <label for="fecha">Fecha de la cita</label>
-        <input type="date" id="fecha" name="fecha" required>
-
-        <label for="hora">Hora</label>
-        <select id="hora" name="hora" required></select>
-
-        <label for="cadicionales">Comentarios adicionales</label>
-        <textarea id="cadicionales" name="cadicionales"></textarea>
-
-        <button type="submit">Enviar</button>
+        <button type="submit">Enviar mensaje</button>
       </form>
-
-      <hr>
-
-      <h4>Consultar citas</h4>
-      <div class="input-group">
-        <input type="email" id="buscarCorreo" class="form-control" placeholder="Correo electrónico">
-        <button id="buscarBtn" class="btn" style="background-color: var(--color-lima); font-weight:600;">Buscar</button>
-      </div>
-
-      <div id="tablaCitas"></div>
 
       <div class="volver">
         <a href="index.html">← Volver al inicio</a>
@@ -262,127 +213,40 @@
   </main>
 
   <script>
-    const usuario = localStorage.getItem("usuario");
-    if (!usuario) {
-      alert("⚠️ Debes iniciar sesión para acceder a esta página.");
-      window.location.href = "login.html";
-    }
-
     const SERVICE_ID = "service_ez5hhuq";
     const TEMPLATE_ID = "template_ih4h0k8";
-    const SUPABASE_URL = "https://erxgjoacksfghrddptvn.supabase.co/rest/v1/citas";
-    const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVyeGdqb2Fja3NmZ2hyZGRwdHZuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTMzMTA0NTksImV4cCI6MjA2ODg4NjQ1OX0.v0iv9fLe61PVduo3s2HIRFpgAIcMpUik3u82SGYmLE0";
 
-    const form = document.getElementById("registroForm");
-    const fechaInput = document.getElementById("fecha");
-    const horaSelect = document.getElementById("hora");
-
-    function generarHoras() {
-      for (let h = 8; h <= 16; h++) {
-        const hora = h.toString().padStart(2, '0') + ":00";
-        const option = document.createElement("option");
-        option.value = hora;
-        option.textContent = hora;
-        horaSelect.appendChild(option);
-      }
-    }
-
-    function establecerFechaMinima() {
-      const hoy = new Date();
-      hoy.setDate(hoy.getDate() + 1);
-      fechaInput.min = hoy.toISOString().split("T")[0];
-    }
-
-    generarHoras();
-    establecerFechaMinima();
-
-    form.addEventListener("submit", async (e) => {
-      e.preventDefault();
-      const data = {
-        Nombre: form.nombre.value,
-        Telefono: form.telefono.value,
-        Email: form.correo.value,
-        Nombre_Mascota: form.nmascota.value,
-        Raza: form.raza.value,
-        Especie_Animal: form.especie.value,
-        Fecha: form.fecha.value,
-        Hora: form.hora.value,
-        Mensaje: form.cadicionales.value
-      };
-
-      try {
-        const res = await fetch(SUPABASE_URL, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            apikey: SUPABASE_KEY,
-            Authorization: `Bearer ${SUPABASE_KEY}`
-          },
-          body: JSON.stringify(data)
-        });
-
-        if (!res.ok) throw new Error(await res.text());
-
-        await emailjs.send(SERVICE_ID, TEMPLATE_ID, {
-          to_email: data.Email,
-          nmascota: data.Nombre_Mascota,
-          fecha: data.Fecha,
-          hora: data.Hora,
-          cadicionales: data.Mensaje
-        });
-
-        alert("✅ ¡Tu cita ha sido registrada correctamente!");
-        form.reset();
-      } catch (error) {
-        console.error(error);
-        alert("Ocurrió un error técnico.");
-      }
-    });
-
-    const buscarBtn = document.getElementById("buscarBtn");
-    const buscarCorreo = document.getElementById("buscarCorreo");
-    const tablaCitas = document.getElementById("tablaCitas");
-
-    buscarBtn.addEventListener("click", async () => {
-      const correo = buscarCorreo.value.trim();
-      if (!correo) return alert("Por favor ingresa tu correo.");
-
-      try {
-        const res = await fetch(`${SUPABASE_URL}?Email=eq.${correo}&select=*`, {
-          headers: {
-            apikey: SUPABASE_KEY,
-            Authorization: `Bearer ${SUPABASE_KEY}`
-          }
-        });
-        if (!res.ok) throw new Error("Error al consultar.");
-        const citas = await res.json();
-
-        if (!citas.length) {
-          tablaCitas.innerHTML = "<p>No se encontraron citas.</p>";
-          return;
-        }
-
-        let tabla = `<table><tr><th>Fecha</th><th>Hora</th><th>Mascota</th><th>Especie</th></tr>`;
-        citas.forEach(c => {
-          tabla += `<tr><td>${c.Fecha}</td><td>${c.Hora}</td><td>${c.Nombre_Mascota}</td><td>${c.Especie_Animal}</td></tr>`;
-        });
-        tabla += "</table>";
-        tablaCitas.innerHTML = tabla;
-      } catch (error) {
-        console.error(error);
-        alert("Error al buscar tus citas.");
-      }
-    });
-
-    // Loader
-    const globalLoader = document.getElementById("globalLoader");
-    window.addEventListener("load", () => {
+    const globalLoader = document.getElementById('globalLoader');
+    window.addEventListener('load', () => {
       setTimeout(() => {
-        globalLoader.classList.add("hidden");
-        setTimeout(() => (globalLoader.style.display = "none"), 400);
+        globalLoader.classList.add('hidden');
+        setTimeout(() => (globalLoader.style.display = 'none'), 400);
       }, 350);
+    });
+
+    document.getElementById("contactForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const nombre = e.target.nombre.value;
+      const correo = e.target.correo.value;
+      const mensaje = e.target.mensaje.value;
+
+      try {
+        await emailjs.send(SERVICE_ID, TEMPLATE_ID, {
+          to_email: "equilibrioanimalcontacto@gmail.com",
+          from_name: nombre,
+          reply_to: correo,
+          message: mensaje
+        });
+
+        alert("✅ Tu mensaje ha sido enviado correctamente. ¡Gracias por contactarnos!");
+        e.target.reset();
+      } catch (error) {
+        console.error(error);
+        alert("Ocurrió un error al enviar el mensaje.");
+      }
     });
   </script>
 </body>
 </html>
+
 
