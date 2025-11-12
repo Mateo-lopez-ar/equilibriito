@@ -108,6 +108,38 @@
     .links { text-align: center; margin-top: 20px; }
     .links a { color: #FFBD87; text-decoration: none; font-weight: bold; }
     .links a:hover { text-decoration: underline; }
+
+    #globalLoader {
+      position: fixed;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255, 255, 255, 0.92);
+      z-index: 9999;
+      transition: opacity 0.4s ease, visibility 0.4s ease;
+      visibility: visible;
+      opacity: 1;
+    }
+
+    #globalLoader.hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .spinner {
+      width: 60px;
+      height: 60px;
+      border: 6px solid rgba(0, 0, 0, 0.1);
+      border-top-color: #00a676;
+      border-radius: 50%;
+      animation: spin 0.9s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
   </style>
 
   <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
@@ -119,10 +151,14 @@
 </head>
 
 <body>
+  <div id="globalLoader">
+    <div class="spinner"></div>
+  </div>
+
   <header>
     <a href="index.html">
-      <img src="img/logo.png" alt="Logo Equilibrio Animal" /> <h1><a href ="index.html" >Equilibrio Animal</a></h1>
-  
+      <img src="img/logo.png" alt="Logo Equilibrio Animal" />
+      <h1><a href="index.html" style="color:white; text-decoration:none;">Equilibrio Animal</a></h1>
     </a>
   </header>
 
@@ -204,6 +240,15 @@
       alerta.textContent = texto;
       alerta.classList.remove("d-none");
     }
+
+    const globalLoader = document.getElementById('globalLoader');
+    function hideLoader() {
+      if (!globalLoader) return;
+      globalLoader.classList.add('hidden');
+      setTimeout(() => { globalLoader.style.display = 'none'; }, 400);
+    }
+    window.addEventListener('load', () => { setTimeout(hideLoader, 350); });
   </script>
 </body>
 </html>
+
