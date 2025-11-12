@@ -13,7 +13,6 @@
   </script>
 
   <style>
-    /* ======= PALETA ======= */
     :root {
       --color1: #ffbd87;
       --color2: #ffd791;
@@ -23,7 +22,6 @@
       --texto: #333;
     }
 
-    /* ======= BASE ======= */
     body {
       background: linear-gradient(135deg, var(--color3), var(--color5));
       font-family: 'Poppins', sans-serif;
@@ -73,7 +71,6 @@
       color: white;
     }
 
-    /* ======= CONTENEDOR PRINCIPAL ======= */
     .contact-section {
       flex: 1;
       display: flex;
@@ -104,9 +101,7 @@
       margin-bottom: 25px;
     }
 
-    h2 {
-      color: var(--color1);
-    }
+    h2 { color: var(--color1); }
 
     label {
       color: var(--texto);
@@ -150,9 +145,7 @@
       cursor: pointer;
     }
 
-    button:hover {
-      background-color: var(--color2);
-    }
+    button:hover { background-color: var(--color2); }
 
     hr {
       border: 1px solid var(--color4);
@@ -194,16 +187,45 @@
       font-weight: 600;
     }
 
-    table tr:nth-child(even) {
-      background-color: #fafafa;
+    table tr:nth-child(even) { background-color: #fafafa; }
+    table tr:hover { background-color: var(--color3); }
+
+    #globalLoader {
+      position: fixed;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255, 255, 255, 0.92);
+      z-index: 9999;
+      transition: opacity 0.4s ease, visibility 0.4s ease;
+      visibility: visible;
+      opacity: 1;
     }
 
-    table tr:hover {
-      background-color: var(--color3);
+    #globalLoader.hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
     }
+
+    .spinner {
+      width: 60px;
+      height: 60px;
+      border: 6px solid rgba(0, 0, 0, 0.1);
+      border-top-color: #00a676;
+      border-radius: 50%;
+      animation: spin 0.9s linear infinite;
+    }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
   </style>
 </head>
 <body>
+  <div id="globalLoader">
+    <div class="spinner"></div>
+  </div>
+
   <header>
     <a href="index.html">
       <img src="img/logo.png" alt="Logo">
@@ -398,6 +420,14 @@
         alert("Ocurrió un error al buscar tus citas.");
       }
     });
+
+    const globalLoader = document.getElementById('globalLoader');
+    function hideLoader() {
+      if (!globalLoader) return;
+      globalLoader.classList.add('hidden');
+      setTimeout(() => { globalLoader.style.display = 'none'; }, 400);
+    }
+    window.addEventListener('load', () => { setTimeout(hideLoader, 350); });
   </script>
 </body>
 </html>
