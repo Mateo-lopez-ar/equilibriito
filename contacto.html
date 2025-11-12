@@ -87,7 +87,7 @@
       padding: 40px 40px;
       box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
       width: 100%;
-      max-width: 560px;
+      max-width: 620px;
       animation: fadeIn 0.6s ease;
     }
 
@@ -196,6 +196,26 @@
     table tr:nth-child(even) { background-color: #fafafa; }
     table tr:hover { background-color: var(--color3); }
 
+    .volver {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .volver a {
+      display: inline-block;
+      background-color: var(--color4);
+      color: var(--texto);
+      text-decoration: none;
+      padding: 10px 20px;
+      border-radius: 25px;
+      font-weight: 600;
+      transition: background-color 0.3s ease;
+    }
+
+    .volver a:hover {
+      background-color: var(--color5);
+    }
+
     #globalLoader {
       position: fixed;
       inset: 0;
@@ -283,6 +303,10 @@
         <button id="buscarBtn">Buscar</button>
       </div>
       <div id="tablaCitas"></div>
+
+      <div class="volver">
+        <a href="index.html">← Volver al inicio</a>
+      </div>
     </div>
   </section>
 
