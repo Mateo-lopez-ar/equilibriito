@@ -21,6 +21,7 @@
       --color-menta: #bfe3c0;
       --color-texto: #333;
       --color-blanco: #fff;
+      --color-verde-boton: #a7d7b1;
     }
 
     * {
@@ -147,6 +148,19 @@
       background-color: var(--color-amarillo);
     }
 
+    #buscarBtn {
+      background-color: var(--color-verde-boton);
+      border: none;
+      border-radius: 8px;
+      color: var(--color-texto);
+      font-weight: 600;
+      transition: background-color 0.3s;
+    }
+
+    #buscarBtn:hover {
+      background-color: var(--color-lima);
+    }
+
     h4 {
       margin-top: 35px;
       color: var(--color-texto);
@@ -267,7 +281,7 @@
       <h4>Consultar citas</h4>
       <div class="input-group mt-2">
         <input type="email" id="buscarCorreo" class="form-control" placeholder="Correo electrónico">
-        <button id="buscarBtn" class="btn btn-secondary">Buscar</button>
+        <button id="buscarBtn" class="btn">Buscar</button>
       </div>
       <div id="tablaCitas"></div>
 
