@@ -4,65 +4,66 @@
   <meta charset="UTF-8" />
   <title>Adopciones - Equilibrio Animal</title>
   <link rel="stylesheet" href="styles.css" />
-</head>
+  <style>
+    :root {
+      --color-naranja: #ffbd87;
+      --color-amarillo: #ffd791;
+      --color-beige: #f7e8a6;
+      --color-lima: #d9e8ae;
+      --color-menta: #bfe3c0;
+      --color-texto: #333;
+      --color-blanco: #fff;
+    }
 
-<style>
-  :root {
-    --color-naranja: #ffbd87;
-    --color-amarillo: #ffd791;
-    --color-beige: #f7e8a6;
-    --color-lima: #d9e8ae;
-    --color-menta: #bfe3c0;
-    --color-texto: #333;
-    --color-blanco: #fff;
-  }
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: var(--color-texto);
+      background-color: var(--color-beige);
+    }
 
-  body {
-    margin: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    color: var(--color-texto);
-    background-color: var(--color-beige);
-  }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: var(--color-naranja);
+      padding: 15px 30px;
+      color: var(--color-blanco);
+    }
 
-  header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: var(--color-naranja);
-    padding: 15px 30px;
-    color: var(--color-blanco);
-  }
+    header img {
+      height: 80px;
+      width: 80px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--color-naranja);
+      box-shadow: 0 0 6px rgba(0,0,0,0.2);
+    }
 
-  header img {
-    height: 80px;
-  }
+    nav {
+      background-color: var(--color-amarillo);
+    }
 
-  nav {
-    background-color: var(--color-amarillo);
-  }
+    nav ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      margin: 0;
+      padding: 10px 0;
+      gap: 20px;
+    }
 
-  nav ul {
-    list-style: none;
-    display: flex;
-    justify-content: center;
-    margin: 0;
-    padding: 10px 0;
-    gap: 20px;
-  }
+    nav ul li a {
+      text-decoration: none;
+      color: var(--color-texto);
+      font-weight: bold;
+    }
 
-  nav ul li a {
-    text-decoration: none;
-    color: var(--color-texto);
-    font-weight: bold;
-  }
+    nav ul li a.active {
+      text-decoration: underline;
+    }
 
-  nav ul li a.active {
-    text-decoration: underline;
-  }
-
-  /* ===== SECCIÓN ADOPCIONES ===== */
-
-      .nosotros {
+    .nosotros {
       max-width: 1100px;
       margin: 40px auto;
       background-color: var(--color-menta);
@@ -84,144 +85,169 @@
       font-size: 1.05rem;
     }
 
-  .nosotros .intro-text {
-    text-align: center;
-    margin-bottom: 40px;
-    font-size: 1.1rem;
-  }
-
-  /* ===== GALERÍA DE ANIMALES (3x2) ===== */
-
-  .galeria {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 25px;
-    justify-items: center;
-  }
-
-  .animal {
-    background-color: var(--color-beige);
-    width: 320px;
-    height: 420px;
-    border-radius: 15px;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    text-align: center;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    transition: transform 0.3s ease;
-  }
-
-  .animal:hover {
-    transform: translateY(-5px);
-  }
-
-  .animal img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-  }
-
-  .animal h3 {
-    font-size: 1.4rem;
-    margin: 10px 0 5px;
-  }
-
-  .animal p {
-    font-size: 1rem;
-    padding: 0 15px;
-    flex-grow: 1;
-  }
-
-  .boton-adoptar {
-    background-color: var(--color-naranja);
-    color: var(--color-blanco);
-    text-decoration: none;
-    padding: 10px 15px;
-    border-radius: 20px;
-    margin: 15px auto;
-    display: inline-block;
-    width: fit-content;
-    transition: background-color 0.3s ease;
-  }
-
-  .boton-adoptar:hover {
-    background-color: var(--color-amarillo);
-    color: var(--color-texto);
-  }
-
-  /* ===== SECCIÓN BENEFICIOS ===== */
-
-  .beneficios {
-    margin-top: 50px;
-    background-color: var(--color-beige);
-    padding: 30px;
-    border-radius: 10px;
-  }
-
-  .beneficios h3 {
-    text-align: center;
-    font-size: 1.8rem;
-    margin-bottom: 20px;
-  }
-
-  .beneficios ul {
-    list-style-type: "🐾 ";
-    line-height: 1.8;
-    font-size: 1.05rem;
-  }
-
-  /* ===== PIE DE PÁGINA ===== */
-
-  footer {
-    background-color: var(--color-naranja);
-    text-align: center;
-    color: var(--color-blanco);
-    padding: 15px 0;
-    margin-top: 40px;
-    border-radius: 0 0 15px 15px;
-  }
-
-  /* ===== RESPONSIVE ===== */
-
-  @media (max-width: 992px) {
-    .galeria {
-      grid-template-columns: repeat(2, 1fr);
+    .nosotros .intro-text {
+      text-align: center;
+      margin-bottom: 40px;
+      font-size: 1.1rem;
     }
-  }
 
-  @media (max-width: 650px) {
     .galeria {
-      grid-template-columns: 1fr;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
+      justify-items: center;
     }
+
     .animal {
-      width: 90%;
-      height: auto;
+      background-color: var(--color-beige);
+      width: 320px;
+      height: 420px;
+      border-radius: 15px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease;
     }
-    .animal img {
-      height: 220px;
-    }
-  }
 
-</style>
+    .animal:hover {
+      transform: translateY(-5px);
+    }
+
+    .animal img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .animal h3 {
+      font-size: 1.4rem;
+      margin: 10px 0 5px;
+    }
+
+    .animal p {
+      font-size: 1rem;
+      padding: 0 15px;
+      flex-grow: 1;
+    }
+
+    .boton-adoptar {
+      background-color: var(--color-naranja);
+      color: var(--color-blanco);
+      text-decoration: none;
+      padding: 10px 15px;
+      border-radius: 20px;
+      margin: 15px auto;
+      display: inline-block;
+      width: fit-content;
+      transition: background-color 0.3s ease;
+    }
+
+    .boton-adoptar:hover {
+      background-color: var(--color-amarillo);
+      color: var(--color-texto);
+    }
+
+    .beneficios {
+      margin-top: 50px;
+      background-color: var(--color-beige);
+      padding: 30px;
+      border-radius: 10px;
+    }
+
+    .beneficios h3 {
+      text-align: center;
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+    }
+
+    .beneficios ul {
+      list-style-type: "🐾 ";
+      line-height: 1.8;
+      font-size: 1.05rem;
+    }
+
+    footer {
+      background-color: var(--color-naranja);
+      text-align: center;
+      color: var(--color-blanco);
+      padding: 15px 0;
+      margin-top: 40px;
+      border-radius: 0 0 15px 15px;
+    }
+
+    @media (max-width: 992px) {
+      .galeria {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 650px) {
+      .galeria {
+        grid-template-columns: 1fr;
+      }
+      .animal {
+        width: 90%;
+        height: auto;
+      }
+      .animal img {
+        height: 220px;
+      }
+    }
+
+    #globalLoader {
+      position: fixed;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255, 255, 255, 0.92);
+      z-index: 9999;
+      transition: opacity 0.4s ease, visibility 0.4s ease;
+      visibility: visible;
+      opacity: 1;
+    }
+
+    #globalLoader.hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .spinner {
+      width: 60px;
+      height: 60px;
+      border: 6px solid rgba(0, 0, 0, 0.1);
+      border-top-color: #00a676;
+      border-radius: 50%;
+      animation: spin 0.9s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+  </style>
+</head>
 
 <body>
+  <div id="globalLoader">
+    <div class="spinner"></div>
+  </div>
 
-  <!-- ENCABEZADO -->
   <header>
     <div class="logo-container">
       <a href="index.html">
         <img src="img/logo.png" alt="Logo Equilibrio Animal" />
       </a>
     </div>
-    <h1><a href="index.html" >Equilibrio Animal</a></h1>
+    <h1><a href="index.html">Equilibrio Animal</a></h1>
     <div class="logo-container" style="visibility: hidden;">
       <img src="img/logo.png" alt="" style="height: 80px; width: 80px;" />
     </div>
   </header>
 
-  <!-- NAVEGACIÓN -->
   <nav>
     <ul id="navMenu">
       <li><a href="index.html">Inicio</a></li>
@@ -242,10 +268,8 @@
     </ul>
   </nav>
 
-  <!-- SECCIÓN ADOPCIONES -->
   <section class="nosotros">
     <h2>Adopciones</h2>
-
     <p class="intro-text">
       En <strong>Equilibrio Animal</strong> creemos que adoptar es un acto de amor. 
       Muchos animalitos esperan un hogar donde puedan recibir cariño, cuidado y una segunda oportunidad.
@@ -306,7 +330,6 @@
     </section>
   </section>
 
-  <!-- PIE DE PÁGINA -->
   <footer>
     &copy; 2025 Equilibrio Animal | Todos los derechos reservados
   </footer>
@@ -314,7 +337,6 @@
   <script>
     const usuario = localStorage.getItem("usuario");
     const sesionBtn = document.getElementById("sesionBtn");
-
     if (usuario) {
       sesionBtn.textContent = "Cerrar Sesión";
       sesionBtn.href = "#";
@@ -323,7 +345,15 @@
         location.reload();
       };
     }
-  </script>
 
+    const globalLoader = document.getElementById('globalLoader');
+    function hideLoader() {
+      if (!globalLoader) return;
+      globalLoader.classList.add('hidden');
+      setTimeout(() => { globalLoader.style.display = 'none'; }, 400);
+    }
+    window.addEventListener('load', () => { setTimeout(hideLoader, 350); });
+  </script>
 </body>
 </html>
+ 
