@@ -20,6 +20,7 @@
       --color4: #d9e8ae;
       --color5: #bfe3c0;
       --texto: #333;
+      --blanco: #fff;
     }
 
     body {
@@ -29,16 +30,19 @@
       min-height: 100vh;
       display: flex;
       flex-direction: column;
+      align-items: center;
     }
 
+    /* ======= HEADER ======= */
     header {
       background-color: var(--color1);
       color: white;
-      padding: 12px 25px;
+      width: 100%;
+      padding: 15px 0;
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
       position: sticky;
       top: 0;
       z-index: 10;
@@ -52,8 +56,8 @@
     }
 
     header img {
-      height: 65px;
-      width: 65px;
+      height: 70px;
+      width: 70px;
       border-radius: 50%;
       margin-right: 15px;
       border: 2px solid white;
@@ -69,25 +73,27 @@
       color: white;
     }
 
+    /* ======= CONTENEDOR PRINCIPAL ======= */
     .contact-section {
       flex: 1;
       display: flex;
       justify-content: center;
       align-items: center;
-      padding: 50px 20px;
+      width: 100%;
+      padding: 40px 15px;
     }
 
     .contact-container {
-      background: #fff;
+      background: var(--blanco);
       border-radius: 20px;
-      padding: 40px 30px;
+      padding: 40px 50px;
       box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
       width: 100%;
-      max-width: 480px;
-      animation: aparecer 0.7s ease;
+      max-width: 650px;
+      animation: fadeIn 0.6s ease;
     }
 
-    @keyframes aparecer {
+    @keyframes fadeIn {
       from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
     }
@@ -104,17 +110,17 @@
     label {
       color: var(--texto);
       font-weight: 600;
-      margin-top: 10px;
+      margin-top: 12px;
       display: block;
     }
 
     input, select, textarea {
       width: 100%;
       padding: 10px 12px;
-      margin-top: 5px;
+      margin-top: 6px;
       border: 2px solid var(--color4);
       border-radius: 10px;
-      font-size: 0.95rem;
+      font-size: 1rem;
       outline: none;
       transition: all 0.3s ease;
     }
@@ -134,7 +140,7 @@
       padding: 12px 25px;
       font-weight: bold;
       font-size: 1rem;
-      margin-top: 20px;
+      margin-top: 25px;
       width: 100%;
       transition: background-color 0.3s ease;
       cursor: pointer;
@@ -299,8 +305,7 @@
     function establecerFechaMinima() {
       const hoy = new Date();
       hoy.setDate(hoy.getDate() + 1);
-      const minDate = hoy.toISOString().split("T")[0];
-      fechaInput.min = minDate;
+      fechaInput.min = hoy.toISOString().split("T")[0];
     }
 
     generarHoras();
@@ -321,7 +326,7 @@
       };
 
       try {
-        const response = await fetch(SUPABASE_URL, {
+        const res = await fetch(SUPABASE_URL, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -331,7 +336,7 @@
           body: JSON.stringify(data)
         });
 
-        if (!response.ok) throw new Error(await response.text());
+        if (!res.ok) throw new Error(await res.text());
 
         await emailjs.send(SERVICE_ID, TEMPLATE_ID, {
           to_email: data.Email,
@@ -356,17 +361,11 @@
 
     buscarBtn.addEventListener("click", async () => {
       const correo = buscarCorreo.value.trim();
-      if (!correo) {
-        alert("Por favor, ingresa tu correo electrónico.");
-        return;
-      }
+      if (!correo) return alert("Por favor, ingresa tu correo electrónico.");
 
       try {
         const res = await fetch(`${SUPABASE_URL}?Email=eq.${correo}&select=*`, {
-          headers: {
-            apikey: SUPABASE_KEY,
-            Authorization: `Bearer ${SUPABASE_KEY}`
-          }
+          headers: { apikey: SUPABASE_KEY, Authorization: `Bearer ${SUPABASE_KEY}` }
         });
 
         if (!res.ok) throw new Error("Error al consultar las citas.");
@@ -396,8 +395,7 @@
               <td>${c.Hora}</td>
               <td>${c.Nombre_Mascota}</td>
               <td>${c.Especie_Animal}</td>
-            </tr>
-          `;
+            </tr>`;
         });
         tabla += "</tbody></table>";
         tablaCitas.innerHTML = tabla;
@@ -409,11 +407,12 @@
 
     // Loader
     const globalLoader = document.getElementById('globalLoader');
-    function hideLoader() {
-      globalLoader.classList.add('hidden');
-      setTimeout(() => { globalLoader.style.display = 'none'; }, 400);
-    }
-    window.addEventListener('load', () => { setTimeout(hideLoader, 350); });
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        globalLoader.classList.add('hidden');
+        setTimeout(() => (globalLoader.style.display = 'none'), 400);
+      }, 350);
+    });
   </script>
 </body>
 </html>
