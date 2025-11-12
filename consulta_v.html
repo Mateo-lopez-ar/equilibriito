@@ -5,7 +5,6 @@
   <title>Consultas Veterinarias - Equilibrio Animal</title>
   <link rel="stylesheet" href="styles.css">
   <style>
-    /* ======== PALETA ======== */
     :root {
       --color-naranja: #ffbd87;
       --color-amarillo: #ffd791;
@@ -16,7 +15,6 @@
       --color-blanco: #fff;
     }
 
-    /* ======== ESTILO GENERAL ======== */
     body {
       margin: 0;
       font-family: "Poppins", sans-serif;
@@ -42,9 +40,10 @@
 
     header img {
       height: 60px;
+      border-radius: 50%;
+      border: 2px solid white;
     }
 
-    /* ======== NAVBAR ======== */
     nav {
       background-color: var(--color-amarillo);
       text-align: center;
@@ -79,7 +78,6 @@
       border-radius: 8px;
     }
 
-    /* Submenú */
     .submenu {
       display: none;
       position: absolute;
@@ -106,7 +104,6 @@
       color: var(--color-blanco);
     }
 
-    /* ======== SECCIÓN PRINCIPAL ======== */
     .nosotros {
       max-width: 90%;
       margin: 50px auto;
@@ -114,7 +111,6 @@
       padding: 40px;
       border-radius: 15px;
       box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      
     }
 
     .nosotros h2 {
@@ -130,7 +126,6 @@
       margin-bottom: 40px;
     }
 
-    /* ======== SERVICIOS EN CASCADA ======== */
     .servicios-tabla {
       display: flex;
       flex-direction: column;
@@ -157,7 +152,6 @@
       height: 100px;
       object-fit: contain;
       margin-bottom: 15px;
-      background-color: var(--color-blanco);
       border-radius: 10px;
     }
 
@@ -173,7 +167,6 @@
       color: var(--color-texto);
     }
 
-    /* ======== BOTÓN CITA ======== */
     .boton-citas {
       text-align: center;
       margin: 30px 0;
@@ -194,7 +187,6 @@
       background-color: var(--color-amarillo);
     }
 
-    /* ======== FOOTER ======== */
     footer {
       text-align: center;
       padding: 15px 0;
@@ -204,22 +196,55 @@
       font-size: 0.95rem;
       box-shadow: 0 -2px 8px rgba(0,0,0,0.15);
     }
+
+    #globalLoader {
+      position: fixed;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255, 255, 255, 0.92);
+      z-index: 9999;
+      transition: opacity 0.4s ease, visibility 0.4s ease;
+      visibility: visible;
+      opacity: 1;
+    }
+
+    #globalLoader.hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .spinner {
+      width: 60px;
+      height: 60px;
+      border: 6px solid rgba(0, 0, 0, 0.1);
+      border-top-color: #00a676;
+      border-radius: 50%;
+      animation: spin 0.9s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
   </style>
 </head>
 <body>
+  <div id="globalLoader">
+    <div class="spinner"></div>
+  </div>
 
-  <!-- ENCABEZADO -->
   <header>
     <div class="logo-container">
       <a href="index.html"><img src="img/logo.png" alt="Logo Equilibrio Animal"></a>
     </div>
-    <h1><a href="index.html" >Equilibrio Animal</a></h1>
+    <h1><a href="index.html" style="color:white; text-decoration:none;">Equilibrio Animal</a></h1>
     <div class="logo-container" style="visibility:hidden;">
       <img src="img/logo.png" alt="" style="height:80px; width:80px;">
     </div>
   </header>
 
-  <!-- NAVEGACIÓN -->
   <nav>
     <ul id="navMenu">
       <li><a href="index.html">Inicio</a></li>
@@ -228,9 +253,9 @@
         <a href="servicios.html">Servicios ▾</a>
         <ul class="submenu">
           <li><a href="consulta_v.html">Consulta Veterinaria</a></li>
-          <li><a href="Urg.html">Urgencias Veterinarias 24 Horas</a></li>
+          <li><a href="Urg.html">Urgencias 24 Horas</a></li>
           <li><a href="cirugias.html">Cirugías y Desparasitación</a></li>
-          <li><a href="lab.html">Laboratorio Clínico Veterinario</a></li>
+          <li><a href="lab.html">Laboratorio Clínico</a></li>
         </ul>
       </li>
       <li><a href="adopciones.html">Adopciones</a></li>
@@ -240,10 +265,9 @@
     </ul>
   </nav>
 
-  <!-- SECCIÓN PRINCIPAL -->
   <section class="nosotros">
     <h2>Consultas Veterinarias</h2>
-    <p>Encuentra acá todas las opciones para darle a tu mascota la mejor atención, incluyendo especialistas, pruebas de laboratorio y más.</p>
+    <p>Encuentra todas las opciones para darle a tu mascota la mejor atención, incluyendo especialistas, pruebas de laboratorio y más.</p>
 
     <section class="servicios-tabla">
       <div class="servicio-cuadro">
@@ -267,17 +291,15 @@
       <div class="servicio-cuadro">
         <img src="img/lab.png" alt="Laboratorio Clínico">
         <h3>Laboratorio Clínico</h3>
-        <p>Exámenes de sangre, orina, coprológicos y más para un análisis integral de la salud animal.</p>
+        <p>Exámenes de sangre, orina y coprológicos para un análisis integral de la salud animal.</p>
       </div>
     </section>
   </section>
 
-  <!-- BOTÓN CITA -->
   <div class="boton-citas">
     <a href="citas.html" class="btn">Agendar cita</a>
   </div>
 
-  <!-- PIE DE PÁGINA -->
   <footer>
     &copy; 2025 Equilibrio Animal | Todos los derechos reservados
   </footer>
@@ -294,6 +316,14 @@
         location.reload();
       };
     }
+
+    const globalLoader = document.getElementById('globalLoader');
+    function hideLoader() {
+      if (!globalLoader) return;
+      globalLoader.classList.add('hidden');
+      setTimeout(() => { globalLoader.style.display = 'none'; }, 400);
+    }
+    window.addEventListener('load', () => { setTimeout(hideLoader, 350); });
   </script>
 </body>
 </html>
