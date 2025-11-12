@@ -2,203 +2,161 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Agendar Cita - Equilibrio Animal</title>
-  <link rel="stylesheet" href="styles.css" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
   <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
   <script>
-    (function() {
+    (function () {
       emailjs.init("V_7XXS-cj433ImG5Q");
     })();
   </script>
 
   <style>
     :root {
-      --color1: #ffbd87;
-      --color2: #ffd791;
-      --color3: #f7e8a6;
-      --color4: #d9e8ae;
-      --color5: #bfe3c0;
-      --texto: #333;
-      --blanco: #fff;
+      --color-naranja: #ffbd87;
+      --color-amarillo: #ffd791;
+      --color-beige: #f7e8a6;
+      --color-lima: #d9e8ae;
+      --color-menta: #bfe3c0;
+      --color-texto: #333;
+      --color-blanco: #fff;
     }
 
     body {
-      background: linear-gradient(135deg, var(--color3), var(--color5));
-      font-family: 'Poppins', sans-serif;
-      margin: 0;
-      min-height: 100vh;
+      font-family: "Poppins", sans-serif;
+      background: linear-gradient(135deg, var(--color-beige), var(--color-menta));
+      height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
-    }
-
-    /* ======= HEADER ======= */
-    header {
-      background-color: var(--color1);
-      color: white;
-      width: 100%;
-      padding: 15px 0;
-      display: flex;
-      align-items: center;
       justify-content: center;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-      position: sticky;
-      top: 0;
-      z-index: 10;
+      margin: 0;
     }
 
-    header a {
+    header {
+      position: absolute;
+      top: 20px;
+      left: 40px;
       display: flex;
       align-items: center;
-      text-decoration: none;
-      color: inherit;
+      gap: 10px;
     }
 
     header img {
-      height: 70px;
-      width: 70px;
+      height: 60px;
+      width: 60px;
       border-radius: 50%;
-      margin-right: 15px;
-      border: 2px solid white;
-      transition: transform 0.3s ease;
+      object-fit: cover;
+      border: 3px solid var(--color-naranja);
+      box-shadow: 0 0 6px rgba(0, 0, 0, 0.2);
     }
 
-    header img:hover { transform: scale(1.05); }
-
-    header h1 {
-      font-size: 1.8em;
-      font-weight: bold;
-      margin: 0;
-      color: white;
+    header h1 a {
+      color: var(--color-texto);
+      text-decoration: none;
+      font-size: 1.8rem;
+      font-weight: 700;
     }
 
-    /* ======= CONTENEDOR PRINCIPAL ======= */
-    .contact-section {
-      flex: 1;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+    header h1 a:hover {
+      color: var(--color-naranja);
+    }
+
+    .cita-box {
+      background-color: var(--color-blanco);
+      padding: 40px;
+      border-radius: 15px;
       width: 100%;
-      padding: 40px 15px;
-    }
-
-    .contact-container {
-      background: var(--blanco);
-      border-radius: 20px;
-      padding: 40px 40px;
+      max-width: 500px;
       box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-      width: 100%;
-      max-width: 560px;
-      animation: fadeIn 0.6s ease;
+      text-align: center;
+      animation: aparecer 0.6s ease-out;
     }
 
-    @keyframes fadeIn {
+    @keyframes aparecer {
       from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
     }
 
-    h2, h3 {
-      text-align: center;
-      color: var(--texto);
+    h2 {
+      color: var(--color-texto);
       font-weight: 700;
       margin-bottom: 25px;
     }
 
-    h2 { color: var(--color1); }
-
-    label {
-      color: var(--texto);
+    .form-label {
       font-weight: 600;
-      margin-top: 12px;
+      color: var(--color-texto);
+      text-align: left;
       display: block;
-    }
-
-    input, select, textarea {
-      width: 100%;
-      padding: 10px 12px;
-      margin-top: 6px;
-      border: 2px solid var(--color4);
-      border-radius: 10px;
-      font-size: 1rem;
-      outline: none;
-      transition: all 0.3s ease;
-    }
-
-    input:focus, select:focus, textarea:focus {
-      border-color: var(--color1);
-      box-shadow: 0 0 5px rgba(255, 189, 135, 0.3);
-    }
-
-    textarea { resize: none; height: 80px; }
-
-    button {
-      background-color: var(--color1);
-      color: var(--texto);
-      border: none;
-      border-radius: 25px;
-      padding: 12px 25px;
-      font-weight: bold;
-      font-size: 1rem;
-      margin-top: 25px;
-      width: 100%;
-      transition: background-color 0.3s ease;
-      cursor: pointer;
-    }
-
-    button:hover { background-color: var(--color2); }
-
-    hr {
-      border: 1px solid var(--color4);
-      margin: 35px 0 25px;
-    }
-
-    .buscar-container {
-      display: flex;
-      gap: 10px;
       margin-top: 10px;
     }
 
-    .buscar-container input {
-      flex: 1;
-      border-radius: 10px;
-      padding: 8px 10px;
-    }
-
-    .buscar-container button {
-      width: auto;
-      padding: 10px 20px;
-    }
-
-    table {
+    .form-control,
+    select,
+    textarea {
+      border: 2px solid var(--color-lima);
+      border-radius: 8px;
+      padding: 10px;
       width: 100%;
-      border-collapse: collapse;
-      margin-top: 15px;
-      font-size: 0.9rem;
     }
 
-    table th, table td {
-      border: 1px solid var(--color4);
-      padding: 8px;
+    .form-control:focus,
+    select:focus,
+    textarea:focus {
+      border-color: var(--color-naranja);
+      box-shadow: 0 0 0 0.2rem rgba(255, 189, 135, 0.25);
+      outline: none;
+    }
+
+    textarea {
+      resize: none;
+      height: 80px;
+    }
+
+    .btn-primary {
+      background-color: var(--color-naranja);
+      border: none;
+      font-weight: 600;
+      width: 100%;
+      margin-top: 15px;
+      padding: 10px;
+    }
+
+    .btn-primary:hover {
+      background-color: var(--color-amarillo);
+      color: var(--color-texto);
+    }
+
+    #tablaCitas {
+      margin-top: 20px;
       text-align: left;
     }
 
-    table th {
-      background-color: var(--color5);
-      font-weight: 600;
+    #tablaCitas table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
     }
 
-    table tr:nth-child(even) { background-color: #fafafa; }
-    table tr:hover { background-color: var(--color3); }
+    #tablaCitas th,
+    #tablaCitas td {
+      border: 1px solid var(--color-lima);
+      padding: 8px;
+    }
 
-    /* ======== LOADER ======== */
+    #tablaCitas th {
+      background-color: var(--color-menta);
+    }
+
     #globalLoader {
       position: fixed;
       inset: 0;
       display: flex;
       align-items: center;
       justify-content: center;
-      background: rgba(255, 255, 255, 0.9);
+      background: rgba(255, 255, 255, 0.92);
       z-index: 9999;
       transition: opacity 0.4s ease, visibility 0.4s ease;
       visibility: visible;
@@ -215,72 +173,71 @@
       width: 60px;
       height: 60px;
       border: 6px solid rgba(0, 0, 0, 0.1);
-      border-top-color: var(--color1);
+      border-top-color: #00a676;
       border-radius: 50%;
       animation: spin 0.9s linear infinite;
     }
 
     @keyframes spin {
-      to { transform: rotate(360deg); }
+      to {
+        transform: rotate(360deg);
+      }
     }
   </style>
 </head>
+
 <body>
-  <div id="globalLoader"><div class="spinner"></div></div>
+  <div id="globalLoader">
+    <div class="spinner"></div>
+  </div>
 
   <header>
-    <a href="index.html">
-      <img src="img/logo.png" alt="Logo">
-      <h1>Equilibrio Animal</h1>
-    </a>
+    <img src="img/logo.png" alt="Logo de Equilibrio Animal">
+    <h1><a href="index.html">Equilibrio Animal</a></h1>
   </header>
 
-  <section class="contact-section">
-    <div class="contact-container">
+  <main>
+    <div class="cita-box">
       <h2>Agendar Cita</h2>
       <form id="registroForm">
-        <label for="nombre">Nombre completo</label>
-        <input type="text" id="nombre" name="nombre" required>
+        <label class="form-label" for="nombre">Nombre completo</label>
+        <input type="text" id="nombre" name="nombre" class="form-control" required>
 
-        <label for="telefono">Teléfono</label>
-        <input type="text" id="telefono" name="telefono" required>
+        <label class="form-label" for="telefono">Teléfono</label>
+        <input type="text" id="telefono" name="telefono" class="form-control" required>
 
-        <label for="correo">Correo electrónico</label>
-        <input type="email" id="correo" name="correo" required>
+        <label class="form-label" for="correo">Correo electrónico</label>
+        <input type="email" id="correo" name="correo" class="form-control" required>
 
-        <label for="nmascota">Nombre de la mascota</label>
-        <input type="text" id="nmascota" name="nmascota" required>
+        <label class="form-label" for="nmascota">Nombre de la mascota</label>
+        <input type="text" id="nmascota" name="nmascota" class="form-control" required>
 
-        <label for="raza">Raza</label>
-        <input type="text" id="raza" name="raza">
+        <label class="form-label" for="raza">Raza</label>
+        <input type="text" id="raza" name="raza" class="form-control">
 
-        <label for="especie">Especie</label>
-        <input type="text" id="especie" name="especie" required>
+        <label class="form-label" for="especie">Especie</label>
+        <input type="text" id="especie" name="especie" class="form-control" required>
 
-        <label for="fecha">Fecha de la cita</label>
-        <input type="date" id="fecha" name="fecha" required>
+        <label class="form-label" for="fecha">Fecha de la cita</label>
+        <input type="date" id="fecha" name="fecha" class="form-control" required>
 
-        <label for="hora">Hora de la cita</label>
-        <select id="hora" name="hora" required>
-          <option value="">Selecciona una hora</option>
-        </select>
+        <label class="form-label" for="hora">Hora</label>
+        <select id="hora" name="hora" class="form-control" required></select>
 
-        <label for="cadicionales">Comentarios adicionales</label>
-        <textarea id="cadicionales" name="cadicionales"></textarea>
+        <label class="form-label" for="cadicionales">Comentarios adicionales</label>
+        <textarea id="cadicionales" name="cadicionales" class="form-control"></textarea>
 
-        <button type="submit">Enviar</button>
+        <button type="submit" class="btn btn-primary">Enviar</button>
       </form>
 
-      <hr>
-
-      <h3>Consultar citas próximas</h3>
-      <div class="buscar-container">
-        <input type="email" id="buscarCorreo" placeholder="Ingresa tu correo electrónico">
-        <button id="buscarBtn">Buscar</button>
+      <h4 class="mt-4">Consultar citas</h4>
+      <div class="input-group mt-2">
+        <input type="email" id="buscarCorreo" class="form-control" placeholder="Correo electrónico">
+        <button id="buscarBtn" class="btn btn-secondary">Buscar</button>
       </div>
       <div id="tablaCitas"></div>
     </div>
-  </section>
+  </main>
 
   <script>
     const SERVICE_ID = "service_ez5hhuq";
@@ -289,8 +246,11 @@
     const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVyeGdqb2Fja3NmZ2hyZGRwdHZuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTMzMTA0NTksImV4cCI6MjA2ODg4NjQ1OX0.v0iv9fLe61PVduo3s2HIRFpgAIcMpUik3u82SGYmLE0";
 
     const form = document.getElementById("registroForm");
-    const fechaInput = document.getElementById("fecha");
     const horaSelect = document.getElementById("hora");
+    const fechaInput = document.getElementById("fecha");
+    const buscarBtn = document.getElementById("buscarBtn");
+    const buscarCorreo = document.getElementById("buscarCorreo");
+    const tablaCitas = document.getElementById("tablaCitas");
 
     function generarHoras() {
       for (let h = 8; h <= 16; h++) {
@@ -348,69 +308,48 @@
 
         alert("✅ ¡Tu cita ha sido registrada correctamente!");
         form.reset();
-        window.location.href = "index.html";
       } catch (error) {
         console.error(error);
         alert("Ocurrió un error técnico.");
       }
     });
 
-    const buscarBtn = document.getElementById("buscarBtn");
-    const buscarCorreo = document.getElementById("buscarCorreo");
-    const tablaCitas = document.getElementById("tablaCitas");
-
     buscarBtn.addEventListener("click", async () => {
       const correo = buscarCorreo.value.trim();
-      if (!correo) return alert("Por favor, ingresa tu correo electrónico.");
+      if (!correo) return alert("Por favor ingresa tu correo.");
 
       try {
         const res = await fetch(`${SUPABASE_URL}?Email=eq.${correo}&select=*`, {
-          headers: { apikey: SUPABASE_KEY, Authorization: `Bearer ${SUPABASE_KEY}` }
+          headers: {
+            apikey: SUPABASE_KEY,
+            Authorization: `Bearer ${SUPABASE_KEY}`
+          }
         });
-
-        if (!res.ok) throw new Error("Error al consultar las citas.");
+        if (!res.ok) throw new Error("Error al consultar.");
         const citas = await res.json();
 
-        if (citas.length === 0) {
-          tablaCitas.innerHTML = "<p>No se encontraron citas próximas con este correo.</p>";
+        if (!citas.length) {
+          tablaCitas.innerHTML = "<p>No se encontraron citas.</p>";
           return;
         }
 
-        let tabla = `
-          <table>
-            <thead>
-              <tr>
-                <th>Fecha</th>
-                <th>Hora</th>
-                <th>Mascota</th>
-                <th>Especie</th>
-              </tr>
-            </thead>
-            <tbody>
-        `;
+        let tabla = `<table><tr><th>Fecha</th><th>Hora</th><th>Mascota</th><th>Especie</th></tr>`;
         citas.forEach(c => {
-          tabla += `
-            <tr>
-              <td>${c.Fecha}</td>
-              <td>${c.Hora}</td>
-              <td>${c.Nombre_Mascota}</td>
-              <td>${c.Especie_Animal}</td>
-            </tr>`;
+          tabla += `<tr><td>${c.Fecha}</td><td>${c.Hora}</td><td>${c.Nombre_Mascota}</td><td>${c.Especie_Animal}</td></tr>`;
         });
-        tabla += "</tbody></table>";
+        tabla += "</table>";
         tablaCitas.innerHTML = tabla;
       } catch (error) {
         console.error(error);
-        alert("Ocurrió un error al buscar tus citas.");
+        alert("Error al buscar tus citas.");
       }
     });
 
-    // Loader
-    const globalLoader = document.getElementById('globalLoader');
-    window.addEventListener('load', () => {
+    const globalLoader = document.getElementById("globalLoader");
+    window.addEventListener("load", () => {
       setTimeout(() => {
-        globalLoader.classList.add('hidden');
-        setTimeout(() => (globalLoader.style.display = 'none'), 400);
+        globalLoader.classList.add("hidden");
+        setTimeout(() => (globalLoader.style.display = "none"), 400);
       }, 350);
     });
   </script>
